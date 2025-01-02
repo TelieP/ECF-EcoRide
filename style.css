@@ -1,0 +1,13 @@
+.container-lg{
+    display: flex;
+    width: 100rem;
+    flex-direction: row;
+    text-wrap: wrap;
+    align-items: flex-start;
+}
+
+.find_cov{
+    display: flex;
+    align-items: center;
+    
+}

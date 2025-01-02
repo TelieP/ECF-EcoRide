@@ -1,0 +1,2 @@
+<?php
+echo "BIENVENU SUR VOTRE PROFILE";
