@@ -1,18 +1,19 @@
 <?php
 // Démarrer la session pour récupérer les informations de l'utilisateur connecté
 session_start();
+//include_once('includes/header.php');
 
 // Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['ID_utilisateur'])) {
-    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
-    echo "Vous devez vous connecter pour accéder à cette page.";
+//if (!isset($_SESSION['ID_utilisateur'])) {
+// Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+//echo "Vous devez vous connecter pour accéder à cette page.";
 
-    //header('Location: login.php');
-    exit();
-}
+//header('Location: login.php');
+//exit();
+//}
 
 // Inclure la configuration pour la connexion à la base de données
-include('config.php');
+include('includes/connect.php');
 
 // Initialisation des variables pour les messages
 $error_message = '';
@@ -34,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         try {
             // Insérer le covoiturage dans la base de données
-            $stmt = $pdo->prepare("INSERT INTO covoiturages (Id_utilisateur, lieu_depart, lieu_arrivee, date_depart, nb_place, heure_depart, prix_personne) VALUES (:Id_utilisateur, :lieu_depart, :lieu_arrivee, :date_depart, :nb_place, :prix_personne , :heure_depart, :prix_personne)");
+            $stmt = $pdo->prepare("INSERT INTO covoiturage (Id_utilisateur, lieu_depart, lieu_arrivee, date_depart, nb_place, heure_depart, prix_personne) VALUES (:Id_utilisateur, :lieu_depart, :lieu_arrivee, :date_depart, :nb_place, :prix_personne , :heure_depart, :prix_personne)");
 
             // Lier les paramètres
             $stmt->bindValue(':Id_utilisateur', $_SESSION['ID_utilisateur']);
