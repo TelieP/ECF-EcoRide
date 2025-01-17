@@ -10,9 +10,9 @@ if (!empty($_POST)) {
 
     if (isset($email, $password)) {
         //on verifie que le mail est un vrai mail
-        // if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        //     die('Adresse email invalide' . $email);
-        // }
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            die('Adresse email invalide' . $email);
+        }
         // on se connecte à la base de données
         // on prepare la requete
         $sql = "SELECT * FROM `utilisateur` WHERE `email` = :email";
