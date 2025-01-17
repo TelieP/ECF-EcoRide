@@ -1,7 +1,7 @@
 <?php
 // Paramètres de connexion à la base de données
 $host = 'localhost';      // Nom de l'hôte de la base de données (par exemple 'localhost' ou l'adresse IP du serveur)
-$dbname = 'covoit';   // Nom de la base de données
+$dbname = 'dbcovoit';   // Nom de la base de données
 $username = 'root';        // Nom d'utilisateur MySQL
 $password = '';            // Mot de passe MySQL (laissez vide si vous n'en avez pas)
 

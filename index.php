@@ -6,7 +6,7 @@
 
 
 <!DOCTYPE html>
-<html lang="fr">
+<lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,23 +73,77 @@
         Rejoignez la communauté et roulez vers un futur plus vert.
     </p>
 </section>
-<div>
-    <form class="find_cov">
-        <h1>Recherchez un nouveau trajet </h1>
-        Départ: <input type="text" name="nom" required><br><br>
-        Arrivée: <input type="text" name="prenom" required><br><br>
-        Date: <input type="email" name="email" required><br><br>
-        <button type="submit">Rechercher</button>
-        
-    </form>
-</div>
-
-
-
+<form  method="POST"  action="list_cov.php" class="formulaire_find_cov">
+  <h1>Recherchez un nouveau trajet </h1>
+    <div class="mb-3">
+          <label for="depart">Départ:</label>
+          <input type="text" class="form-control"  id="depart" name="lieu_depart">
+    </div>
+    <div class="mb-3">
+          <label for="arrivee">Arrivée:</label>
+          <input type="text" class="form-control"  id="arrivee" name="lieu_arrivee">
+    </div>
+    <div class="mb-3">
+          <label for="date">Date:</label>
+          <input type="date" class="form-control"  id="date" name="date_depart">
+    </div>
+   
+    <button type="submit">Rechercher</button>
+</form>
 
 <?php
+//connexion à la base de données
+
+require_once 'includes/connect.php';
+
+// on vérifie si les critères de recherche sont fournis
+
+$sql="SELECT * FROM `covoiturage` WHERE 1=1";   // condition qui ne filtre rien par defaut 
+
+// ajoutons des conditions de recherche
+
+if(!empty($_POST['lieu_depart'])) {
+    $sql .= "AND lieu_depart  LIKE :lieu_depart";
+}
+if(!empty($_POST['lieu_arrivee'])){
+    $sql .= "AND lieu_arrivee  LIKE :lieu_arrivee";
+}
+if(!empty($_POST['date_depart'])){
+    $sql .= "AND date_depart  LIKE :date_depart";
+}
+
+//on prépare la requete
+
+$stmt = $conn -> prepare($sql);
+
+//lier les parametres si  les champs sont remplis
+if(!empty($_POST['lieu_depart'])) {
+    $stmt->bindValue(':lieu_depart', '%' .$_POST['lieu_depart'] .'%' , PDO::PARAM_STR);
+}
+if(!empty($_POST['lieu_arrivee'])) {
+    $stmt->bindValue(':lieu_arrivee', '%' .$_POST['lieu_arrivee'] .'%' , PDO::PARAM_STR);
+}
+if(!empty($_POST['date_depart'])) {
+    $stmt->bindValue(':date_depart', '%' .$_POST['date_depart'] .'%' , PDO::PARAM_STR);
+}
+
+//excecuter la requete
+
+$stmt->execute();
+
+// Affichage des resultats de la requete sql
+
+$resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if($resultats){
+    foreach($resultats as $resultat){
+        echo "Départ :" .$resultat['lieu_depart']. "<br>";
+        echo "Arrivée :" .$resultat['lieu_arrivee']. "<br>";
+        echo "Date départ :" .$resultat['date_depart']. "<br><hr>";
+    }
+}else{
+    echo " Aucun résultat trouvé , veuillez modifiez vos critères de recherche ! ";
+}
+
 require_once 'includes/footer.php';
+
 ?>
-
-
-

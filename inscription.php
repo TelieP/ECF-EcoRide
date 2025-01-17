@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['pass'], PASSWORD_ARGON2ID );
+    $password = password_hash($_POST['pass'], PASSWORD_ARGON2ID);
     $telephone = $_POST['telephone'];
     $adresse = $_POST['adresse'];
     $naissance = $_POST['naissance'];
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     Mot de passe: <input type="password" name="pass" required><br><br>
     Téléphone: <input type="number" name="telephone" required><br><br>
     Adresse: <input type="text" name="adresse" required><br><br>
-    Date de naissance: <input type="date" name="naissance"  required><br><br>
+    Date de naissance: <input type="date" name="naissance" required><br><br>
     Photo:: <input type="file" name="photo" accept="image/png , image/jpeg"><br><br>
     Pseudo: <input type="text" name="pseudo" required><br><br>
     <button type="submit">S'inscrire</button>
