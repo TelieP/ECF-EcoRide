@@ -2,11 +2,6 @@
 session_start();
 require_once 'includes/connect.php'; // Connexion à la base de données
 
-//$roles = [
-//  ['id' => 1, 'libelle' => "passager"],
-// ['id' => 2, 'libelle' => "conducteur"]
-//];
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
@@ -41,8 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
             if ($stmt->execute()) {
                 $idUtilisateur = $conn->lastInsertId();
+                $idRole = $_POST['Id_role'];
                 $stmt = $conn->prepare('INSERT INTO `possede` (Id_role, Id_utilisateur) VALUES (:id_role, :id_utilisateur)');
-                $stmt->bindParam(':id_role', $_POST['Id_role'], PDO::PARAM_INT);
+                $stmt->bindParam(':id_role', $idRole, PDO::PARAM_INT);
                 $stmt->bindParam(':id_utilisateur', $idUtilisateur, PDO::PARAM_INT);
                 if ($stmt->execute()) {
                     echo "Inscription réussie !";
@@ -69,15 +65,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     Téléphone: <input type="number" name="telephone" required><br><br>
     Adresse: <input type="text" name="adresse" required><br><br>
     Date de naissance: <input type="date" name="naissance" required><br><br>
-    Photo:: <input type="file" name="photo" accept="image/png , image/jpeg"><br><br>
+    Photo: <input type="file" name="photo" accept="image/png , image/jpeg"><br><br>
     Pseudo: <input type="text" name="pseudo" required><br><br>
     <?php
     $stmt = $conn->prepare("SELECT Id_role, libelle FROM role");
     $stmt->execute();
     $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
-    <label for="role">Role :</label>
-    <select name="role" id="role">
+    <label for="Id_role">Role :</label>
+    <select name="Id_role" id="Id_role">
         <?php
         foreach ($roles as $role) {
         ?>
