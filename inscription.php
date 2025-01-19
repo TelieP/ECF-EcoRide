@@ -59,18 +59,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     Photo:: <input type="file" name="photo" accept="image/png , image/jpeg"><br><br>
     Pseudo: <input type="text" name="pseudo" required><br><br>
     <?php
-    // TODO : Récupérer en DB
-    $roles = [
-        ['id' => 1, 'libelle' => "role1"],
-        ['id' => 2, 'libelle' => "role2"]
-    ];
+    $stmt = $conn->prepare("SELECT Id_role, libelle FROM role");
+    $stmt->execute();
+    $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
     <label for="role">Role :</label>
     <select name="role" id="role">
         <?php
         foreach ($roles as $role) {
         ?>
-            <option value="<?php echo $role['id']; ?>"><?php echo $role['libelle']; ?></option>
+            <option value="<?php echo $role['Id_role']; ?>"><?php echo $role['libelle']; ?></option>
         <?php
         }
         ?>
