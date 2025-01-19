@@ -40,12 +40,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bindParam(':photo', $photo, PDO::PARAM_STR);
             $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
             if ($stmt->execute()) {
-                $statement = $db->prepare('INSERT INTO `possede`(Id_role, Id_utilisateur) VALUES($_POST['Id_role'], $conn->lastInsertId())');
-                $statement->execute();
-
-                echo "Inscription réussie !";
-                header('Location: profil.php');
-                exit();
+                $idUtilisateur = $conn->lastInsertId();
+                $stmt = $conn->prepare('INSERT INTO `possede` (Id_role, Id_utilisateur) VALUES (:id_role, :id_utilisateur)');
+                $stmt->bindParam(':id_role', $_POST['Id_role'], PDO::PARAM_INT);
+                $stmt->bindParam(':id_utilisateur', $idUtilisateur, PDO::PARAM_INT);
+                if ($stmt->execute()) {
+                    echo "Inscription réussie !";
+                    header('Location: profil.php');
+                    exit();
+                } else {
+                    echo "Erreur lors de l'inscription.";
+                }
             } else {
                 echo "Erreur lors de l'inscription.";
             }
@@ -66,19 +71,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     Date de naissance: <input type="date" name="naissance" required><br><br>
     Photo:: <input type="file" name="photo" accept="image/png , image/jpeg"><br><br>
     Pseudo: <input type="text" name="pseudo" required><br><br>
-<<<<<<< HEAD
-    <label for="role">Role :</label>
-=======
->>>>>>> a95781c91c044ec2ded0ca36e1c0b10f7381d0f0
     <?php
     $stmt = $conn->prepare("SELECT Id_role, libelle FROM role");
     $stmt->execute();
     $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
-<<<<<<< HEAD
-=======
     <label for="role">Role :</label>
->>>>>>> a95781c91c044ec2ded0ca36e1c0b10f7381d0f0
     <select name="role" id="role">
         <?php
         foreach ($roles as $role) {
@@ -87,14 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php
         }
         ?>
-<<<<<<< HEAD
     </select> <br><br>
 
-    </select> <br><br>
-=======
-    </select>
-
-
->>>>>>> a95781c91c044ec2ded0ca36e1c0b10f7381d0f0
     <button type="submit">S'inscrire</button>
 </form>
