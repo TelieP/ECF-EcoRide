@@ -58,5 +58,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     Date de naissance: <input type="date" name="naissance" required><br><br>
     Photo:: <input type="file" name="photo" accept="image/png , image/jpeg"><br><br>
     Pseudo: <input type="text" name="pseudo" required><br><br>
+    <?php
+    // TODO : Récupérer en DB
+    $roles = [
+        ['id' => 1, 'libelle' => "role1"],
+        ['id' => 2, 'libelle' => "role2"]
+    ];
+    ?>
+    <label for="role">Role :</label>
+    <select name="role" id="role">
+        <?php
+        foreach ($roles as $role) {
+        ?>
+            <option value="<?php echo $role['id']; ?>"><?php echo $role['libelle']; ?></option>
+        <?php
+        }
+        ?>
+    </select>
+
+
     <button type="submit">S'inscrire</button>
 </form>
