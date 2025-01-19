@@ -66,12 +66,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     Date de naissance: <input type="date" name="naissance" required><br><br>
     Photo:: <input type="file" name="photo" accept="image/png , image/jpeg"><br><br>
     Pseudo: <input type="text" name="pseudo" required><br><br>
+<<<<<<< HEAD
     <label for="role">Role :</label>
+=======
+>>>>>>> a95781c91c044ec2ded0ca36e1c0b10f7381d0f0
     <?php
     $stmt = $conn->prepare("SELECT Id_role, libelle FROM role");
     $stmt->execute();
     $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
+<<<<<<< HEAD
+=======
+    <label for="role">Role :</label>
+>>>>>>> a95781c91c044ec2ded0ca36e1c0b10f7381d0f0
     <select name="role" id="role">
         <?php
         foreach ($roles as $role) {
@@ -80,8 +87,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php
         }
         ?>
+<<<<<<< HEAD
     </select> <br><br>
 
     </select> <br><br>
+=======
+    </select>
+
+
+>>>>>>> a95781c91c044ec2ded0ca36e1c0b10f7381d0f0
     <button type="submit">S'inscrire</button>
 </form>
