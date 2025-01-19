@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($rowCount > 0) {
             echo "Email déjà utilisé.";
         } else {
+            // Ajout de l'utilisateur en BDD
             $stmt = $conn->prepare("
                 INSERT INTO `utilisateur` (`nom`, `prenom`, `email`, `password`, `telephone`, `adresse`, `date_naissance`, `photo`, `pseudo`) 
                 VALUES (:nom, :prenom, :email, :password, :telephone, :adresse, :naissance, :photo, :pseudo)
@@ -35,8 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bindParam(':photo', $photo, PDO::PARAM_STR);
             $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
             if ($stmt->execute()) {
+                // On récupère l'id de l'utilisateur inséré et l'id du rôle posté
                 $idUtilisateur = $conn->lastInsertId();
                 $idRole = $_POST['Id_role'];
+                // On insère dans la table *possede* ces 2 informations
                 $stmt = $conn->prepare('INSERT INTO `possede` (Id_role, Id_utilisateur) VALUES (:id_role, :id_utilisateur)');
                 $stmt->bindParam(':id_role', $idRole, PDO::PARAM_INT);
                 $stmt->bindParam(':id_utilisateur', $idUtilisateur, PDO::PARAM_INT);
