@@ -32,8 +32,8 @@ if (!empty($_POST)) {
     }
 }
 ?>
-
-<form method="post">
+<h1>Connexion</h1>
+<form method="post" class="form-group"><br>
     Email: <input type="email" name="email" id="email" required><br>
     Mot de passe: <input type="password" name="mot_de_passe" id="mot_de_passe" required><br>
     <button type="submit">Se connecter</button>
