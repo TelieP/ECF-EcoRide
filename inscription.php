@@ -2,11 +2,6 @@
 session_start();
 require_once 'includes/connect.php'; // Connexion à la base de données
 
-//$roles = [
-//  ['id' => 1, 'libelle' => "passager"],
-// ['id' => 2, 'libelle' => "conducteur"]
-//];
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
@@ -26,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($rowCount > 0) {
             echo "Email déjà utilisé.";
         } else {
+            // Ajout de l'utilisateur en BDD
             $stmt = $conn->prepare("
                 INSERT INTO `utilisateur` (`nom`, `prenom`, `email`, `password`, `telephone`, `adresse`, `date_naissance`, `photo`, `pseudo`) 
                 VALUES (:nom, :prenom, :email, :password, :telephone, :adresse, :naissance, :photo, :pseudo)
@@ -40,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bindParam(':photo', $photo, PDO::PARAM_STR);
             $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
             if ($stmt->execute()) {
-
+                $statement = $db->prepare('INSERT INTO `possede`(Id_role, Id_utilisateur) VALUES($_POST['Id_role'], $conn->lastInsertId())');
+                $statement->execute();
 
                 echo "Inscription réussie !";
                 header('Location: profil.php');
@@ -63,17 +60,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     Téléphone: <input type="number" name="telephone" required><br><br>
     Adresse: <input type="text" name="adresse" required><br><br>
     Date de naissance: <input type="date" name="naissance" required><br><br>
-    Photo:: <input type="file" name="photo" accept="image/png , image/jpeg"><br><br>
+    Photo: <input type="file" name="photo" accept="image/png , image/jpeg"><br><br>
     Pseudo: <input type="text" name="pseudo" required><br><br>
-
-
+<<<<<<< HEAD
+    <label for="role">Role :</label>
+=======
+>>>>>>> a95781c91c044ec2ded0ca36e1c0b10f7381d0f0
     <?php
     $stmt = $conn->prepare("SELECT Id_role, libelle FROM role");
     $stmt->execute();
     $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
+<<<<<<< HEAD
+=======
     <label for="role">Role :</label>
-
+>>>>>>> a95781c91c044ec2ded0ca36e1c0b10f7381d0f0
     <select name="role" id="role">
         <?php
         foreach ($roles as $role) {
@@ -82,14 +83,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php
         }
         ?>
-
+<<<<<<< HEAD
     </select> <br><br>
 
     </select> <br><br>
-
+=======
     </select>
 
 
-
+>>>>>>> a95781c91c044ec2ded0ca36e1c0b10f7381d0f0
     <button type="submit">S'inscrire</button>
 </form>
