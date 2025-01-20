@@ -3,7 +3,9 @@
 session_start();
 
 // Inclure la configuration pour la connexion à la base de données
-include('includes/connect.php');
+require_once('includes/connect.php');
+require_once('includes/header.php');
+
 
 // Variables pour stocker les résultats de recherche
 $covoiturages = [];
@@ -65,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <h1>Recherche des Covoiturages</h1>
 
-    <form method="POST" action="">
+    <form method="POST" action="" class="form-group">
         <label for="ville_depart">Ville de départ :</label>
         <input type="text" id="ville_depart" name="ville_depart" value="<?php echo htmlspecialchars($ville_depart ?? ''); ?>"><br>
 

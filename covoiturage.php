@@ -1,7 +1,9 @@
 <?php
 // Démarrer la session pour récupérer les informations de l'utilisateur connecté
 session_start();
-//include_once('includes/header.php');
+require_once 'includes/connect.php';
+// Inclure le fichier d'en-tête
+include_once('includes/header.php');
 
 // Vérifier si l'utilisateur est connecté
 //if (!isset($_SESSION['ID_utilisateur'])) {
@@ -82,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
     <!-- Formulaire de création de covoiturage -->
-    <form method="POST" action="">
+    <form method="POST" action="" class="form-group">
         <label for="lieu_depart">Ville de départ :</label>
         <input type="text" id="lieu_depart" name="lieu_depart" value="<?php echo htmlspecialchars($lieu_depart ?? ''); ?>" required><br><br>
 

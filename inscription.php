@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'includes/header.php'; // Inclusion du header
 require_once 'includes/connect.php'; // Connexion à la base de données
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -46,7 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $stmt->bindParam(':id_utilisateur', $idUtilisateur, PDO::PARAM_INT);
                 if ($stmt->execute()) {
                     echo "Inscription réussie !";
-                    header('Location: profil.php');
+                    if ('Id_role' === 1) {
+                        header('Location: dashboard.php');
+                    }
+                    if ('Id_role' === 2) {
+                        header('Location: profil.php');
+                    } else {
+                        header('Location: profil_conducteur.php');
+                    }
+                    //header('Location: profil.php');
                     exit();
                 } else {
                     echo "Erreur lors de l'inscription.";
@@ -61,16 +70,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<form class="form_inscription" method="post">
-    Nom: <input type="text" name="nom" required><br><br>
-    Prénom: <input type="text" name="prenom" required><br><br>
-    Email: <input type="email" name="email" required><br><br>
-    Mot de passe: <input type="password" name="pass" required><br><br>
-    Téléphone: <input type="number" name="telephone" required><br><br>
-    Adresse: <input type="text" name="adresse" required><br><br>
-    Date de naissance: <input type="date" name="naissance" required><br><br>
-    Photo: <input type="file" name="photo" accept="image/png , image/jpeg"><br><br>
-    Pseudo: <input type="text" name="pseudo" required><br><br>
+<h1>Inscription</h1>
+
+<form class="form-group" method="post">
+    Nom: <input type="text" name="nom" required>
+    Prénom: <input type="text" name="prenom" required>
+    Email: <input type="email" name="email" required>
+    Mot de passe: <input type="password" name="pass" required>
+    Téléphone: <input type="number" name="telephone" required>
+    Adresse: <input type="text" name="adresse" required>
+    Date de naissance: <input type="date" name="naissance" required>
+    Photo: <input type="file" name="photo" accept="image/png , image/jpeg">
+    Pseudo: <input type="text" name="pseudo" required>
+
     <?php
     $stmt = $conn->prepare("SELECT Id_role, libelle FROM role");
     $stmt->execute();
@@ -89,3 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <button type="submit">S'inscrire</button>
 </form>
+
+<?php
+require_once 'includes/footer.php'; // Inclusion du footer
+?>
