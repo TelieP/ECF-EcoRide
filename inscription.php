@@ -38,7 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($stmt->execute()) {
                 $statement = $db->prepare('INSERT INTO `possede`(Id_role, Id_utilisateur) VALUES($_POST['Id_role'], $conn->lastInsertId())');
                 $statement->execute();
-
                 echo "Inscription réussie !";
                 header('Location: profil.php');
                 exit();
