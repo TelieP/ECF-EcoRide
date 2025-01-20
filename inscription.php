@@ -40,7 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $idUtilisateur = $conn->lastInsertId();
                 $idRole = $_POST['Id_role'];
                 // On insère dans la table *possede* ces 2 informations
-                $stmt = $conn->prepare('INSERT INTO `possede` (Id_role, Id_utilisateur) VALUES (:id_role, :id_utilisateur)');
+                $stmt = $conn->prepare('INSERT INTO `possede` (Id_role, Id_utilisateur) ' .
+                    'VALUES (:id_role, :id_utilisateur)');
                 $stmt->bindParam(':id_role', $idRole, PDO::PARAM_INT);
                 $stmt->bindParam(':id_utilisateur', $idUtilisateur, PDO::PARAM_INT);
                 if ($stmt->execute()) {
