@@ -14,7 +14,7 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Si la connexion réussit, afficher ce message
-    // echo "Connexion réussie!";
+    echo "Connexion réussie!";
 } catch (PDOException $e) {
     // En cas d'erreur, afficher le message d'erreur
     echo "Erreur de connexion : " . $e->getMessage();
