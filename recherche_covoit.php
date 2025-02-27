@@ -65,9 +65,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
-    <h1>Recherche des Covoiturages</h1>
+
 
     <form method="POST" action="" class="form-group">
+        <h1>Recherche des Covoiturages</h1>
         <label for="ville_depart">Ville de départ :</label>
         <input type="text" id="ville_depart" name="ville_depart" value="<?php echo htmlspecialchars($ville_depart ?? ''); ?>"><br>
 
@@ -77,7 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="date_depart">Date de départ (format YYYY-MM-DD HH:MM:SS) :</label>
         <input type="text" id="date_depart" name="date_depart" value="<?php echo htmlspecialchars($date_depart ?? ''); ?>"><br>
 
-        <button type="submit">Rechercher</button>
+        <button type="submit">Rechercher</button> <br><br>
+        <strong><a href="test/new_trajet.php">Créer un nouveau trajet de covoiturage </a></strong>
+
     </form>
 
     <?php if (!empty($covoiturages)): ?>
@@ -120,5 +123,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php endif; ?>
 
 </body>
+<?= require_once('includes/footer.php'); ?>
 
 </html>

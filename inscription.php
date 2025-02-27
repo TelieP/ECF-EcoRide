@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $stmt->bindParam(':id_utilisateur', $idUtilisateur, PDO::PARAM_INT);
                 if ($stmt->execute()) {
                     echo "Inscription réussie !";
-                    if ('Id_role' === 1) {
+                    if ('email' === "paflesix@gmail.com") {
                         header('Location: dashboard.php');
                     }
                     if ('Id_role' === 2) {
@@ -69,10 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-
-<h1>Inscription</h1>
-
 <form class="form-group" method="post">
+    <h1>Inscription</h1>
     Nom: <input type="text" name="nom" required>
     Prénom: <input type="text" name="prenom" required>
     Email: <input type="email" name="email" required>
