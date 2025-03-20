@@ -3,7 +3,7 @@ session_start();
 require_once 'includes/header.php';
 require_once 'includes/connect.php';
 
-
+var_dump($_SESSION);
 ?>
 
 
@@ -106,7 +106,7 @@ require_once 'includes/connect.php';
                     <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
                         <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
                             <font style="vertical-align: inherit;">
-                                <font style="vertical-align: inherit;">penssons à la planète</font>
+                                <font style="vertical-align: inherit;">world first !!!!</font>
                             </font>
                         </h3>
                         <ul class="d-flex list-unstyled mt-auto">
@@ -275,3 +275,4 @@ require_once 'includes/connect.php';
         require_once 'includes/footer.php';
 
         ?>
+        <a href="deconnexion.php">Se Déconnecter</a>

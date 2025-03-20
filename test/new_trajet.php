@@ -81,34 +81,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label for="heure_depart"> Heure de départ </label>
         <input type="time" name="heure_depart" id="heure_depart" required> <br><br>
 
-        <h2> Ajouter une voiture </h2>
+
+        <!-- Code à vérifier  -->
+
+        <!-- <h2> Ajouter une voiture </h2>
         <label for="marque"> Marque </label>
 
-        <select name="marque" id="marque">
-            <?php
-            $query = "SELECT Id_marque AND libelle  FROM marque ";
-            $stmt_marque = $conn->prepare($query);
-            $stmt_marque->execute();
-            $marques = $stmt_marque->fetchAll(PDO::FETCH_ASSOC);
+        <select name="marque" id="marque"> -->
+        //<?php
+            // $query = "SELECT `Id_marque` AND `libelle`  FROM `marque` ";
+            // $stmt_marque = $conn->prepare($query);
+            // $stmt_marque->execute();
+            // $marques = $stmt_marque->fetchAll(PDO::FETCH_ASSOC);
 
-            foreach ($marques as $marque) {
-                echo "<option value=" . $marque['Id_marque'] . ">" . $marque['nom'] . "</option>";
-            }
-            var_dump($query);
+            // foreach ($marques as $marque) {
+            //     echo "<option value=" . $marque['Id_marque'] . ">" . $marque['nom'] . "</option>";
+            // }
+            // var_dump($query);
 
+            // 
+            // 
             ?>
-            <label for="modele"> Modèle </label>
-            <input type="text" name="modele" id="modele"> <br><br>
-            <label for="couleur"> Couleur </label>
-            <input type="text" name="couleur" id="couleur"> <br><br>
-            <label for="immatriculation"> Immatriculation </label>
-            <input type="text" name="immatriculation" id="immatriculation"> <br><br>
-            <label for="date_premiere_immatriculation"> Date de première immatriculation </label>
-            <input type="date" name="date_premiere_immatriculation" id="date_premiere_immatriculation"> <br><br>
-            <label for="energie"> Energie </label>
-            <input type="text" name="energie" id="energie"> <br><br>
+        <!-- <label for="modele"> Modèle </label>
+                <input type="text" name="modele" id="modele"> <br><br>
+                <label for="couleur"> Couleur </label>
+                <input type="text" name="couleur" id="couleur"> <br><br>
+                <label for="immatriculation"> Immatriculation </label>
+                <input type="text" name="immatriculation" id="immatriculation"> <br><br>
+             <label for="date_premiere_immatriculation"> Date de première immatriculation </label>
+             <input type="date" name="date_premiere_immatriculation" id="date_premiere_immatriculation"> <br><br>
+                <label for="energie"> Energie </label>
+             <input type="text" name="energie" id="energie"> <br><br> -->
 
-            <button type="submit"> Créer le trajet </button>
+        <button type="submit"> Créer le trajet </button>
 
     </form>
 

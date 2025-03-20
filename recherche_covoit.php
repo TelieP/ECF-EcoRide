@@ -5,53 +5,6 @@ session_start();
 // Inclure la configuration pour la connexion à la base de données
 require_once('includes/connect.php');
 require_once('includes/header.php');
-
-
-// Variables pour stocker les résultats de recherche
-$covoiturages = [];
-
-// Vérifier si le formulaire de recherche a été soumis
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Récupérer les valeurs du formulaire de recherche
-    $ville_depart = $_POST['ville_depart'] ?? '';
-    $ville_arrivee = $_POST['ville_arrivee'] ?? '';
-    $date_depart = $_POST['date_depart'] ?? '';
-
-    // Préparer la requête de recherche
-    $query = "SELECT * FROM covoiturage WHERE 1=1";
-
-    // Ajouter des conditions à la requête en fonction des critères de recherche
-    if (!empty($ville_depart)) {
-        $query .= " AND lieu_depart LIKE :ville_depart";
-    }
-    if (!empty($ville_arrivee)) {
-        $query .= " AND lieu_arrivee LIKE :ville_arrivee";
-    }
-    if (!empty($date_depart)) {
-        $query .= " AND date_depart >= :date_depart";
-    }
-
-    // Exécuter la requête
-    try {
-        $stmt = $conn->prepare($query);
-
-        // Lier les paramètres si nécessaire
-        if (!empty($ville_depart)) {
-            $stmt->bindValue(':lieu_depart', '%' . $ville_depart . '%');
-        }
-        if (!empty($ville_arrivee)) {
-            $stmt->bindValue(':lieu_arrivee', '%' . $ville_arrivee . '%');
-        }
-        if (!empty($date_depart)) {
-            $stmt->bindValue(':date_depart', $date_depart);
-        }
-
-        $stmt->execute();
-        $covoiturages = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        echo "Erreur de recherche : " . $e->getMessage();
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -60,69 +13,69 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recherche des Covoiturages</title>
+    <title>Recherche de Covoiturage</title>
 </head>
 
 <body>
 
+    <h1>Rechercher un Covoiturage</h1>
 
+    <form action="" method="POST" class="form-group">
+        <label for="depart">Ville de départ :</label>
+        <input type="text" id="depart" name="depart" required><br><br>
 
-    <form method="POST" action="" class="form-group">
-        <h1>Recherche des Covoiturages</h1>
-        <label for="ville_depart">Ville de départ :</label>
-        <input type="text" id="ville_depart" name="ville_depart" value="<?php echo htmlspecialchars($ville_depart ?? ''); ?>"><br>
+        <label for="arrivee">Ville d'arrivée :</label>
+        <input type="text" id="arrivee" name="arrivee" required><br><br>
 
-        <label for="ville_arrivee">Ville d'arrivée :</label>
-        <input type="text" id="ville_arrivee" name="ville_arrivee" value="<?php echo htmlspecialchars($ville_arrivee ?? ''); ?>"><br>
+        <label for="date">Date du trajet :</label>
+        <input type="date" id="date" name="date" required><br><br>
 
-        <label for="date_depart">Date de départ (format YYYY-MM-DD HH:MM:SS) :</label>
-        <input type="text" id="date_depart" name="date_depart" value="<?php echo htmlspecialchars($date_depart ?? ''); ?>"><br>
-
-        <button type="submit">Rechercher</button> <br><br>
-        <strong><a href="test/new_trajet.php">Créer un nouveau trajet de covoiturage </a></strong>
-
+        <button type="submit">Rechercher</button>
     </form>
 
-    <?php if (!empty($covoiturages)): ?>
-        <h2>Résultats de la recherche :</h2>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Ville de départ</th>
-                    <th>Ville d'arrivée</th>
-                    <th>Date de départ</th>
-                    <th>Places disponibles</th>
-                    <th>Conducteur</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($covoiturages as $covoiturage): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($covoiturage['id']); ?></td>
-                        <td><?php echo htmlspecialchars($covoiturage['ville_depart']); ?></td>
-                        <td><?php echo htmlspecialchars($covoiturage['ville_arrivee']); ?></td>
-                        <td><?php echo htmlspecialchars($covoiturage['date_depart']); ?></td>
-                        <td><?php echo htmlspecialchars($covoiturage['places_disponibles']); ?></td>
-                        <td>
-                            <?php
-                            // Récupérer le nom du conducteur
-                            $stmt = $pdo->prepare("SELECT nom FROM utilisateurs WHERE id = :conducteur_id");
-                            $stmt->bindValue(':conducteur_id', $covoiturage['conducteur_id']);
-                            $stmt->execute();
-                            $conducteur = $stmt->fetch(PDO::FETCH_ASSOC);
-                            echo htmlspecialchars($conducteur['nom']);
-                            ?>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    <?php elseif ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
-        <p>Aucun covoiturage trouvé pour ces critères.</p>
-    <?php endif; ?>
+    <?php
+    // Si des paramètres sont envoyés via GET
+    if (isset($_POST['depart'], $_POST['arrivee'], $_POST['date'])) {
+        $depart = $_POST['depart'];
+        $arrivee = $_POST['arrivee'];
+        $date = $_POST['date'];
+
+        // Requête SQL pour rechercher les trajets
+        $sql = "SELECT * FROM covoiturage WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':depart', "%" . $depart . "%");
+        $stmt->bindValue(':arrivee', "%" . $arrivee . "%");
+        $stmt->bindValue(':date', $date);
+
+        $stmt->execute();
+
+        $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($trajets);
+        if (count($trajets) > 0) {
+            echo "<h2>Trajets disponibles :</h2>";
+            echo "<ul>";
+            foreach ($trajets as $trajet) {
+                echo "<li>";
+                echo "Trajet de " . $trajet['lieu_depart'] . " à " . $trajet['lieu_arrivee'] . "<br>";
+                echo "Date : " . $trajet['date_depart'] . "<br>";
+                echo "Conducteur : " . $trajet['conducteur'] . "<br>";
+                echo "Places disponibles : " . $trajet['places_disponibles'] . "<br>";
+                echo "Prix : " . $trajet['prix'] . " €<br>";
+                echo "</li>";
+            }
+            echo "</ul>";
+        } else {
+            echo "<p>Aucun trajet trouvé pour cette recherche.</p>";
+        }
+    }
+
+
+    ?>
 
 </body>
+
+</html>
+
 <?= require_once('includes/footer.php'); ?>
 
 </html>

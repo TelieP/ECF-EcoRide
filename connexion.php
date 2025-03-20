@@ -37,6 +37,7 @@ if (!empty($_POST)) {
     Email: <input type="email" name="email" id="email" required><br>
     Mot de passe: <input type="password" name="mot_de_passe" id="mot_de_passe" required><br>
     <button type="submit">Se connecter</button>
+    <a href="inscription.php">Pas encore inscrit ?</a>
 </form>
 
 <?php

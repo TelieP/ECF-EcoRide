@@ -98,6 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </select> <br><br>
 
     <button type="submit">S'inscrire</button>
+    <a href="connexion.php">Déjà inscrit ?</a>
 </form>
 
 <?php

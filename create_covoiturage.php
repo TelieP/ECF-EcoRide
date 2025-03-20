@@ -6,20 +6,21 @@ require_once 'includes/connect.php';
 include_once('includes/header.php');
 
 // Vérifier si l'utilisateur est connecté
-//if (!isset($_SESSION['ID_utilisateur'])) {
-// Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
-//echo "Vous devez vous connecter pour accéder à cette page.";
+if (!isset($_SESSION['Id_utilisateur'])) {
+    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+    echo "Vous devez vous connecter pour accéder à cette page.";
 
-//header('Location: login.php');
-//exit();
-//}
+    header('Location: connexion.php');
+    exit();
+}
 
 // Inclure la configuration pour la connexion à la base de données
-include('includes/connect.php');
+// include('includes/connect.php');
 
 // Initialisation des variables pour les messages
 $error_message = '';
 $success_message = '';
+var_dump($_SESSION);
 
 // Traitement du formulaire lors de la soumission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -30,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $date_depart = $_POST['date_depart'];
     $nb_place = $_POST['nb_place'];
     $prix_personne = $_POST['prix_personne'];
+    $user_id = $_SESSION['Id_utilisateur'];
 
     // Validation des champs
     if (empty($lieu_depart) || empty($lieu_arrivee) || empty($date_depart) || empty($nb_place)) {
@@ -37,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         try {
             // Insérer le covoiturage dans la base de données
-            $stmt = $pdo->prepare("INSERT INTO covoiturage (Id_utilisateur, lieu_depart, lieu_arrivee, date_depart, nb_place, heure_depart, prix_personne) VALUES (:Id_utilisateur, :lieu_depart, :lieu_arrivee, :date_depart, :nb_place, :prix_personne , :heure_depart, :prix_personne)");
+            $stmt = $conn->prepare("INSERT INTO covoiturage (Id_utilisateur, lieu_depart, lieu_arrivee, date_depart, nb_place, heure_depart, prix_personne) VALUES (:Id_utilisateur, :lieu_depart, :lieu_arrivee, :date_depart, :nb_place, :prix_personne , :heure_depart, :prix_personne)");
 
             // Lier les paramètres
             $stmt->bindValue(':Id_utilisateur', $_SESSION['ID_utilisateur']);
