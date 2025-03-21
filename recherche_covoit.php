@@ -13,14 +13,14 @@ require_once('includes/header.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recherche de Covoiturage</title>
+    <title> Recherche de Covoiturages </title>
 </head>
 
 <body>
 
     <h1>Rechercher un Covoiturage</h1>
 
-    <form action="list_cov.php" method="POST" class="form-group">
+    <form action="" method="POST" class="form-group">
 
         <label for="depart">Ville de départ :</label>
         <input type="text" id="depart" name="depart" required><br><br>
@@ -53,7 +53,7 @@ require_once('includes/header.php');
 
         $stmt->execute();
         $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($trajets);
+        //var_dump($trajets);
         if (count($trajets) > 0) {
             echo "Trajets disponibles <br>";
             echo "<ul>";
