@@ -41,18 +41,18 @@ require_once('includes/header.php');
         $date = $_POST['date'];
 
         // Requête SQL pour rechercher les trajets
-        $sql = "SELECT * FROM covoiturage WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
+        // $sql = "SELECT * FROM covoiturage WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
+        $sql = "SELECT * FROM `covoiturage WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':depart', "%" . $depart . "%");
         $stmt->bindValue(':arrivee', "%" . $arrivee . "%");
         $stmt->bindValue(':date', $date);
 
         $stmt->execute();
-
         $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
         var_dump($trajets);
         if (count($trajets) > 0) {
-            echo "<h2>Trajets disponibles :</h2>";
+            echo "Trajets disponibles <br>";
             echo "<ul>";
             foreach ($trajets as $trajet) {
                 echo "<li>";
