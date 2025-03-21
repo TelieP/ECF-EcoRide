@@ -5,7 +5,7 @@ require_once 'includes/header.php';
 echo 'BIENVENU SUR VOTRE PROFIL CONDUCTEUR';
 ?> <br>
 <a href="ajout_voiture.php">Ajouter une voiture</a><br>
-<a href="ajout_covoiturage.php">créer un nouveau trajet de covoiturage</a><br>
+<a href="create_covoiturage.php">créer un nouveau trajet de covoiturage</a><br>
 
 
 <?php

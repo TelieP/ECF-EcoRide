@@ -94,7 +94,10 @@ body{
    
 }
 
-
+.ride-card {
+    display: flex;
+    
+}
 
 
 
