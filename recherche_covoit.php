@@ -20,7 +20,8 @@ require_once('includes/header.php');
 
     <h1>Rechercher un Covoiturage</h1>
 
-    <form action="" method="POST" class="form-group">
+    <form action="list_cov.php" method="POST" class="form-group">
+
         <label for="depart">Ville de départ :</label>
         <input type="text" id="depart" name="depart" required><br><br>
 
@@ -34,15 +35,17 @@ require_once('includes/header.php');
     </form>
 
     <?php
-    // Si des paramètres sont envoyés via GET
-    if (isset($_POST['depart'], $_POST['arrivee'], $_POST['date'])) {
+
+    // Si des paramètres sont envoyés via POST
+    // if (isset($_POST['depart'], $_POST['arrivee'], $_POST['date'])) {
+    if (isset($_POST['depart']) && isset($_POST['arrivee']) && isset($_POST['date'])) {
         $depart = $_POST['depart'];
         $arrivee = $_POST['arrivee'];
         $date = $_POST['date'];
 
         // Requête SQL pour rechercher les trajets
         // $sql = "SELECT * FROM covoiturage WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
-        $sql = "SELECT * FROM `covoiturage WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
+        $sql = "SELECT * FROM `covoiturage` WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':depart', "%" . $depart . "%");
         $stmt->bindValue(':arrivee', "%" . $arrivee . "%");
@@ -58,9 +61,9 @@ require_once('includes/header.php');
                 echo "<li>";
                 echo "Trajet de " . $trajet['lieu_depart'] . " à " . $trajet['lieu_arrivee'] . "<br>";
                 echo "Date : " . $trajet['date_depart'] . "<br>";
-                echo "Conducteur : " . $trajet['conducteur'] . "<br>";
-                echo "Places disponibles : " . $trajet['places_disponibles'] . "<br>";
-                echo "Prix : " . $trajet['prix'] . " €<br>";
+                //echo "Conducteur : " . $trajet['conducteur'] . "<br>";
+                echo "Places disponibles : " . $trajet['nb_place'] . "<br>";
+                echo "Prix : " . $trajet['prix_personne'] . " €<br>";
                 echo "</li>";
             }
             echo "</ul>";
