@@ -47,9 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $stmt->bindParam(':id_utilisateur', $idUtilisateur, PDO::PARAM_INT);
                 if ($stmt->execute()) {
                     echo "Inscription réussie !";
-                    if ('email' === "paflesix@gmail.com") {
-                        header('Location: dashboard.php');
-                    }
+                    // if ('email' === "paflesix@gmail.com") {
+                    //     header('Location: dashboard.php');
+                    // }
                     if ('Id_role' === 2) {
                         header('Location: profil.php');
                     } else {
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <?php
         foreach ($roles as $role) {
         ?>
-            <option value="<?php echo $role['Id_role']; ?>"><?php echo $role['libelle']; ?></option>
+            <option value="<?= $role['Id_role']; ?>"><?= $role['libelle']; ?></option>
         <?php
         }
         ?>

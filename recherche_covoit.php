@@ -72,12 +72,14 @@ require_once('includes/header.php');
             <div class="list-group mt-4">
                 <?php foreach ($trajets as $trajet): ?>
                     <div class="list-group-item list-group-item-action">
-                        <h5><i class="fas fa-map-marker-alt"></i> De <?= htmlspecialchars($trajet['lieu_depart']) ?> à <?= htmlspecialchars($trajet['lieu_arrivee']) ?></h5>
-                        <p><i class="far fa-calendar-alt"></i> Date : <?= $trajet['date_depart'] ?> à <?= $trajet['heure_depart'] ?></p>
-                        <p><i class="fas fa-user"></i> Conducteur : <?= htmlspecialchars($trajet['nom']) ?> <?= htmlspecialchars($trajet['prenom']) ?></p>
-                        <p><i class="fas fa-car-side"></i> Véhicule : <?= htmlspecialchars($trajet['modele']) ?> <?= htmlspecialchars($trajet['immatriculation']) ?></p>
-                        <p><i class="fas fa-euro-sign"></i> Prix : <?= number_format($trajet['prix_personne'], 2) ?> €</p>
+                        <h5><i class="bi bi-geo-fill"></i> De <?= htmlspecialchars($trajet['lieu_depart']) ?></br><i class="bi bi-arrow-down"></i></br> <i class="bi bi-geo-fill"></i> à <?= htmlspecialchars($trajet['lieu_arrivee']) ?></h5>
+                        <p><i class="bi bi-calendar3"></i> Date : <?= $trajet['date_depart'] ?> à <?= $trajet['heure_depart'] ?></p>
+                        <p><i class="bi bi-person-workspace"></i> Conducteur : <?= htmlspecialchars($trajet['nom']) ?> <?= htmlspecialchars($trajet['prenom']) ?></p>
+                        <p><i class="bi bi-car-front-fill"></i> Véhicule : <?= htmlspecialchars($trajet['modele']) ?> <?= htmlspecialchars($trajet['immatriculation']) ?></p>
+                        <p><i class="bi bi-cash-coin"></i> Prix : <?= number_format($trajet['prix_personne'], 2) ?> €</p>
                         <a href="reserver.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
+                        <a href="detail_covoit.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success stretched-link"><i class="fas fa-check"></i> VOIR</a>
+
                     </div>
                 <?php endforeach; ?>
             </div>
