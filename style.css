@@ -87,3 +87,8 @@ z-index: 1;
     }
 }
 
+.d-block img{
+    width: 1170px;
+    height: 480px;
+    object-fit: cover;
+}

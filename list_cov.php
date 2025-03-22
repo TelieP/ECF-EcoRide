@@ -3,7 +3,7 @@ require_once 'includes/connect.php';
 // Inclure le fichier d'en-tête
 include_once('includes/header.php');
 echo " LISTE DES COVOITURAGES DISPONIBLES ";
-include('list_cov.php');
+include_once('list_cov.php');
 
 foreach ($trajets as $trajet) {
     echo "<li>";

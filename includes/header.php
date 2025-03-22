@@ -12,7 +12,7 @@
 <header class="navigation">
     <nav class="navbar navbar-expand-lg bg-secondary">
         <div class="container-fluid bg-">
-            <img src="images/logo.svg" alt="logo" width="100" height="100">
+            <img src="images/logo.svg" alt="logo" width="70" height="70">
             <a class="navbar-brand" href="#">EcoRide</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
