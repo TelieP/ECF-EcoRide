@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <form class="form-group" method="post">
-    <h1>Inscription</h1>
+    <h2>Inscription</h2>
     Nom: <input type="text" name="nom" required>
     Prénom: <input type="text" name="prenom" required>
     Email: <input type="email" name="email" required>

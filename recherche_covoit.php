@@ -11,19 +11,37 @@ require_once('includes/header.php');
 
     <h1>Rechercher un Covoiturage</h1>
 
-    <form action="" method="POST" class="form-group">
+    <!-- <form action="" method="POST" class="form-group">
 
-        <label for="depart">Ville de départ :</label>
+        <label for="depart">Ville de départ </label>
         <input type="text" id="depart" name="depart" required><br><br>
 
-        <label for="arrivee">Ville d'arrivée :</label>
+        <label for="arrivee">Ville d'arrivée </label>
         <input type="text" id="arrivee" name="arrivee" required><br><br>
 
-        <label for="date">Date du trajet :</label>
+        <label for="date">Date du trajet </label>
         <input type="date" id="date" name="date" required><br><br>
 
         <button type="submit">Rechercher</button>
+    </form> -->
+    <form action="list_cov.php" method="POST" class="form-group  text-white p-5 w-50 mx-auto">
+        <div class="row g-3">
+            <div class="col">
+                <label for="depart">Ville de départ </label>
+                <input type="text" class="form-control" id="depart" name="depart" required placeholder="ville de depart">
+            </div>
+            <div class="col">
+                <label for="arrivee">Ville d'arrivée </label>
+                <input type="text" class="form-control" id="arrivee" name="arrivee" required placeholder="ville d'arrivée">
+            </div>
+            <div class="col">
+                <label for="date">Date du trajet </label>
+                <input type="date" class="form-control" id="date" name="date" required placeholder="date">
+            </div>
+            <button type="submit">Rechercher</button>
+        </div>
     </form>
+
 
     <?php
 

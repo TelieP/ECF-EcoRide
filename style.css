@@ -19,22 +19,14 @@
     justify-content: center;
     width: 100%;
     height: 100%;
+    box-shadow: #4d0b61;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 5px;
+    background-color: #c9b2c1;
+
 }
-h1{
-    color: #f9f6f8;
-    padding: 150px;
-    font-weight: 3.5em;
-    font-family:'Montserrat', 'sans serif';
-    text-align: center;
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.9;
-    font-size: 3.5em;
-    font-family: 'Montserrat', sans-serif;
-    text-shadow: 4px 4px 0px rgb(32, 30, 30);
-    background-image: url("images/image03.jpg") , linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
-}
+
 
 button{
     width: 15%;
@@ -55,49 +47,43 @@ input{
     border: 1px solid #4d0b61;
 }
 
-/* @keyframes reveal {
-    from {
-        transform: scale(0);
-        opacity: 0;
-        
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-        
-    }
-} */
+
 
 .body{
     text-align: center;
     font-size: 1.5rem;
-    margin-top: 1rem;
-    margin-left: 1px;
-    margin-right: 1px;
-    /* animation: reveal linear;
-    animation-timeline: view;
-    animation-range: entry 0% cover 20%; */
-}
-.col-md-8 fs-4{
-    text-align: center;
-    font-size: 1.5rem;
-    margin-top: 1rem;
-    margin-left: 15px;
-    margin-right: 15px;
-}
-
-.navigation{
-    background-attachment: sticky;
-}
-body{
-    margin: 0.5%;
    
 }
 
-.ride-card {
-    display: flex;
-    
+/* #form-index{
+    position: relative;
+} */
+
+.carousel-slide{
+position: relative;
+z-index: 1;
+}
+.row g-3{
+    position: relative;
+    z-index: 2;
+   
 }
 
+/* Carousel */
+.carousel-item img {
+    height: 600px; /* Hauteur fixe pour les images du carousel */
+    width: 80%; /* Largeur fixe pour les images du carousel */
+    object-fit: cover; /* Assurer que l'image couvre bien l'espace */
+}
+/* Responsivité */
+@media (max-width: 768px) {
+    .carousel-item img {
+        height: 300px; /* Réduire la hauteur du carousel sur les petits écrans */
+    }
 
+    .container.my-5 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
 
