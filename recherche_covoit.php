@@ -24,7 +24,7 @@ require_once('includes/header.php');
 
         <button type="submit">Rechercher</button>
     </form> -->
-    <form action="list_cov.php" method="POST" class="form-group  text-white p-5 w-50 mx-auto">
+    <form action="" method="POST" class="form-group  text-white p-5 w-50 mx-auto">
         <div class="row g-3">
             <div class="col">
                 <label for="depart">Ville de départ </label>
@@ -54,10 +54,14 @@ require_once('includes/header.php');
 
         // Requête SQL pour rechercher les trajets
         // $sql = "SELECT * FROM covoiturage WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
-        $sql = "SELECT * FROM `covoiturage` WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
+        $sql = "SELECT covoiturage.Id_covoiturage, covoiturage.heure_depart, covoiturage.date_depart, covoiturage.nb_place ,covoiturage.heure_arrivee, utilisateur.nom, utilisateur.prenom, voiture.modele, voiture.immatriculation, covoiturage.prix_personne, covoiturage.lieu_depart, covoiturage.lieu_arrivee
+        FROM covoiturage
+        JOIN voiture ON voiture.Id_voiture = covoiturage.Id_voiture
+        JOIN utilisateur  ON utilisateur.Id_utilisateur = voiture.Id_voiture
+        WHERE  lieu_depart = :depart AND lieu_arrivee = :arrivee AND  DATE(date_depart) = :date AND nb_place > 0";
         $stmt = $conn->prepare($sql);
-        $stmt->bindValue(':depart', "%" . $depart . "%");
-        $stmt->bindValue(':arrivee', "%" . $arrivee . "%");
+        $stmt->bindValue(':depart',  $depart);
+        $stmt->bindValue(':arrivee',  $arrivee);
         $stmt->bindValue(':date', $date);
 
         $stmt->execute();

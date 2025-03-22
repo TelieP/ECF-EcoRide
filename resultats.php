@@ -40,13 +40,10 @@ if (isset($_GET['depart']) && isset($_GET['arrivee']) && isset($_GET['date'])) {
         echo "<p>Aucun trajet trouvé pour cette recherche.</p>";
     }
 }
-
-
 ?>
 
 <body>
     <div class="container mt-5">
-        <?= var_dump($trajets); ?>
         <h2 class="text-center"><i class="fas fa-car"></i> Trajets disponibles</h2>
 
         <?php if (count($trajets) > 0): ?>
