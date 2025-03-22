@@ -66,29 +66,28 @@ require_once('includes/header.php');
 
         $stmt->execute();
         $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        //var_dump($trajets);
+        // var_dump($trajets);
 
-        if (count($trajets) > 0) {
-            echo "Trajets disponibles <br>";
-            echo "<ul>";
-            foreach ($trajets as $trajet) {
-                echo "<li>";
-                echo "Trajet de " . $trajet['lieu_depart'] . " à " . $trajet['lieu_arrivee'] . "<br>";
-                echo "Date : " . $trajet['date_depart'] . "<br>";
-                //echo "Conducteur : " . $trajet['conducteur'] . "<br>";
-                echo "Places disponibles : " . $trajet['nb_place'] . "<br>";
-                echo "Prix : " . $trajet['prix_personne'] . " €<br>";
-                echo "</li>";
-            }
-            echo "</ul>";
-        } else {
-            echo "<p>Aucun trajet trouvé pour cette recherche.</p>";
-        }
+        if (count($trajets) > 0): ?>
+            <div class="list-group mt-4">
+                <?php foreach ($trajets as $trajet): ?>
+                    <div class="list-group-item list-group-item-action">
+                        <h5><i class="fas fa-map-marker-alt"></i> De <?= htmlspecialchars($trajet['lieu_depart']) ?> à <?= htmlspecialchars($trajet['lieu_arrivee']) ?></h5>
+                        <p><i class="far fa-calendar-alt"></i> Date : <?= $trajet['date_depart'] ?> à <?= $trajet['heure_depart'] ?></p>
+                        <p><i class="fas fa-user"></i> Conducteur : <?= htmlspecialchars($trajet['nom']) ?> <?= htmlspecialchars($trajet['prenom']) ?></p>
+                        <p><i class="fas fa-car-side"></i> Véhicule : <?= htmlspecialchars($trajet['modele']) ?> <?= htmlspecialchars($trajet['immatriculation']) ?></p>
+                        <p><i class="fas fa-euro-sign"></i> Prix : <?= number_format($trajet['prix_personne'], 2) ?> €</p>
+                        <a href="reserver.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php else: ?>
+            <div class="alert alert-warning text-center mt-4"><i class="fas fa-exclamation-circle"></i> Aucun trajet trouvé</div>
+        <?php endif; ?>
+        </div>
+    <?php
     }
-
-
     ?>
+</body>
 
-
-
-    <?= require_once('includes/footer.php'); ?>
+<?= require_once('includes/footer.php'); ?>

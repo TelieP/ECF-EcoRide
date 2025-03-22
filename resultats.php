@@ -13,10 +13,10 @@ if (isset($_GET['depart']) && isset($_GET['arrivee']) && isset($_GET['date'])) {
 
     // Requête SQL pour rechercher les trajets
     // $sql = "SELECT * FROM covoiturage WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
-    $sql = "SELECT * FROM `covoiturage` WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
+    $sql = "SELECT * FROM `covoiturage` WHERE lieu_depart = :depart AND lieu_arrivee = :arrivee AND  DATE(date_depart) = :date AND nb_place > 0";
     $stmt = $conn->prepare($sql);
-    $stmt->bindValue(':depart', "%" . $depart . "%");
-    $stmt->bindValue(':arrivee', "%" . $arrivee . "%");
+    $stmt->bindValue(':depart', $depart);
+    $stmt->bindValue(':arrivee', $arrivee);
     $stmt->bindValue(':date', $date);
 
     $stmt->execute();
