@@ -1,12 +1,12 @@
 <?php
-require_once('includes/connect.php');
-require_once('includes/header.php');
+require_once 'includes/connect.php';
+require_once 'includes/header.php';
 echo " page de détail du covoiturage";
 
 $sql = "SELECT c.Id_covoiturage, c.heure_depart, c.date_depart, c.nb_place ,c.heure_arrivee, utilisateur.nom, utilisateur.prenom, voiture.modele, voiture.immatriculation, covoiturage.prix_personne, covoiturage.lieu_depart, covoiturage.lieu_arrivee
-FROM covoiturage JOIN voiture ON v.Id_voiture = c.Id_voiture
-JOIN utilisateur  ON utilisateur.Id_utilisateur = voiture.Id_voiture
-WHERE  Id_covoiturage = :id";
+    FROM covoiturage JOIN voiture ON v.Id_voiture = c.Id_voiture
+    JOIN utilisateur  ON utilisateur.Id_utilisateur = voiture.Id_voiture
+    WHERE  Id_covoiturage = :id";
 $stmt = $conn->prepare($sql);
 $stmt->bindValue(':id', $_POST['id']);
 $stmt->execute();
@@ -24,4 +24,4 @@ $trajets = $stmt->fetch(PDO::FETCH_ASSOC);
 
     </div>
 <?php endforeach; ?>
-<?php require_once('includes/footer.php'); ?>
+<?php require_once 'includes/footer.php'; ?>
