@@ -3,8 +3,8 @@
 session_start();
 
 // Inclure la configuration pour la connexion à la base de données
-require_once('includes/connect.php');
-require_once('includes/header.php');
+require_once('../includes/connect.php');
+require_once('../includes/header.php');
 ?>
 
 <body>
@@ -24,7 +24,7 @@ require_once('includes/header.php');
 
         <button type="submit">Rechercher</button>
     </form> -->
-    <form action="" method="POST" class="form-group  text-white p-5 w-50 mx-auto">
+    <form action="" method="GET" class="form-group  text-white p-5 w-50 mx-auto">
         <div class="row g-3">
             <div class="col">
                 <label for="depart">Ville de départ </label>
@@ -45,12 +45,12 @@ require_once('includes/header.php');
 
     <?php
 
-    // Si des paramètres sont envoyés via POST
-    // if (isset($_POST['depart'], $_POST['arrivee'], $_POST['date'])) {
-    if (isset($_POST['depart']) && isset($_POST['arrivee']) && isset($_POST['date'])) {
-        $depart = $_POST['depart'];
-        $arrivee = $_POST['arrivee'];
-        $date = $_POST['date'];
+    // Si des paramètres sont envoyés via GET
+
+    if (isset($_GET['depart']) && isset($_GET['arrivee']) && isset($_GET['date'])) {
+        $depart = $_GET['depart'];
+        $arrivee = $_GET['arrivee'];
+        $date = $_GET['date'];
 
         // Requête SQL pour rechercher les trajets
         // $sql = "SELECT * FROM covoiturage WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
@@ -67,7 +67,7 @@ require_once('includes/header.php');
 
         $stmt->execute();
         $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // var_dump($trajets);
+        var_dump($trajets);
 
         if (count($trajets) > 0): ?>
             <div class="list-group mt-4">
@@ -76,10 +76,12 @@ require_once('includes/header.php');
                         <h5><i class="bi bi-geo-fill"></i> De <?= htmlspecialchars($trajet['lieu_depart']) ?></br><i class="bi bi-arrow-down"></i></br> <i class="bi bi-geo-fill"></i> à <?= htmlspecialchars($trajet['lieu_arrivee']) ?></h5>
                         <p><i class="bi bi-calendar3"></i> Date : <?= date("d/m/Y", timestamp: strtotime($trajet['date_depart']))  ?> à <?= $trajet['heure_depart'] ?></p>
                         <p><i class="bi bi-person-workspace"></i> Conducteur : <?= htmlspecialchars($trajet['nom']) ?> <?= htmlspecialchars($trajet['prenom']) ?></p>
-
+                        <p><i class="bi bi-car-front-fill"></i> Véhicule : <?= htmlspecialchars($trajet['modele']) ?> </p>
                         <p><i class="bi bi-cash-coin"></i> Prix : <?= number_format($trajet['prix_personne'], 2) ?> €</p>
-                        <a href="reserver.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
-                        <a href="detail_covoit.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success stretched-link"><i class="fas fa-check"></i> VOIR</a>
+                        <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
+                        <p><i class="bi bi-cash-coin"></i> Prix : <?= number_format($trajet['prix_personne'], 2) ?> €</p>
+                        <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
+                        <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success stretched-link"><i class="fas fa-check"></i> VOIR</a>
 
                     </div>
                 <?php endforeach; ?>
@@ -93,4 +95,4 @@ require_once('includes/header.php');
     ?>
 </body>
 
-<?= require_once('includes/footer.php'); ?>
+<?= require_once('../includes/footer.php'); ?>

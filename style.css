@@ -49,16 +49,27 @@ input{
 
 
 
+body{
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+label{
+    font-size: 0rem;
+color: black;
+}
+
 .body{
     text-align: center;
     font-size: 1.5rem;
+
    
 }
 
-/* #form-index{
-    position: relative;
-} */
-
+.navbar-brand{
+    font-size: 1.5rem;
+    color: white;
+}
 .carousel-slide{
 position: relative;
 z-index: 1;
@@ -71,7 +82,7 @@ z-index: 1;
 
 /* Carousel */
 .carousel-item img {
-    height: 600px; /* Hauteur fixe pour les images du carousel */
+    height: 500px; /* Hauteur fixe pour les images du carousel */
     width: 80%; /* Largeur fixe pour les images du carousel */
     object-fit: cover; /* Assurer que l'image couvre bien l'espace */
 }
@@ -92,3 +103,18 @@ z-index: 1;
     height: 480px;
     object-fit: cover;
 }
+
+#form-index{
+    position: relative;
+    z-index: 2;
+}
+
+#navbarTogglerDemo02{
+   margin-left: 695px;
+
+}
+#navbarTogglerDemo02 a{
+    color: white;
+    font-size: 20px;
+    
+ }
