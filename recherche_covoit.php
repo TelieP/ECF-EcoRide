@@ -78,8 +78,8 @@ require_once('includes/header.php');
                         <p><i class="bi bi-person-workspace"></i> Conducteur : <?= htmlspecialchars($trajet['nom']) ?> <?= htmlspecialchars($trajet['prenom']) ?></p>
 
                         <p><i class="bi bi-cash-coin"></i> Prix : <?= number_format($trajet['prix_personne'], 2) ?> €</p>
-                        <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
-                        <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success stretched-link"><i class="fas fa-check"></i> VOIR</a>
+                        <a href="reservation.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
+                        <a href="reservation.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success stretched-link"><i class="fas fa-check"></i> VOIR</a>
 
                     </div>
                 <?php endforeach; ?>

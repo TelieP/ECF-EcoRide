@@ -2,34 +2,32 @@
 session_start();
 
 // Connexion à la base de données
-require_once('../includes/connect.php');
-require_once('../includes/header.php');
-// var_dump($_SESSION);
+require_once '../includes/connect.php';
+require_once '../includes/header.php';
+
 // Vérification de la session utilisateur (l'utilisateur doit être connecté)
 if (!isset($_SESSION['user'])) {
     die("Veuillez vous connecter pour réserver." . " <a href='connexion.php'>Se connecter</a>");
 }
-// var_dump($_GET);
+
 // Récupérer l'ID du trajet à réserver
 if (!isset($_GET['id'])) {
     die("ID de trajet manquant.");
 }
-
 $cov_id = $_GET['id'];
 
 // Récupérer les informations du trajet
-
 $sql = "SELECT c.Id_covoiturage, c.heure_depart, c.date_depart, c.nb_place, 
-            c.heure_arrivee, u.nom, u.prenom, v.modele, v.immatriculation, c.prix_personne, c.lieu_depart, c.lieu_arrivee,u.photo
-                FROM covoiturage AS c
-                JOIN voiture AS v ON v.Id_voiture = c.Id_voiture
-                JOIN utilisateur AS u ON u.Id_utilisateur = v.Id_voiture
-                WHERE  c.Id_covoiturage = :cov_id";
+    c.heure_arrivee, u.nom, u.prenom, v.modele, v.immatriculation, c.prix_personne, c.lieu_depart, c.lieu_arrivee,u.photo
+    FROM covoiturage AS c
+        JOIN voiture AS v ON v.Id_voiture = c.Id_voiture
+        JOIN utilisateur AS u ON u.Id_utilisateur = v.Id_voiture
+    WHERE  c.Id_covoiturage = :cov_id";
 $stmt = $conn->prepare($sql);
 $stmt->execute([':cov_id' => $cov_id]);
 $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
 // detail du trajet qui va etre reservé 
-// var_dump($reserve);
+
 ?>
 <div class="list-group mt-4">
 
@@ -51,25 +49,24 @@ $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
     // Vérifier la soumission du formulaire de réservation
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $places_reserves = $_POST['places_reserves'];
-        var_dump($_SESSION);
         // Vérifier que le nombre de sièges est disponible
         if ($places_reserves > $reserve['nb_place']) {
             die("Nombre de sièges insuffisant.");
         }
 
         // Réserver les sièges
-        $Id_utilisateur = $_SESSION['Id_utilisateur'];
+        $Id_utilisateur = $_SESSION['user']['Id_utilisateur'];
         $sql = "INSERT INTO reservation (Id_covoiturage, Id_utilisateur, places_reserves) VALUES (:Id_covoiturage, :Id_utilisateur, :places_reserves)";
         $stmt = $conn->prepare($sql);
         $stmt->execute([
-            ':Id_covoiturage' => $Id_covoiturage,
+            ':Id_covoiturage' => $cov_id,
             ':Id_utilisateur' => $Id_utilisateur,
             ':places_reserves' => $places_reserves
         ]);
 
         // Mettre à jour le nombre de sièges disponibles
         $sql = "UPDATE covoiturage SET Nb_place = Nb_place - :place_reserves WHERE id = :Id_covoiturage";
-        $stmt = $pdo->prepare($sql);
+        $stmt = $conn->prepare($sql);
         $stmt->execute([
             ':places_reserves' => $places_reserves,
             ':Id_covoiturage' => $Id_covoiturage
