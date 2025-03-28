@@ -20,7 +20,7 @@ $cov_id = $_GET['id'];
 // Récupérer les informations du trajet
 
 $sql = "SELECT c.Id_covoiturage, c.heure_depart, c.date_depart, c.nb_place, 
-            c.heure_arrivee, u.nom, u.prenom, v.modele, v.immatriculation, c.prix_personne, c.lieu_depart, c.lieu_arrivee
+            c.heure_arrivee, u.nom, u.prenom, v.modele, v.immatriculation, c.prix_personne, c.lieu_depart, c.lieu_arrivee,u.photo
                 FROM covoiturage AS c
                 JOIN voiture AS v ON v.Id_voiture = c.Id_voiture
                 JOIN utilisateur AS u ON u.Id_utilisateur = v.Id_voiture
@@ -39,6 +39,7 @@ $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
         <h5><i class="bi bi-geo-fill"></i> De <?= htmlspecialchars($reserve['lieu_depart']) ?></br><i class="bi bi-arrow-down"></i></br> <i class="bi bi-geo-fill"></i> à <?= htmlspecialchars($reserve['lieu_arrivee']) ?></h5>
         <p><i class="bi bi-calendar3"></i> Date : <?= date("d/m/Y", timestamp: strtotime($reserve['date_depart']))  ?> à <?= $reserve['heure_depart'] ?></p>
         <p><i class="bi bi-person-workspace"></i> Conducteur : <?= htmlspecialchars($reserve['nom']) ?> <?= htmlspecialchars($reserve['prenom']) ?></p>
+        <img src="<?= htmlspecialchars($reserve['../images/imguser01.jpg']) ?>" alt="Conducteur" class="img-fluid" style="width: 100px; height: 100px;">
         <p><i class="bi bi-car-front-fill"></i> Véhicule : <?= htmlspecialchars($reserve['modele']) ?> </p>
         <p><i class="bi bi-cash-coin"></i> Prix : <?= number_format($reserve['prix_personne'], 2) ?> €</p>
     </div>
@@ -91,7 +92,7 @@ $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
         <form method="post">
             <label for="places_reserves">Nombre de sièges à réserver:</label>
             <input type="number" name="places_reserves" min="1" max="<?= $reserve['nb_place'] ?>" required>
-            <!-- <button type="submit">Réserver</button> -->
+
         </form>
         <div class="list-group-item list-group-item-action">
             <a href="reservation_cov.php?id=<?= $reserve['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>

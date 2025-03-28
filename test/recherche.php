@@ -54,7 +54,7 @@ require_once('../includes/header.php');
 
         // Requête SQL pour rechercher les trajets
         // $sql = "SELECT * FROM covoiturage WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
-        $sql = "SELECT c.Id_covoiturage, c.heure_depart, c.date_depart, c.nb_place, 
+        $sql = "SELECT c.Id_covoiturage, c.heure_depart, c.date_depart, c.nb_place, u.photo,
             c.heure_arrivee, u.nom, u.prenom, v.modele, v.immatriculation, c.prix_personne, c.lieu_depart, c.lieu_arrivee
                 FROM covoiturage AS c
                 JOIN voiture AS v ON v.Id_voiture = c.Id_voiture
