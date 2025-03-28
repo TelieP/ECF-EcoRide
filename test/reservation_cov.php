@@ -58,14 +58,13 @@ $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
         // Réserver les sièges
-        $Id_utilisateur = $_SESSION['Id_utilisateur'];
+        $Id_utilisateur = $_SESSION['user'[0]['Id_utilisateur']];
         $sql = "INSERT INTO reservation (Id_covoiturage, Id_utilisateur, places_reserves) VALUES (:Id_covoiturage, :Id_utilisateur, :places_reserves)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([
-            ':Id_covoiturage' => $Id_covoiturage,
-            ':Id_utilisateur' => $Id_utilisateur,
-            ':places_reserves' => $places_reserves
-        ]);
+        $stmt->bindValue(':Id_covoiturage', $Id_covoiturage);
+        $stmt->bindValue(':Id_utilisateur', $Id_utilisateur);
+        $stmt->bindValue(':places_reserves', $places_reserves);
+        $stmt->execute();
 
         // Mettre à jour le nombre de sièges disponibles
         $sql = "UPDATE covoiturage SET Nb_place = Nb_place - :place_reserves WHERE id = :Id_covoiturage";
