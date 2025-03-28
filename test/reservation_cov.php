@@ -2,9 +2,9 @@
 session_start();
 
 // Connexion à la base de données
-require_once('../includes/connect.php');
-require_once('../includes/header.php');
-// var_dump($_SESSION);
+require_once '../includes/connect.php';
+require_once '../includes/header.php';
+
 // Vérification de la session utilisateur (l'utilisateur doit être connecté)
 if (!isset($_SESSION['user'])) {
     die("Veuillez vous connecter pour réserver." . " <a href='connexion.php'>Se connecter</a>");
@@ -58,10 +58,10 @@ $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
         // Réserver les sièges
-        $Id_utilisateur = $_SESSION['user'[0]['Id_utilisateur']];
+        $Id_utilisateur = $_SESSION['user']['Id_utilisateur'];
         $sql = "INSERT INTO reservation (Id_covoiturage, Id_utilisateur, places_reserves) VALUES (:Id_covoiturage, :Id_utilisateur, :places_reserves)";
         $stmt = $conn->prepare($sql);
-        $stmt->bindValue(':Id_covoiturage', $Id_covoiturage);
+        $stmt->bindValue(':Id_covoiturage', $cov_id);
         $stmt->bindValue(':Id_utilisateur', $Id_utilisateur);
         $stmt->bindValue(':places_reserves', $places_reserves);
         $stmt->execute();

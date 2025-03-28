@@ -1,8 +1,8 @@
 <?php
 session_start();
 require_once 'includes/connect.php'; // Connexion à la base de données
-var_dump($_SESSION);
-if (!isset($_SESSION['user_id'])) {
+
+if (!isset($_SESSION['Id_utilisateur'])) {
     header('Location: connexion.php');
     exit();
 }

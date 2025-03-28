@@ -26,7 +26,7 @@ if (!empty($_POST)) {
         if (!password_verify($password, $user['password'])) {
             echo '<script type="text/javascript">window.alert("Mot de passe incorrect");</script>';
         } else {
-            $_SESSION['user']['Id_utilisateur'] = $user;
+            $_SESSION['user'] = $user;
             header('Location: index.php');
         }
     }
