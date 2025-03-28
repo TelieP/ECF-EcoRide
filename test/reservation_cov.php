@@ -92,11 +92,12 @@ $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
         <form method="post">
             <label for="places_reserves">Nombre de sièges à réserver:</label>
             <input type="number" name="places_reserves" min="1" max="<?= $reserve['nb_place'] ?>" required>
+            <div class="list-group-item list-group-item-action">
+                <button type="submit" class="btn btn-success">Reserver</button>
+            </div>
 
         </form>
-        <div class="list-group-item list-group-item-action">
-            <a href="reservation_cov.php?id=<?= $reserve['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
-        </div>
+
     </body>
 
     </html>
