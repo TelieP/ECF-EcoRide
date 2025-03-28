@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
-<header class="navigation">
-    <nav class="navbar navbar-expand-lg bg-dark">
+<header class="navigation" id="navbar">
+    <nav class="navbar navbar-expand-lg bg-secondary">
         <div class="container-fluid bg">
             <img src="images/logo.svg" alt="logo" width="90" height="90">
             <a class="navbar-brand" href="#">EcoRide</a>

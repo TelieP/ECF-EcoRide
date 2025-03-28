@@ -23,7 +23,7 @@
     padding: 1rem;
     margin: 1rem;
     border-radius: 5px;
-    background-color: #c9b2c1;
+    background-color: #0b4838;
 
 }
 
@@ -117,4 +117,8 @@ z-index: 1;
     color: white;
     font-size: 20px;
     
+ }
+
+ #navbar{
+    background-color: #115441;
  }

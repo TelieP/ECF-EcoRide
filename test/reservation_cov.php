@@ -4,22 +4,23 @@ session_start();
 // Connexion à la base de données
 require_once('../includes/connect.php');
 require_once('../includes/header.php');
-
+var_dump($_SESSION);
 // Vérification de la session utilisateur (l'utilisateur doit être connecté)
-// if (!isset($_SESSION['user_id'])) {
-//     die("Veuillez vous connecter pour réserver.");
-// }
-// var_dump($_GET);
+if (!isset($_SESSION['Id_utilisateur'])) {
+    die("Veuillez vous connecter pour réserver." . " <a href='connexion.php'>Se connecter</a>");
+}
+var_dump($_GET);
 // Récupérer l'ID du trajet à réserver
 if (!isset($_GET['id'])) {
     die("ID de trajet manquant.");
 }
 
-$cov_id = $_GET['Id_covoiturage'];
+$cov_id = $_GET['id'];
 
 // Récupérer les informations du trajet
-$sql = "SELECT * FROM covoiturage WHERE Id_covoiturage = :cov_id JOIN utilisateur ON utilisateur.Id_utilisateur = covoiturage.Id_utilisateur";
-$stmt = $pdo->prepare($sql);
+
+$sql = "SELECT * FROM covoiturage WHERE Id_covoiturage = :cov_id";
+$stmt = $conn->prepare($sql);
 $stmt->execute([':cov_id' => $cov_id]);
 $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
 var_dump($reserve);
@@ -30,7 +31,7 @@ if (!$reserve) {
 // Vérifier la soumission du formulaire de réservation
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $places_reserves = $_POST['places_reserves'];
-
+    var_dump($_SESSION);
     // Vérifier que le nombre de sièges est disponible
     if ($places_reserves > $reserve['nb_place']) {
         die("Nombre de sièges insuffisant.");
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Réserver les sièges
     $Id_utilisateur = $_SESSION['Id_utilisateur'];
     $sql = "INSERT INTO reservations (Id_covoiturage, Id_utilisateur, places_reserves) VALUES (:Id_covoiturage, :Id_utilisateur, :places_reserves)";
-    $stmt = $pdo->prepare($sql);
+    $stmt = $conn->prepare($sql);
     $stmt->execute([
         ':Id_covoiturage' => $Id_covoiturage,
         ':Id_utilisateur' => $Id_utilisateur,

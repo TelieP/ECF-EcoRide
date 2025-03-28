@@ -3,8 +3,8 @@
 session_start();
 
 // Inclure la configuration pour la connexion à la base de données
-require_once('../includes/connect.php');
-require_once('../includes/header.php');
+require_once('includes/connect.php');
+require_once('includes/header.php');
 ?>
 
 <body>
@@ -95,4 +95,4 @@ require_once('../includes/header.php');
     ?>
 </body>
 
-<?= require_once('../includes/footer.php'); ?>
+<?= require_once('includes/footer.php'); ?>
