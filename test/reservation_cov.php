@@ -71,7 +71,7 @@ $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':places_reserves' => $places_reserves,
-            ':Id_covoiturage' => $Id_covoiturage
+            ':Id_covoiturage' => $cov_id // Attention : la variable n'est pas définie ! (ou récupérée)
         ]);
 
         echo "Réservation réussie!";
