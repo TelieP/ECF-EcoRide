@@ -39,7 +39,7 @@ $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
         <h5><i class="bi bi-geo-fill"></i> De <?= htmlspecialchars($reserve['lieu_depart']) ?></br><i class="bi bi-arrow-down"></i></br> <i class="bi bi-geo-fill"></i> à <?= htmlspecialchars($reserve['lieu_arrivee']) ?></h5>
         <p><i class="bi bi-calendar3"></i> Date : <?= date("d/m/Y", timestamp: strtotime($reserve['date_depart']))  ?> à <?= $reserve['heure_depart'] ?></p>
         <p><i class="bi bi-person-workspace"></i> Conducteur : <?= htmlspecialchars($reserve['nom']) ?> <?= htmlspecialchars($reserve['prenom']) ?></p>
-        <img src="<?= htmlspecialchars($reserve['../images/imguser01.jpg']) ?>" alt="Conducteur" class="img-fluid" style="width: 100px; height: 100px;">
+        <img src="<?= htmlspecialchars($reserve['photo']) ?>" alt="Conducteur" class="img-fluid" style="width: 75px; height: 75px; border-radius: 50%;">
         <p><i class="bi bi-car-front-fill"></i> Véhicule : <?= htmlspecialchars($reserve['modele']) ?> </p>
         <p><i class="bi bi-cash-coin"></i> Prix : <?= number_format($reserve['prix_personne'], 2) ?> €</p>
     </div>

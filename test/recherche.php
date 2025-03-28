@@ -67,7 +67,7 @@ require_once('../includes/header.php');
 
         $stmt->execute();
         $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($trajets);
+        // var_dump($trajets);
 
         if (count($trajets) > 0): ?>
             <div class="list-group mt-4">
@@ -77,8 +77,6 @@ require_once('../includes/header.php');
                         <p><i class="bi bi-calendar3"></i> Date : <?= date("d/m/Y", timestamp: strtotime($trajet['date_depart']))  ?> à <?= $trajet['heure_depart'] ?></p>
                         <p><i class="bi bi-person-workspace"></i> Conducteur : <?= htmlspecialchars($trajet['nom']) ?> <?= htmlspecialchars($trajet['prenom']) ?></p>
                         <p><i class="bi bi-car-front-fill"></i> Véhicule : <?= htmlspecialchars($trajet['modele']) ?> </p>
-                        <p><i class="bi bi-cash-coin"></i> Prix : <?= number_format($trajet['prix_personne'], 2) ?> €</p>
-                        <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
                         <p><i class="bi bi-cash-coin"></i> Prix : <?= number_format($trajet['prix_personne'], 2) ?> €</p>
                         <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
                         <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success stretched-link"><i class="fas fa-check"></i> VOIR</a>
