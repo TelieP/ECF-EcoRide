@@ -113,14 +113,10 @@ require_once 'includes/connect.php';
                         <div class="card shadow-sm">
                             <img src="images/secure-covoit.jpg" alt="" width="100%" height="225">
                             <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-body-secondary">9 mins</small>
-                                </div>
+                                <p class="card-text">Mais ce n'est pas tout ! Le covoiturage favorise également la convivialité. C'est l'occasion de rencontrer de nouvelles personnes, d'échanger des idées, de partager des moments agréables durant le trajet. Fini le stress de conduire seul : profitez de la compagnie de vos passagers et transformez votre déplacement en un instant plus détendu et moins monotone.
+
+                                    Sur le plan économique, le covoiturage permet de réaliser des économies significatives sur vos frais de transport. En partageant les coûts d’essence et de péage, chaque trajet devient plus abordable, et votre budget carburant s’en trouve allégé..</p>
+
                             </div>
                         </div>
                     </div>
