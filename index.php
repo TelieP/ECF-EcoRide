@@ -4,11 +4,25 @@ require_once 'includes/header.php';
 require_once 'includes/connect.php';
 ?>
 
-
-
+<head>
+    <style>
+        /* Style pour positionner le formulaire */
+        .form-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 10;
+            width: 50%;
+        }
+    </style>
+</head>
 
 <body>
-    <div id="carouselExampleAutoplaying" class="carousel-slide" data-bs-ride="carousel">
+    <div id="carouselExampleAutoplaying" class="carousel slide position-relative" data-bs-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="images/image01.jpg" class="d-block w-100" alt="Image 1">
@@ -20,6 +34,8 @@ require_once 'includes/connect.php';
                 <img src="images/image03.jpg" class="d-block w-100" alt="Image 3">
             </div>
         </div>
+
+        <!-- Boutons précédent/suivant -->
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Précédent</span>
@@ -28,25 +44,29 @@ require_once 'includes/connect.php';
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Suivant</span>
         </button>
-    </div>
 
-    <form action="recherche.php" method="GET" id="form-index" class="form-group w-60 text-white p-5 bg-body-tertiary border rounded-3">
-        <div class="row g-3">
-            <div class="col">
-                <label for="depart">Ville de départ </label>
-                <input type="text" class="form-control" id="depart" name="depart" required placeholder="ville de depart">
+        <!-- Formulaire dans le carousel -->
+        <form action="recherche.php" method="GET" class="form-overlay">
+            <h4 class="text-center">Rechercher un trajet</h4>
+            <div class="row g-3">
+                <div class="col">
+                    <label for="depart" class="form-label">Ville de départ</label>
+                    <input type="text" class="form-control" id="depart" name="depart" required placeholder="Ville de départ">
+                </div>
+                <div class="col">
+                    <label for="arrivee" class="form-label">Ville d'arrivée</label>
+                    <input type="text" class="form-control" id="arrivee" name="arrivee" required placeholder="Ville d'arrivée">
+                </div>
+                <div class="col">
+                    <label for="date" class="form-label">Date du trajet</label>
+                    <input type="date" class="form-control" id="date" name="date" required>
+                </div>
+                <div class="text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Rechercher</button>
+                </div>
             </div>
-            <div class="col">
-                <label for="arrivee">Ville d'arrivée </label>
-                <input type="text" class="form-control" id="arrivee" name="arrivee" required placeholder="ville d'arrivée">
-            </div>
-            <div class="col">
-                <label for="date">Date du trajet </label>
-                <input type="date" class="form-control" id="date" name="date" required placeholder="date">
-            </div>
-            <button type="submit">Rechercher</button>
-        </div>
-    </form>
+        </form>
+    </div>
 
     <main>
 
