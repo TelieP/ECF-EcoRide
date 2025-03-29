@@ -2,8 +2,8 @@
 session_start();
 
 // Connexion à la base de données
-require_once '../includes/connect.php';
-require_once '../includes/header.php';
+require_once 'includes/connect.php';
+require_once 'includes/header.php';
 
 // Vérification de la session utilisateur (l'utilisateur doit être connecté)
 if (!isset($_SESSION['user'])) {
@@ -68,7 +68,7 @@ $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // Mettre à jour le nombre de sièges disponibles
         $sql = "UPDATE covoiturage SET Nb_place = Nb_place - :place_reserves WHERE id = :Id_covoiturage";
-        $stmt = $pdo->prepare($sql);
+        $stmt = $conn->prepare($sql);
         $stmt->execute([
             ':places_reserves' => $places_reserves,
             ':Id_covoiturage' => $cov_id // Attention : la variable n'est pas définie ! (ou récupérée)
@@ -101,4 +101,4 @@ $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
 
     </html>
 
-    <?= require_once('../includes/footer.php'); ?>
+    <?= require_once('includes/footer.php'); ?>

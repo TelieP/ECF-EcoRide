@@ -3,27 +3,14 @@
 session_start();
 
 // Inclure la configuration pour la connexion à la base de données
-require_once('../includes/connect.php');
-require_once('../includes/header.php');
+require_once('includes/connect.php');
+require_once('includes/header.php');
 ?>
 
 <body>
 
     <h1>Rechercher un Covoiturage</h1>
 
-    <!-- <form action="" method="POST" class="form-group">
-
-        <label for="depart">Ville de départ </label>
-        <input type="text" id="depart" name="depart" required><br><br>
-
-        <label for="arrivee">Ville d'arrivée </label>
-        <input type="text" id="arrivee" name="arrivee" required><br><br>
-
-        <label for="date">Date du trajet </label>
-        <input type="date" id="date" name="date" required><br><br>
-
-        <button type="submit">Rechercher</button>
-    </form> -->
     <form action="" method="GET" class="form-group  text-white p-5 w-50 mx-auto">
         <div class="row g-3">
             <div class="col">
@@ -38,7 +25,7 @@ require_once('../includes/header.php');
                 <label for="date">Date du trajet </label>
                 <input type="date" class="form-control" id="date" name="date" required placeholder="date">
             </div>
-            <button type="submit">Rechercher</button>
+            <button type="submit" class="btn btn-control">Rechercher</button>
         </div>
     </form>
 
@@ -93,4 +80,4 @@ require_once('../includes/header.php');
     ?>
 </body>
 
-<?= require_once('../includes/footer.php'); ?>
+<?= require_once('includes/footer.php'); ?>

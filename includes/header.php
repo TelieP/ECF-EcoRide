@@ -23,7 +23,7 @@
                     <li class="nav-item">
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="recherche_covoit.php">Covoiturages</a>
+                        <a class="nav-link" href="recherche.php">Covoiturages</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="connexion.php">connexion</a>

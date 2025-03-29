@@ -30,7 +30,7 @@ require_once 'includes/connect.php';
         </button>
     </div>
 
-    <form action="recherche_covoit.php" method="POST" id="form-index" class="form-group w-60 text-white p-5 bg-body-tertiary border rounded-3">
+    <form action="recherche.php" method="GET" id="form-index" class="form-group w-60 text-white p-5 bg-body-tertiary border rounded-3">
         <div class="row g-3">
             <div class="col">
                 <label for="depart">Ville de départ </label>
