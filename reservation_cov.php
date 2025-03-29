@@ -51,7 +51,7 @@ $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
     // Vérifier la soumission du formulaire de réservation
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $places_reserves = $_POST['places_reserves'];
-        var_dump($_SESSION);
+        // var_dump($_SESSION);
         // Vérifier que le nombre de sièges est disponible
         if ($places_reserves > $reserve['nb_place']) {
             die("Nombre de sièges insuffisant.");
@@ -67,14 +67,16 @@ $reserve = $stmt->fetch(PDO::FETCH_ASSOC);
         $stmt->execute();
 
         // Mettre à jour le nombre de sièges disponibles
-        $sql = "UPDATE covoiturage SET Nb_place = Nb_place - :place_reserves WHERE id = :Id_covoiturage";
+        $sql = "UPDATE covoiturage SET nb_place = nb_place - :places_reserves WHERE Id_covoiturage = :Id_covoiturage";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([
-            ':places_reserves' => $places_reserves,
-            ':Id_covoiturage' => $cov_id // Attention : la variable n'est pas définie ! (ou récupérée)
-        ]);
+        $stmt->bindValue(':places_reserves', $places_reserves);
+        $stmt->bindValue(':Id_covoiturage', $cov_id);
+        $stmt->execute();
 
-        echo "Réservation réussie!";
+        // Rediriger vers la page de confirmation ou d'accueil
+        echo "<div class='alert alert-success'>Réservation réussie !</div>";
+        echo "<a href='index.php' class='btn btn-primary'>Retour à l'accueil</a>";
+        exit;
     }
     ?>
 

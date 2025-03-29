@@ -54,11 +54,11 @@ require_once 'includes/connect.php';
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h2 class="fw-light">Voyager n'a jamais été aussi facile</h2>
-                    <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary my-2">Savoir + </a>
+                    <p class="lead text-body-secondary">Diminuez votre empreinte carbone en partageant vos trajets. Chaque covoiturage permet d'éviter jusqu'à 2,2 kg de CO2 par personne et par trajet,
+                        contribuant activement à la préservation de notre planète.</br>
+                        Partagez les frais de transport et économisez jusqu'à 70% sur vos déplacements quotidiens. Entre carburant, entretien et stationnement,
+                        le covoiturage représente une solution intelligente pour votre portefeuille.</p>
 
-                    </p>
                 </div>
             </div>
         </section>
@@ -69,9 +69,9 @@ require_once 'includes/connect.php';
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <div class="col">
                         <div class="card shadow-sm">
-                            <img src="images/covoiturage-bonnes-raisons.jpg" alt="" width="100%" height="272">
+                            <img src="images/covoiturage-bonnes-raisons.jpg" alt="" width="100%" height="225">
                             <div class="card-body">
-                                <p class="card-text">Nous développons un réseau de confiance et de sérénité pour s'assurer que vous soyez à l'aise et en sécurité durant votre voyage</p>
+                                <p class="card-text">Nous développons un réseau de confiance et de sérénité pour s'assurer que vous soyez à l'aise et en sécurité durant votre voyage </br></br></br></br></br></p>
                                 <div class="d-flex justify-content-between align-items-center">
 
                                 </div>
@@ -83,13 +83,8 @@ require_once 'includes/connect.php';
                         <div class="card shadow-sm">
                             <img src="images/ecologie.jpg" alt="" width="100%" height="225">
                             <div class="card-body">
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text">Transformez vos trajets en moments d'échange et de partage. Le covoiturage favorise les rencontres enrichissantes et permet de tisser des liens avec des personnes partageant votre itinéraire et potentiellement vos centres d'intérêt..</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                    </div>
-                                    <small class="text-body-secondary">9 mins</small>
                                 </div>
                             </div>
                         </div>
