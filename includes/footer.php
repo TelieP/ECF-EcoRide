@@ -12,13 +12,13 @@
                 </a></li>
             <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">
                     <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">FAQ</font>
+                        <font style="vertical-align: inherit;">Email: contact-ecoride@ecoride.fr</font>
                     </font>
                 </a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">
+            <li class="nav-item"><a href="mentions_legales.php" class="nav-link px-2 text-body-secondary">
                     <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">À propos</font>
-                    </font>
+                        <font style="vertical-align: inherit;">Mentions légales
+                        </font>
                 </a></li>
         </ul>
         <p class="text-center text-body-secondary">

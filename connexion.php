@@ -33,12 +33,14 @@ if (!empty($_POST)) {
 }
 ?>
 <h1>Connexion</h1>
-<form method="post" class="form-group"><br>
-    Email: <input type="email" name="email" id="email" required><br>
-    Mot de passe: <input type="password" name="mot_de_passe" id="mot_de_passe" required><br>
-    <button type="submit">Se connecter</button>
-    <a href="inscription.php">Pas encore inscrit ?</a>
-</form>
+<div class="container mb-5 mt-5">
+    <form method="post" class="form-group"><br>
+        Email: <input type="email" name="email" id="email" required><br>
+        Mot de passe: <input type="password" name="mot_de_passe" id="mot_de_passe" required><br>
+        <button type="submit">Se connecter</button>
+        <a href="inscription.php">Pas encore inscrit ?</a>
+    </form>
+</div>
 
 <?php
 require_once 'includes/footer.php';

@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <header class="navigation" id="navbar">
-    <nav class="navbar navbar-expand-lg bg-secondary">
+    <nav class="navbar navbar-expand-lg bg-success navbar-light">
         <div class="container-fluid bg">
-            <img src="images/logo.svg" alt="logo" width="90" height="90">
-            <a class="navbar-brand" href="#">EcoRide</a>
+            <a href="index.php"> <img src="images/logo.svg" alt="logo" width="90" height="90"></a>
+            <a href="index.php" class="navbar-brand" href="index.php">EcoRide</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

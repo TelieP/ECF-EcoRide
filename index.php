@@ -12,7 +12,7 @@ require_once 'includes/connect.php';
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(84, 125, 118, 0.8);
             padding: 20px;
             border-radius: 10px;
             z-index: 10;
@@ -47,7 +47,7 @@ require_once 'includes/connect.php';
 
         <!-- Formulaire dans le carousel -->
         <form action="recherche.php" method="GET" class="form-overlay">
-            <h4 class="text-center">Rechercher un trajet</h4>
+            <h1 class="text-center" style="color:white;">Rechercher un trajet</h1>
             <div class="row g-3">
                 <div class="col">
                     <label for="depart" class="form-label">Ville de départ</label>
@@ -148,4 +148,12 @@ require_once 'includes/connect.php';
     require_once 'includes/footer.php';
 
     ?>
-    <a href="deconnexion.php">Se Déconnecter</a>
+    <?php if (isset($_SESSION['user'])): ?>
+        <a href="deconnexion.php" style="text-decoration: none;">Se déconnecter</a>
+    <?php endif; ?>
+
+
+    <!-- vérifier si l'utilisateur est connecté et afficher le lien vers le profil -->
+    <?php if (isset($_SESSION['user'])): ?>
+        <a href="profil.php" style="text-decoration: none;">Mon Profil</a>
+    <?php endif; ?>

@@ -19,17 +19,20 @@
     justify-content: center;
     width: 100%;
     height: 100%;
+    height: 90vh;
+    margin: 0 auto;
+
     box-shadow: #4d0b61;
     padding: 1rem;
     margin: 1rem;
     border-radius: 5px;
-    background-color: #0b4838;
+    background-color: #c0e9de;
 
 }
 
 
 button{
-    width: 15%;
+    width: 45%;
     height: 3rem;
     background-color: #007bff;
     color: white;
@@ -39,7 +42,7 @@ button{
 }
  
 input{
-    width: 20%;
+    width: 60%;
     height: 2rem;
     margin-bottom: 1rem;
     padding: 0.5rem;
@@ -52,6 +55,7 @@ input{
 body{
     text-align: center;
     font-size: 1.5rem;
+    background-color: #d2e0db;
 }
 
 label{
@@ -62,6 +66,7 @@ color: black;
 .body{
     text-align: center;
     font-size: 1.5rem;
+    background-color: #0b4d3c;
 
    
 }
@@ -122,3 +127,17 @@ z-index: 1;
  #navbar{
     background-color: #115441;
  }
+
+
+ /* bg formulaire d'ajout de voiture  */
+ .form-controler{
+    background-color: #c0e9de;
+    border-radius: 5px;
+    color: black;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 40px;
+    
+ }
+
