@@ -90,8 +90,10 @@ require_once 'includes/connect.php';
                     <div class="col">
                         <div class="card shadow-sm">
                             <img src="images/covoiturage-bonnes-raisons.jpg" alt="" width="100%" height="225">
-                            <div class="card-body">
-                                <p class="card-text">Nous développons un réseau de confiance et de sérénité pour s'assurer que vous soyez à l'aise et en sécurité durant votre voyage </br></br></br></br></br></p>
+                            <div class="card-body" style="height: auto;">
+                                <p class="card-text">Nous développons un réseau de confiance et de sérénité pour
+                                    s'assurer que vous soyez à l'aise et en sécurité durant votre voyage .
+                                    Et s'il y a un soucis durant le voyage , vous pouvez donner un avis vis à vis du conducteur</br></br></br></br></p>
                                 <div class="d-flex justify-content-between align-items-center">
 
                                 </div>
@@ -99,11 +101,14 @@ require_once 'includes/connect.php';
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col" style="height: auto;">
                         <div class="card shadow-sm">
                             <img src="images/ecologie.jpg" alt="" width="100%" height="225">
                             <div class="card-body">
-                                <p class="card-text">Transformez vos trajets en moments d'échange et de partage. Le covoiturage favorise les rencontres enrichissantes et permet de tisser des liens avec des personnes partageant votre itinéraire et potentiellement vos centres d'intérêt..</p>
+                                <p class="card-text" style="text-align: justify" ;>Transformez vos trajets en moments d'échange et de partage.
+                                    Le covoiturage favorise les rencontres enrichissantes et permet de tisser des
+                                    liens avec des personnes partageant votre itinéraire et potentiellement vos centres d'intérêt.
+                                    Et en agissant ainsi , vous préservez la planète</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                 </div>
                             </div>
@@ -113,9 +118,12 @@ require_once 'includes/connect.php';
                         <div class="card shadow-sm">
                             <img src="images/secure-covoit.jpg" alt="" width="100%" height="225">
                             <div class="card-body">
-                                <p class="card-text">Mais ce n'est pas tout ! Le covoiturage favorise également la convivialité. C'est l'occasion de rencontrer de nouvelles personnes, d'échanger des idées, de partager des moments agréables durant le trajet. Fini le stress de conduire seul : profitez de la compagnie de vos passagers et transformez votre déplacement en un instant plus détendu et moins monotone.
-
-                                    Sur le plan économique, le covoiturage permet de réaliser des économies significatives sur vos frais de transport. En partageant les coûts d’essence et de péage, chaque trajet devient plus abordable, et votre budget carburant s’en trouve allégé..</p>
+                                <p class="card-text"> Le covoiturage favorise également la convivialité.
+                                    C'est l'occasion de rencontrer de nouvelles personnes, d'échanger des idées,
+                                    de partager des moments agréables durant le trajet. Fini le stress de conduire seul :
+                                    profitez de la compagnie de vos passagers et transformez votre déplacement en un instant
+                                    plus détendu et moins monotone.
+                                </p>
 
                             </div>
                         </div>
@@ -127,15 +135,21 @@ require_once 'includes/connect.php';
         <div class="row align-items-md-stretch">
             <div class="col-md-6">
                 <div class="h-100 p-5 text-bg-dark rounded-3">
-                    <h2>Change the background</h2>
-                    <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-                    <button class="btn btn-outline-light" type="button">Example button</button>
+                    <i class="bi bi-car-front-fill">
+                        <h2>Recherchez, cliquez et réservez !</h2>
+                    </i>
+                    <p>Réserver un trajet devient encore plus simple ! Facile d'utilisation et dotée de technologies avancées, notre appli vous permet de réserver un trajet à proximité en un rien de temps.</p>
+
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="h-100 p-5 bg-body-tertiary border rounded-3">
-                    <h2>Add borders</h2>
-                    <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
+                    <i class="bi bi-cash-stack">
+                        <h2>Vos trajets préférés à petits prix</h2>
+                    </i>
+
+                    <p>Où que vous alliez, en bus ou en covoiturage, trouvez le trajet idéal parmi notre large choix de destinations à petits prix.</p>
+
 
                 </div>
             </div>

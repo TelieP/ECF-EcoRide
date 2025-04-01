@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-<div class="container mt-5" style="width: 100%;">
+<div class="container col-mb-3 " style="width: 100%;  margin-top: 260px; margin-bottom: 400px;">
     <form class="form-group" method="post">
         <h2>Inscription</h2>
         Nom: <input type=" text" name="nom" required>

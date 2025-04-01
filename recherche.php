@@ -10,25 +10,25 @@ require_once('includes/header.php');
 <body>
 
     <h1>Rechercher un Covoiturage</h1>
-
-    <form action="" method="GET" class="form-group  text-white p-5 w-50 mx-auto">
-        <div class="row g-3">
-            <div class="col">
-                <label for="depart">Ville de départ </label>
-                <input type="text" class="form-control" id="depart" name="depart" required placeholder="ville de depart">
+    <div class="row g-3">
+        <form action="" method="GET" class="form-group  text-white p-2 w-50 mx-auto">
+            <div class="row g-3">
+                <div class="col">
+                    <label for="depart">Ville de départ </label>
+                    <input type="text" class="form-control" id="depart" name="depart" required placeholder="ville de depart">
+                </div>
+                <div class="col">
+                    <label for="arrivee">Ville d'arrivée </label>
+                    <input type="text" class="form-control" id="arrivee" name="arrivee" required placeholder="ville d'arrivée">
+                </div>
+                <div class="col">
+                    <label for="date">Date du trajet </label>
+                    <input type="date" class="form-control" id="date" name="date" required placeholder="date">
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Rechercher</button>
             </div>
-            <div class="col">
-                <label for="arrivee">Ville d'arrivée </label>
-                <input type="text" class="form-control" id="arrivee" name="arrivee" required placeholder="ville d'arrivée">
-            </div>
-            <div class="col">
-                <label for="date">Date du trajet </label>
-                <input type="date" class="form-control" id="date" name="date" required placeholder="date">
-            </div>
-            <button type="submit" class="btn btn-control">Rechercher</button>
-        </div>
-    </form>
-
+        </form>
+    </div>
 
     <?php
 
@@ -81,5 +81,4 @@ require_once('includes/header.php');
     ?>
 </body>
 
-<?= require_once('includes/footer.php');
-?>
+<?= require_once('includes/footer.php'); ?>

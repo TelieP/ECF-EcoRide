@@ -14,6 +14,8 @@ $stmt->bindValue(':Id_utilisateur', $profil);
 $stmt->execute();
 $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // var_dump($avis);
+// Afficher les avis
+
 
 ?>
 
