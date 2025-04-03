@@ -10,25 +10,25 @@ require_once('includes/header.php');
 <body>
 
     <h1>Rechercher un Covoiturage</h1>
-
-    <form action="" method="GET" class="form-group  text-white p-5 w-50 mx-auto">
-        <div class="row g-3">
-            <div class="col">
-                <label for="depart">Ville de départ </label>
-                <input type="text" class="form-control" id="depart" name="depart" required placeholder="ville de depart">
+    <div class="row g-3">
+        <form action="" method="GET" class="form-group  text-white p-2 w-50 mx-auto">
+            <div class="row g-3">
+                <div class="col">
+                    <label for="depart">Ville de départ </label>
+                    <input type="text" class="form-control" id="depart" name="depart" required placeholder="ville de depart">
+                </div>
+                <div class="col">
+                    <label for="arrivee">Ville d'arrivée </label>
+                    <input type="text" class="form-control" id="arrivee" name="arrivee" required placeholder="ville d'arrivée">
+                </div>
+                <div class="col">
+                    <label for="date">Date du trajet </label>
+                    <input type="date" class="form-control" id="date" name="date" required placeholder="date">
+                </div>
+                <button type="submit" class="btn btn-primary mb-3">Rechercher</button>
             </div>
-            <div class="col">
-                <label for="arrivee">Ville d'arrivée </label>
-                <input type="text" class="form-control" id="arrivee" name="arrivee" required placeholder="ville d'arrivée">
-            </div>
-            <div class="col">
-                <label for="date">Date du trajet </label>
-                <input type="date" class="form-control" id="date" name="date" required placeholder="date">
-            </div>
-            <button type="submit" class="btn btn-control">Rechercher</button>
-        </div>
-    </form>
-
+        </form>
+    </div>
 
     <?php
 
@@ -62,9 +62,10 @@ require_once('includes/header.php');
                     <div class="list-group-item list-group-item-action">
                         <h5><i class="bi bi-geo-fill"></i> De <?= htmlspecialchars($trajet['lieu_depart']) ?></br><i class="bi bi-arrow-down"></i></br> <i class="bi bi-geo-fill"></i> à <?= htmlspecialchars($trajet['lieu_arrivee']) ?></h5>
                         <p><i class="bi bi-calendar3"></i> Date : <?= date("d/m/Y", timestamp: strtotime($trajet['date_depart']))  ?> à <?= $trajet['heure_depart'] ?></p>
-                        <p><i class="bi bi-person-workspace"></i> Conducteur : <?= htmlspecialchars($trajet['nom']) ?> <?= htmlspecialchars($trajet['prenom']) ?></p>
+                        <p> </i> Conducteur : <?= htmlspecialchars($trajet['nom']) ?> <?= htmlspecialchars($trajet['prenom']) ?><img src="<?= htmlspecialchars($trajet['photo']) ?>" alt="Conducteur" class="img-fluid" style="width: 75px; height: 75px; border-radius: 50%;"></p>
                         <p><i class="bi bi-car-front-fill"></i> Véhicule : <?= htmlspecialchars($trajet['modele']) ?> </p>
                         <p><i class="bi bi-cash-coin"></i> Prix : <?= number_format($trajet['prix_personne'], 2) ?> €</p>
+                        <p><i class="bi bi-person-check-fill"></i> Places restantes : <?= htmlspecialchars($trajet['nb_place']) ?></p>
                         <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
                         <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success stretched-link"><i class="fas fa-check"></i> VOIR</a>
 

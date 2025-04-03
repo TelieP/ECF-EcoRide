@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $naissance = $_POST['naissance'];
     $photo = $_POST['photo'];
     $pseudo = $_POST['pseudo'];
+    $id_role = "user";
     try {
         $stmt = $conn->prepare("SELECT * FROM `utilisateur` WHERE email = :email"); // on vérifie que l'email n'existe pas dejà en base de données
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -69,38 +70,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
-<form class="form-group" method="post">
-    <h2>Inscription</h2>
-    Nom: <input type="text" name="nom" required>
-    Prénom: <input type="text" name="prenom" required>
-    Email: <input type="email" name="email" required>
-    Mot de passe: <input type="password" name="pass" required>
-    Téléphone: <input type="number" name="telephone" required>
-    Adresse: <input type="text" name="adresse" required>
-    Date de naissance: <input type="date" name="naissance" required>
-    Photo: <input type="file" name="photo" accept="image/png , image/jpeg">
-    Pseudo: <input type="text" name="pseudo" required>
+<div class="container col-mb-3 " style="width: 100%;  margin-top: 260px; margin-bottom: 400px;">
+    <form class="form-group" method="post">
+        <h2>Inscription</h2>
+        Nom: <input type=" text" name="nom" required>
+        Prénom: <input type="text" name="prenom" required>
+        Email: <input type="email" name="email" required>
+        Mot de passe: <input type="password" name="pass" required>
+        Téléphone: <input type="number" name="telephone" required>
+        Adresse: <input type="text" name="adresse" required>
+        Date de naissance: <input type="date" name="naissance" required>
+        Photo: <input type="file" name="photo" accept="image/png , image/jpeg">
+        Pseudo: <input type="text" name="pseudo" required>
 
-    <?php
-    $stmt = $conn->prepare("SELECT Id_role, libelle FROM role");
-    $stmt->execute();
-    $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    ?>
-    <label for="Id_role">Role :</label>
-    <select name="Id_role" id="Id_role">
         <?php
-        foreach ($roles as $role) {
+        $stmt = $conn->prepare("SELECT Id_role, libelle FROM role");
+        $stmt->execute();
+        $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
-            <option value="<?= $role['Id_role']; ?>"><?= $role['libelle']; ?></option>
-        <?php
-        }
-        ?>
-    </select> <br><br>
+        <label for="Id_role">Role :</label>
+        <select name="Id_role" id="Id_role">
+            <?php
+            foreach ($roles as $role) {
+            ?>
+                <option value="<?= $role['Id_role']; ?>"><?= $role['libelle']; ?></option>
+            <?php
+            }
+            ?>
+        </select> <br><br>
 
-    <button type="submit">S'inscrire</button>
-    <a href="connexion.php">Déjà inscrit ?</a>
-</form>
-
+        <button type="submit">S'inscrire</button>
+        <a href="connexion.php">Déjà inscrit ?</a>
+    </form>
+</div>
 <?php
 require_once 'includes/footer.php'; // Inclusion du footer
 ?>
