@@ -10,6 +10,8 @@ require_once '../includes/header.php';
 <body>
 
     <fieldset class="m-5">
+        <!-- Checkbox pour le trajet ecolo ou non -->
+        <!-- L'événement onchange permet d'appeler la fonction getEnvironmentallyFriendlyCarSharing() du fichier filter.js -->
         <input type="checkbox" id="ecological" name="ecological" onchange="getEnvironmentallyFriendlyCarSharing()" />
         <label for="ecological">Trajet écologique</label>
     </fieldset>

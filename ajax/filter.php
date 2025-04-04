@@ -1,17 +1,16 @@
 <?php
 
-// ini_set('display_errors', 1);
-// ini_set('display_startup_errors', 1);
-// error_reporting(E_ALL);
-
+// S'assurer d'envoyer du JSON
 header('Content-Type: application/json');
 
 require_once('../includes/connect.php');
 
+// On récupère la variable ecological (0 ou 1) passée dans la requête Ajax du fichier filter.js
 if (isset($_GET['ecological'])) {
   // Checked or not
   $ecological = $_GET['ecological'] == 1 ? "=" : "!=";
   // Query
+  // Le reste : comme d'habitude
   $sql = "SELECT c.Id_covoiturage, c.heure_depart, c.date_depart, c.nb_place, u.photo,
             c.heure_arrivee, u.nom, u.prenom, v.modele, v.immatriculation, c.prix_personne, c.lieu_depart, c.lieu_arrivee
                 FROM covoiturage AS c
@@ -22,6 +21,7 @@ if (isset($_GET['ecological'])) {
   $stmt->execute();
   $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+  // On renvoie les trajets sous forme JSON : PHP veut un "echo" et non un return (ne me demande pas pourquoi ^^)
   echo json_encode($trajets);
   exit;
 }
