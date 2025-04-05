@@ -23,7 +23,7 @@ require_once '../includes/header.php';
                 <fieldset class="m-5">
                     <!-- Checkbox pour le trajet du moins chers au plus chere -->
                     <!-- L'événement onchange permet d'appeler la fonction getLowPrice() du fichier filter.js -->
-                    <input type="checkbox" id="lowprice" name="lowprice" onchange="getLowPrice()" />
+                    <input type="checkbox" id="lowPrice" name="lowPrice" onchange="getLowPrice()" />
                     <label for="lowprice">Prix croissant</label>
                 </fieldset>
             </div>

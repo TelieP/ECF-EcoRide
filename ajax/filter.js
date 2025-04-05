@@ -36,6 +36,7 @@ function getEnvironmentallyFriendlyCarSharing() {
 function getLowPrice() {
   const checkBox = $("#lowPrice");
   let lowPrice = checkBox[0].checked ? 1 : 0;
+
   $.ajax({
     url: "filter.php",
     method: "GET",
@@ -50,6 +51,7 @@ function getLowPrice() {
     error: function (xhr, status, error) {
       // Erreur Ajax
       console.error("Erreur AJAX :", status, error, xhr.responseText);
+      
     }
   })
 }
