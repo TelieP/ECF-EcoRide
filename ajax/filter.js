@@ -29,3 +29,27 @@ function getEnvironmentallyFriendlyCarSharing() {
     }
   })
 };
+
+/** fonction pour recuperer les trajets par prix croissant ou décroissant 
+ * appelé depuis recherche.php sur l'événement onchange
+ **/
+function getLowPrice() {
+  const checkBox = $("#lowPrice");
+  let lowPrice = checkBox[0].checked ? 1 : 0;
+  $.ajax({
+    url: "filter.php",
+    method: "GET",
+    data: { lowPrice: lowPrice },
+    success: function (data) {
+      try {
+        console.log(data);
+      } catch (e) {
+        console.error("Erreur JSON :", e);
+      }
+    },
+    error: function (xhr, status, error) {
+      // Erreur Ajax
+      console.error("Erreur AJAX :", status, error, xhr.responseText);
+    }
+  })
+}

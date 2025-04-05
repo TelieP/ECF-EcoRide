@@ -8,13 +8,27 @@ require_once '../includes/header.php';
 ?>
 
 <body>
-
-    <fieldset class="m-5">
-        <!-- Checkbox pour le trajet ecolo ou non -->
-        <!-- L'événement onchange permet d'appeler la fonction getEnvironmentallyFriendlyCarSharing() du fichier filter.js -->
-        <input type="checkbox" id="ecological" name="ecological" onchange="getEnvironmentallyFriendlyCarSharing()" />
-        <label for="ecological">Trajet écologique</label>
-    </fieldset>
+    <h4>FILTRES</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col lg-4">
+                <fieldset class="m-5">
+                    <!-- Checkbox pour le trajet ecolo ou non -->
+                    <!-- L'événement onchange permet d'appeler la fonction getEnvironmentallyFriendlyCarSharing() du fichier filter.js -->
+                    <input type="checkbox" id="ecological" name="ecological" onchange="getEnvironmentallyFriendlyCarSharing()" />
+                    <label for="ecological">Trajet écologique</label>
+                </fieldset>
+            </div>
+            <div class="col">
+                <fieldset class="m-5">
+                    <!-- Checkbox pour le trajet du moins chers au plus chere -->
+                    <!-- L'événement onchange permet d'appeler la fonction getLowPrice() du fichier filter.js -->
+                    <input type="checkbox" id="lowprice" name="lowprice" onchange="getLowPrice()" />
+                    <label for="lowprice">Prix croissant</label>
+                </fieldset>
+            </div>
+        </div>
+    </div>
 
     <h1>Rechercher un Covoiturage</h1>
     <div class="row g-3">
@@ -22,15 +36,15 @@ require_once '../includes/header.php';
             <div class="row g-3">
                 <div class="col">
                     <label for="depart">Ville de départ </label>
-                    <input type="text" class="form-control" id="depart" name="depart" required placeholder="ville de depart">
+                    <input type="text" class="form-control" id="lieu_depart" name="lieu_depart" required placeholder="ville de depart">
                 </div>
                 <div class="col">
                     <label for="arrivee">Ville d'arrivée </label>
-                    <input type="text" class="form-control" id="arrivee" name="arrivee" required placeholder="ville d'arrivée">
+                    <input type="text" class="form-control" id="lieu_arrivee" name="lieu_arrivee" required placeholder="ville d'arrivée">
                 </div>
                 <div class="col">
                     <label for="date">Date du trajet </label>
-                    <input type="date" class="form-control" id="date" name="date" required placeholder="date">
+                    <input type="date" class="form-control" id="date_depart" name="date_depart" required placeholder="date">
                 </div>
                 <button type="submit" class="btn btn-primary mb-3">Rechercher</button>
             </div>
@@ -41,10 +55,10 @@ require_once '../includes/header.php';
 
     // Si des paramètres sont envoyés via GET
 
-    if (isset($_GET['depart']) && isset($_GET['arrivee']) && isset($_GET['date'])) {
-        $depart = $_GET['depart'];
-        $arrivee = $_GET['arrivee'];
-        $date = $_GET['date'];
+    if (isset($_GET['lieu_depart']) && isset($_GET['lieu_arrivee']) && isset($_GET['date_depart'])) {
+        $depart = $_GET['lieu_depart'];
+        $arrivee = $_GET['lieu_arrivee'];
+        $date = $_GET['date_depart'];
 
         // Requête SQL pour rechercher les trajets
         // $sql = "SELECT * FROM covoiturage WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
@@ -52,8 +66,12 @@ require_once '../includes/header.php';
             c.heure_arrivee, u.nom, u.prenom, v.modele, v.immatriculation, c.prix_personne, c.lieu_depart, c.lieu_arrivee
                 FROM covoiturage AS c
                 JOIN voiture AS v ON v.Id_voiture = c.Id_voiture
-                JOIN utilisateur AS u ON u.Id_utilisateur = v.Id_voiture";
+                JOIN utilisateur AS u ON u.Id_utilisateur = v.Id_voiture
+                WHERE  lieu_depart = :depart AND lieu_arrivee = :arrivee AND  DATE(date_depart) = :date AND nb_place > 0";
         $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':depart',  $depart);
+        $stmt->bindValue(':arrivee',  $arrivee);
+        $stmt->bindValue(':date', $date);
 
         $stmt->execute();
         $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
