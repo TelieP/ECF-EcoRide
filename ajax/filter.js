@@ -33,14 +33,14 @@ function getEnvironmentallyFriendlyCarSharing() {
 /** fonction pour recuperer les trajets par prix croissant ou décroissant 
  * appelé depuis recherche.php sur l'événement onchange
  **/
-function getLowPrice() {
-  const checkBox = $("#lowPrice");
+function getlowprice() {
+  const checkBox = $("#lowprice");
   let lowPrice = checkBox[0].checked ? 1 : 0;
 
   $.ajax({
     url: "filter.php",
     method: "GET",
-    data: { lowPrice: lowPrice },
+    data: { lowprice: lowprice },
     success: function (data) {
       try {
         console.log(data);
@@ -51,7 +51,7 @@ function getLowPrice() {
     error: function (xhr, status, error) {
       // Erreur Ajax
       console.error("Erreur AJAX :", status, error, xhr.responseText);
-      
+
     }
   })
 }

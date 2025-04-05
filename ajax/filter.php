@@ -37,7 +37,7 @@ if (isset($_GET['lowprice'])) {
                 FROM covoiturage AS c
                 JOIN voiture AS v ON v.Id_voiture = c.Id_voiture
                 JOIN utilisateur AS u ON u.Id_utilisateur = v.Id_voiture
-                ORDER BY c.prix_personne  $lowPrice";
+                ORDER BY c.prix_personne  $lowprice";
   $stmt = $conn->prepare($sql);
   $stmt->execute();
   $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
