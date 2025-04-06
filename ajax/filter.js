@@ -43,7 +43,7 @@ function getlowprice() {
     data: { lowprice: lowprice },
     success: function (data) {
       try {
-        console.log(data);
+        displaySortedCovoit(data);
       } catch (e) {
         console.error("Erreur JSON :", e);
       }
@@ -53,5 +53,31 @@ function getlowprice() {
       console.error("Erreur AJAX :", status, error, xhr.responseText);
 
     }
+  })
+}
+
+/**
+ * Afficher les trajets triés
+ * @param {*} data Les objets trajets
+ */
+function displaySortedCovoit(data) {
+  // On récupère la div
+  const trajetsDiv = $(".list-group.mt-4");
+  // On vide d'abord les trajets existants
+  trajetsDiv.empty();
+  data.forEach(covoit => {
+    // Construction du covoit
+    const divCovoit = "<div class=\"list-group-item list-group-item-action\">"
+      + "<h5><i class=\"bi bi-geo-fill\"></i> De " + covoit['lieu_depart'] + "</br><i class=\"bi bi-arrow-down\"></i></br> <i class=\"bi bi-geo-fill\"></i> à " + covoit['lieu_arrivee'] + "</h5>"
+      + "<p><i class=\"bi bi-calendar3\"></i> Date : + " + covoit['date_depart'] + " à " + covoit['heure_depart'] + "</p>"
+      + "<p> </i> Conducteur : " + covoit['nom'] + " " + covoit['prenom'] + "<img src=" + covoit['photo'] + " alt=\"Conducteur\" class=\"img-fluid\" style=\"width: 75px; height: 75px; border-radius: 50%;\"></p>"
+      + "<p><i class=\"bi bi-car-front-fill\"></i> Véhicule : " + covoit['modele'] + "</p>"
+      + "<p><i class=\"bi bi-cash-coin\"></i> Prix : " + covoit['prix_personne'] + "€</p>"
+      + "<p><i class=\"bi bi-person-check-fill\"></i> Places restantes : " + covoit['nb_place'] + "</p>"
+      + "<a href=\"reservation_cov.php?id=" + covoit['Id_covoiturage'] + "\" class=\"btn btn-success\"><i class=\"fas fa-check\"></i> Réserver</a>"
+      + "<a href=\"reservation_cov.php?id=" + covoit['Id_covoiturage'] + "\" class=\"btn btn-success stretched-link\"><i class=\"fas fa-check\"></i> VOIR</a>"
+      + "</div>"
+      // On ajoute à la div principale
+      trajetsDiv.append(divCovoit);
   })
 }

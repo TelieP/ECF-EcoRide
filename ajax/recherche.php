@@ -75,7 +75,6 @@ require_once '../includes/header.php';
 
         $stmt->execute();
         $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        // var_dump($trajets);
 
         if (count($trajets) > 0): ?>
             <div class="list-group mt-4">
