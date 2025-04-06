@@ -82,9 +82,9 @@ function displaySortedCovoit(data, ascOrDesc) {
     // Changement du libellé
     let label = $("#labellowprice");
     if (ascOrDesc == 1) {
-      label.text("Trier par ordre décroissant");
-    } else {
       label.text("Trier par ordre croissant");
+    } else {
+      label.text("Trier par ordre décroissant");
     }
   })
 }
