@@ -55,35 +55,49 @@ require_once '../includes/header.php';
 
     // Si des paramètres sont envoyés via GET
 
+    if (isset($_GET['lieu_depart']) && isset($_GET['lieu_arrivee']) && isset($_GET['date_depart'])) {
+        $depart = $_GET['lieu_depart'];
+        $arrivee = $_GET['lieu_arrivee'];
+        $date = $_GET['date_depart'];
 
-    // Requête SQL pour rechercher les trajets
-    // $sql = "SELECT * FROM covoiturage WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
-    $sql = "SELECT c.Id_covoiturage, c.heure_depart, c.date_depart, c.nb_place, u.photo,
+        // Requête SQL pour rechercher les trajets
+        // $sql = "SELECT * FROM covoiturage WHERE lieu_depart LIKE :depart AND lieu_arrivee LIKE :arrivee AND  DATE(date_depart) LIKE :date AND nb_place > 0";
+        $sql = "SELECT c.Id_covoiturage, c.heure_depart, c.date_depart, c.nb_place, u.photo,
             c.heure_arrivee, u.nom, u.prenom, v.modele, v.immatriculation, c.prix_personne, c.lieu_depart, c.lieu_arrivee
                 FROM covoiturage AS c
                 JOIN voiture AS v ON v.Id_voiture = c.Id_voiture
-                JOIN utilisateur AS u ON u.Id_utilisateur = v.Id_voiture";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    ?>
-    <div class="list-group mt-4">
-        <?php foreach ($trajets as $trajet): ?>
-            <div class="list-group-item list-group-item-action">
-                <h5><i class="bi bi-geo-fill"></i> De <?= htmlspecialchars($trajet['lieu_depart']) ?></br><i class="bi bi-arrow-down"></i></br> <i class="bi bi-geo-fill"></i> à <?= htmlspecialchars($trajet['lieu_arrivee']) ?></h5>
-                <p><i class="bi bi-calendar3"></i> Date : <?= date("d/m/Y", timestamp: strtotime($trajet['date_depart']))  ?> à <?= $trajet['heure_depart'] ?></p>
-                <p> </i> Conducteur : <?= htmlspecialchars($trajet['nom']) ?> <?= htmlspecialchars($trajet['prenom']) ?><img src="<?= htmlspecialchars($trajet['photo']) ?>" alt="Conducteur" class="img-fluid" style="width: 75px; height: 75px; border-radius: 50%;"></p>
-                <p><i class="bi bi-car-front-fill"></i> Véhicule : <?= htmlspecialchars($trajet['modele']) ?> </p>
-                <p><i class="bi bi-cash-coin"></i> Prix : <?= number_format($trajet['prix_personne'], 2) ?> €</p>
-                <p><i class="bi bi-person-check-fill"></i> Places restantes : <?= htmlspecialchars($trajet['nb_place']) ?></p>
-                <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
-                <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success stretched-link"><i class="fas fa-check"></i> VOIR</a>
+                JOIN utilisateur AS u ON u.Id_utilisateur = v.Id_voiture
+                WHERE  lieu_depart = :depart AND lieu_arrivee = :arrivee AND  DATE(date_depart) = :date AND nb_place > 0";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':depart',  $depart);
+        $stmt->bindValue(':arrivee',  $arrivee);
+        $stmt->bindValue(':date', $date);
 
+        $stmt->execute();
+        $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (count($trajets) > 0): ?>
+            <div class="list-group mt-4">
+                <?php foreach ($trajets as $trajet): ?>
+                    <div class="list-group-item list-group-item-action">
+                        <h5><i class="bi bi-geo-fill"></i> De <?= htmlspecialchars($trajet['lieu_depart']) ?></br><i class="bi bi-arrow-down"></i></br> <i class="bi bi-geo-fill"></i> à <?= htmlspecialchars($trajet['lieu_arrivee']) ?></h5>
+                        <p><i class="bi bi-calendar3"></i> Date : <?= date("d/m/Y", timestamp: strtotime($trajet['date_depart']))  ?> à <?= $trajet['heure_depart'] ?></p>
+                        <p> </i> Conducteur : <?= htmlspecialchars($trajet['nom']) ?> <?= htmlspecialchars($trajet['prenom']) ?><img src="<?= htmlspecialchars($trajet['photo']) ?>" alt="Conducteur" class="img-fluid" style="width: 75px; height: 75px; border-radius: 50%;"></p>
+                        <p><i class="bi bi-car-front-fill"></i> Véhicule : <?= htmlspecialchars($trajet['modele']) ?> </p>
+                        <p><i class="bi bi-cash-coin"></i> Prix : <?= number_format($trajet['prix_personne'], 2) ?> €</p>
+                        <p><i class="bi bi-person-check-fill"></i> Places restantes : <?= htmlspecialchars($trajet['nb_place']) ?></p>
+                        <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
+                        <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success stretched-link"><i class="fas fa-check"></i> VOIR</a>
+
+                    </div>
+                <?php endforeach; ?>
             </div>
-        <?php endforeach; ?>
-    </div>
-    </div>
+        <?php else: ?>
+            <div class="alert alert-warning text-center mt-4"><i class="fas fa-exclamation-circle"></i> Aucun trajet trouvé</div>
+        <?php endif; ?>
+        </div>
     <?php
+    }
     ?>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
