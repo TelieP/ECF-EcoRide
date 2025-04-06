@@ -35,7 +35,7 @@ function getEnvironmentallyFriendlyCarSharing() {
  **/
 function getlowprice() {
   const checkBox = $("#lowprice");
-  let lowPrice = checkBox[0].checked ? 1 : 0;
+  let lowprice = checkBox[0].checked ? 1 : 0;
 
   $.ajax({
     url: "filter.php",
