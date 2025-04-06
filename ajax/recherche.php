@@ -24,7 +24,7 @@ require_once '../includes/header.php';
                     <!-- Checkbox pour le trajet du moins chers au plus chere -->
                     <!-- L'événement onchange permet d'appeler la fonction getLowPrice() du fichier filter.js -->
                     <input type="checkbox" id="lowprice" name="lowprice" onchange="getlowprice()" />
-                    <label for="lowprice">Prix croissant</label>
+                    <label for="lowprice">Tri par prix</label>
                 </fieldset>
             </div>
         </div>
