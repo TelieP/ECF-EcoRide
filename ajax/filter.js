@@ -43,7 +43,7 @@ function getlowprice() {
     data: { lowprice: lowprice },
     success: function (data) {
       try {
-        displaySortedCovoit(data);
+        displaySortedCovoit(data, lowprice);
       } catch (e) {
         console.error("Erreur JSON :", e);
       }
@@ -60,7 +60,7 @@ function getlowprice() {
  * Afficher les trajets triés
  * @param {*} data Les objets trajets
  */
-function displaySortedCovoit(data) {
+function displaySortedCovoit(data, ascOrDesc) {
   // On récupère la div
   const trajetsDiv = $(".list-group.mt-4");
   // On vide d'abord les trajets existants
@@ -78,6 +78,13 @@ function displaySortedCovoit(data) {
       + "<a href=\"reservation_cov.php?id=" + covoit['Id_covoiturage'] + "\" class=\"btn btn-success stretched-link\"><i class=\"fas fa-check\"></i> VOIR</a>"
       + "</div>"
       // On ajoute à la div principale
-      trajetsDiv.append(divCovoit);
+    trajetsDiv.append(divCovoit);
+    // Changement du libellé
+    let label = $("#labellowprice");
+    if (ascOrDesc == 1) {
+      label.text("Trier par ordre décroissant");
+    } else {
+      label.text("Trier par ordre croissant");
+    }
   })
 }

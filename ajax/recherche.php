@@ -23,8 +23,8 @@ require_once '../includes/header.php';
                 <fieldset class="m-5">
                     <!-- Checkbox pour le trajet du moins chers au plus chere -->
                     <!-- L'événement onchange permet d'appeler la fonction getLowPrice() du fichier filter.js -->
-                    <input type="checkbox" id="lowprice" name="lowprice" onchange="getlowprice()" />
-                    <label for="lowprice">Tri par prix</label>
+                    <input type="checkbox" id="lowprice" name="lowprice" onchange="getlowprice()">
+                    <label id="labellowprice" for="lowprice">Tri du moins cher au plus cher</label>
                 </fieldset>
             </div>
         </div>
