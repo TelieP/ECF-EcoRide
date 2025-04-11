@@ -11,7 +11,7 @@ if (!empty($_POST)) {
     if (isset($email, $password)) {
         //on verifie que le mail est un vrai mail
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            die('Adresse email invalide : ' . $email);
+            die('Adresse email ou mot de passe  invalide : ' . $email);
         }
         // on se connecte à la base de données
         // on prepare la requete
@@ -24,7 +24,7 @@ if (!empty($_POST)) {
             die('Utilisateur inconnu');
         }
         if (!password_verify($password, $user['password'])) {
-            echo '<script type="text/javascript">window.alert("Mot de passe incorrect");</script>';
+            echo '<script type="text/javascript">window.alert("Adresse email ou mot de passe  invalide ");</script>';
         } else {
             $_SESSION['user'] = $user;
             header('Location: index.php');

@@ -60,7 +60,7 @@ function getlowprice() {
  * Afficher les trajets triés
  * @param {*} data Les objets trajets
  */
-function displaySortedCovoit(data, ascOrDesc) {
+function displaySortedCovoit(data, ascOrDesc) { // ascOrDesc = 1 pour croissant, 0 pour décroissant , qui correspond aux valeurs de la checkbox c'est à dire lowprice
   // On récupère la div
   const trajetsDiv = $(".list-group.mt-4");
   // On vide d'abord les trajets existants
@@ -82,9 +82,9 @@ function displaySortedCovoit(data, ascOrDesc) {
     // Changement du libellé
     let label = $("#labellowprice");
     if (ascOrDesc == 1) {
-      label.text("Trier par ordre croissant");
+      label.text("Trier par prix croissant");
     } else {
-      label.text("Trier par ordre décroissant");
+      label.text("Trier par prix décroissant");
     }
   })
 }

@@ -6,7 +6,7 @@ require_once 'includes/header.php';
 // Vérifier si l'utilisateur est connecté   
 if (isset($_SESSION['user'])) {
     // die("Veuillez vous connecter pour ajouter un covoiturage." . " <a href='connexion.php'>Se connecter</a>");
-
+    var_dump($_SESSION['user']);
     // Vérifier si le formulaire a été soumis
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Vérifier si l'utilisateur a le rôle de conducteur
