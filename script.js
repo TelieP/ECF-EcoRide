@@ -1,5 +1,5 @@
 // fonction qui permet créer un bouton démarer pour chaque trajet et envoyer un mail au covoitureur
-<script>
+
     function toggleButton() {
         // on recupère l'id du bouton
         const button = document.getElementById('toggleButton');
@@ -24,4 +24,3 @@
         // on affiche un message de confirmation
         alert("Un mail a été envoyé au covoitureur !");
     }
-</script>
