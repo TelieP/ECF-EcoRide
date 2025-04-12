@@ -68,6 +68,7 @@ require_once '../includes/header.php';
     $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
     <div class="list-group mt-4">
+        <h4 style="color:lightgreen;">Résultats de la recherche</h4>
         <?php foreach ($trajets as $trajet): ?>
             <div class="list-group-item list-group-item-action">
                 <h5><i class="bi bi-geo-fill"></i> De <?= htmlspecialchars($trajet['lieu_depart']) ?></br><i class="bi bi-arrow-down"></i></br> <i class="bi bi-geo-fill"></i> à <?= htmlspecialchars($trajet['lieu_arrivee']) ?></h5>
@@ -76,8 +77,8 @@ require_once '../includes/header.php';
                 <p><i class="bi bi-car-front-fill"></i> Véhicule : <?= htmlspecialchars($trajet['modele']) ?> </p>
                 <p><i class="bi bi-cash-coin"></i> Prix : <?= number_format($trajet['prix_personne'], 2) ?> €</p>
                 <p><i class="bi bi-person-check-fill"></i> Places restantes : <?= htmlspecialchars($trajet['nb_place']) ?></p>
-                <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
-                <a href="reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success stretched-link"><i class="fas fa-check"></i> VOIR</a>
+                <a href="../servation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success"><i class="fas fa-check"></i> Réserver</a>
+                <a href="../reservation_cov.php?id=<?= $trajet['Id_covoiturage'] ?>" class="btn btn-success stretched-link"><i class="fas fa-check"></i> VOIR</a>
 
             </div>
         <?php endforeach; ?>
