@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php
             }
             ?>
-        </select> <br><br>
+        </select>
 
         <button type="submit">S'inscrire</button>
         <a href="connexion.php">Déjà inscrit ?</a>
@@ -105,4 +105,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 <?php
 require_once 'includes/footer.php'; // Inclusion du footer
-?>
