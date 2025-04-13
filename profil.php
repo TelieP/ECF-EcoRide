@@ -45,7 +45,10 @@ include('includes/header.php');
                     <th>Heure</th>
                     <th>Lieu de départ</th>
                     <th>Lieu d'arrivée</th>
-                    <th>Nombre de places réservées</th>
+                    <th>Nombre de places réservées </th>
+                    // ajouter un bouton pemettant de donner son avis sur le trajet
+                    <th>Donner un avis</th>
+
                 </tr>
             </thead>
             <tbody>
