@@ -12,7 +12,8 @@ if ($profil) {
         $sql = "SELECT a.commentaire, a.note, c.date_depart, c.heure_depart, c.lieu_depart, c.lieu_arrivee
         FROM avis AS a
         JOIN covoiturage AS c ON depose.Id_covoiturage = c.Id_covoiturage
-        WHERE depose.Id_utilisateur = :Id_utilisateur";
+        JOIN participe AS p ON c.Id_covoiturage = p.Id_covoiturage
+        WHERE p.Id_utilisateur = :Id_utilisateur";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(':Id_utilisateur', $profil);
         $stmt->execute();
