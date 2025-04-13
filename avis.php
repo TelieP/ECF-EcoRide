@@ -8,7 +8,7 @@ if ($_SESSION && $_SESSION["user"]['Id_utilisateur']) {
         $profil = $_SESSION["user"]['Id_utilisateur'];
 }
 if ($profil) {
-        // Récupérer les avis de l'utilisateur
+        // Récupérer les avis de l'utilisateur du covoiturage
         $sql = "SELECT c.date_depart, c.heure_depart, c.lieu_depart, c.lieu_arrivee, r.places_reserves
                         FROM reservation AS r
                         JOIN covoiturage AS c ON r.Id_covoiturage = c.Id_covoiturage
