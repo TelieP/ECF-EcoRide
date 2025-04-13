@@ -55,7 +55,7 @@ include('includes/header.php');
                 <?php
                 // Requête pour récupérer les trajets réservés par l'utilisateur
                 $Id_utilisateur = $_SESSION['user']['Id_utilisateur'];
-                $sql = "SELECT c.date_depart, c.heure_depart, c.lieu_depart, c.lieu_arrivee, r.places_reserves, c.Id_covoiturage
+                $sql = "SELECT c.date_depart, c.heure_depart, c.lieu_depart, c.lieu_arrivee, r.places_reserves, c.Id_covoiturage, r.Id_utilisateur
                         FROM reservation AS r
                         JOIN covoiturage AS c ON r.Id_covoiturage = c.Id_covoiturage
                         WHERE r.Id_utilisateur = :Id_utilisateur";
@@ -71,7 +71,7 @@ include('includes/header.php');
                     echo "<td>" . htmlspecialchars($reservation['lieu_depart']) . "</td>";
                     echo "<td>" . htmlspecialchars($reservation['lieu_arrivee']) . "</td>";
                     echo "<td>" . htmlspecialchars($reservation['places_reserves']) . "</td>";
-                    echo "<td><a href='avis.php?Id_covoiturage=" . htmlspecialchars($reservation['Id_covoiturage']) . "' class='btn btn-primary'>Donner un avis</a></td>";
+                    echo "<td><a href='avis.php?Id_utilisateur=" . htmlspecialchars($reservation['Id_utilisateur']) . "' class='btn btn-primary'>Donner un avis</a></td>";
 
 
                     echo "</tr>";

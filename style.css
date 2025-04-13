@@ -25,34 +25,34 @@
   background-color: #0b4838;
 }
 
-button {
-  width: 15%;
+/* button {
+  width: 85%;
   height: 3rem;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-}
+} */
 
-input {
-  width: 20%;
+/* input {
+  width: 50%;
   height: 2rem;
   margin-bottom: 1rem;
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #4d0b61;
-}
+} */
 
 body {
   text-align: center;
   font-size: 1.5rem;
 }
 
-label {
+/* label {
   font-size: 0rem;
   color: black;
-}
+} */
 
 .body {
   text-align: center;

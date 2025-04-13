@@ -1,7 +1,7 @@
 <?php
 require_once 'includes/connect.php';
 require_once 'includes/header.php';
-echo " Bienvenue sur la page d'avis";
+echo " Donner votre avis sur le trajet réservé  <br>";
 session_start();
 $profil = '';
 if ($_SESSION && $_SESSION["user"]['Id_utilisateur']) {
@@ -19,9 +19,20 @@ if ($profil) {
         $stmt->execute();
         $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // var_dump($avis);
-        // Afficher les avis
-
-
+        // formulaire de saisie d'avis
+        echo '<form method="post" class="form-group"><br>';
+        echo '<div class="mb-3 text-center" id="form-controler">';
+        echo '<div class="mb-3">';
+        echo '<label for="avis" style: color="white">Votre avis</label><br>';
+        echo '<textarea id="story" name="story" rows="5" cols="33" placeholder="saisissz votre avs ici" ></textarea>';
+        echo '</div>';
+        echo '<div class="mb-3">';
+        echo '<label for="note">Votre note</label><br>';
+        echo '<input type="number" name="note" id="note" required placeholder="Votre note" min="1" max="5">';
+        echo '</div>';
+        echo '<button type="submit" class="btn btn-primary mb-3">Envoyer</button><br>';
+        echo '</div>';
+        echo '</form>';
 } else {
         // Connexion !
 }
