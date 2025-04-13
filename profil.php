@@ -47,7 +47,7 @@ include('includes/header.php');
                     <th>Lieu d'arrivée</th>
                     <th>Nombre de places réservées </th>
                     // ajouter un bouton pemettant de donner son avis sur le trajet
-                    <th> <a href="avis.php"> Donner un avis</th>
+                    <th> avis</th>
 
                 </tr>
             </thead>
@@ -71,6 +71,9 @@ include('includes/header.php');
                     echo "<td>" . htmlspecialchars($reservation['lieu_depart']) . "</td>";
                     echo "<td>" . htmlspecialchars($reservation['lieu_arrivee']) . "</td>";
                     echo "<td>" . htmlspecialchars($reservation['places_reserves']) . "</td>";
+                    // Ajouter un lien pour donner un avis sur le trajet
+                    echo "<td><a href='avis.php> Donner un avis</a></td>";
+
                     echo "</tr>";
                 }
                 ?>
