@@ -71,8 +71,8 @@ include('includes/header.php');
                     echo "<td>" . htmlspecialchars($reservation['lieu_depart']) . "</td>";
                     echo "<td>" . htmlspecialchars($reservation['lieu_arrivee']) . "</td>";
                     echo "<td>" . htmlspecialchars($reservation['places_reserves']) . "</td>";
-                    // Ajouter un lien pour donner un avis sur le trajet
-                    echo "<td><a href='avis.php> Donner un avis</a></td>";
+                    echo "<td><a href='avis.php?Id_covoiturage=" . htmlspecialchars($reservation['Id_covoiturage']) . "' class='btn btn-primary'>Donner un avis</a></td>";
+
 
                     echo "</tr>";
                 }
