@@ -8,7 +8,8 @@ if ($_SESSION && $_SESSION["user"]['Id_utilisateur']) {
         $profil = $_SESSION["user"]['Id_utilisateur'];
 }
 if ($profil) {
-        // Récupérer les avis de l'utilisateur du covoiturage
+        // Récupérer les avis de l'utilisateur
+
         $sql = "SELECT c.date_depart, c.heure_depart, c.lieu_depart, c.lieu_arrivee, r.places_reserves
                         FROM reservation AS r
                         JOIN covoiturage AS c ON r.Id_covoiturage = c.Id_covoiturage
@@ -17,11 +18,15 @@ if ($profil) {
         $stmt->bindValue(':Id_utilisateur', $profil);
         $stmt->execute();
         $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // var_dump($avis);
+        // Afficher les avis
+
+
 } else {
         // Connexion !
 }
-// var_dump($avis);
 // Afficher les avis
+
 
 
 ?>
