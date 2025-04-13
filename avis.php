@@ -6,15 +6,19 @@ session_start();
 if ($_SESSION && $_SESSION['Id_utilisateur']) {
         $profil = $_SESSION['Id_utilisateur'];
 }
-// Récupérer les avis de l'utilisateur
-$sql = "SELECT a.commentaire, a.note, c.date_depart, c.heure_depart, c.lieu_depart, c.lieu_arrivee
+if ($profil) {
+        // Récupérer les avis de l'utilisateur
+        $sql = "SELECT a.commentaire, a.note, c.date_depart, c.heure_depart, c.lieu_depart, c.lieu_arrivee
         FROM avis AS a
         JOIN covoiturage AS c ON a.Id_covoiturage = c.Id_covoiturage
         WHERE a.Id_utilisateur = :Id_utilisateur";
-$stmt = $conn->prepare($sql);
-$stmt->bindValue(':Id_utilisateur', $profil);
-$stmt->execute();
-$avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':Id_utilisateur', $profil);
+        $stmt->execute();
+        $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+        // Connexion !
+}
 // var_dump($avis);
 // Afficher les avis
 
