@@ -6,8 +6,8 @@ if (!isset($_SESSION['user'])) {
 }
 // Connexion à la base de données
 
-include('includes/connect.php');
-include('includes/header.php');
+include 'includes/connect.php';
+include 'includes/header.php';
 
 ?>
 <!DOCTYPE html>

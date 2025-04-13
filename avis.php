@@ -33,6 +33,21 @@ if ($profil) {
         echo '<button type="submit" class="btn btn-primary mb-3">Envoyer</button><br>';
         echo '</div>';
         echo '</form>';
+        // envoi de l'avis dans la base de données
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $avis = $_POST['story'];
+                $note = $_POST['note'];
+                $sql = "INSERT INTO avis (commentaire, note)
+                 VALUES (:avis, :note)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bindValue(':note', $note);
+                $stmt->bindValue(':avis', $avis);
+                if ($stmt->execute()) {
+                        echo "Votre avis a été enregistré avec succès !";
+                } else {
+                        echo "Erreur lors de l'enregistrement de votre avis.";
+                }
+        }
 } else {
         // Connexion !
 }
