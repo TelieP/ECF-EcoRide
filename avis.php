@@ -3,7 +3,7 @@ require_once 'includes/connect.php';
 require_once 'includes/header.php';
 echo " Bienvenue sur la page d'avis";
 session_start();
-var_dump($_SESSION);
+$profil = '';
 if ($_SESSION && $_SESSION["user"]['Id_utilisateur']) {
         $profil = $_SESSION["user"]['Id_utilisateur'];
 }
