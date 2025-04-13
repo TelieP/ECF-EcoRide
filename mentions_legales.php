@@ -28,4 +28,3 @@ require_once('includes/connect.php');
 <?php
 
 require_once('includes/footer.php');
-?>

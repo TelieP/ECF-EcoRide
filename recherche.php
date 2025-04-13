@@ -81,4 +81,4 @@ require_once('includes/header.php');
     ?>
 </body>
 
-<?= require_once('includes/footer.php'); ?>
+<?= require_once('includes/footer.php');

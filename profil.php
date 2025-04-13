@@ -152,4 +152,3 @@ include('includes/header.php');
 </html>
 <?php
 require_once('includes/footer.php');
-?>
