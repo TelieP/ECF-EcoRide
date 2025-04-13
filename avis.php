@@ -19,20 +19,22 @@ if ($profil) {
         $stmt->execute();
         $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
         // var_dump($avis);
-        // formulaire de saisie d'avis
-        echo '<form method="post" class="form-group"><br>';
-        echo '<div class="mb-3 text-center" id="form-controler">';
-        echo '<div class="mb-3">';
-        echo '<label for="avis" style: color="white">Votre avis</label><br>';
-        echo '<textarea id="story" name="story" rows="5" cols="33" placeholder="saisissz votre avs ici" ></textarea>';
-        echo '</div>';
-        echo '<div class="mb-3">';
-        echo '<label for="note">Votre note</label><br>';
-        echo '<input type="number" name="note" id="note" required placeholder="Votre note" min="1" max="5">';
-        echo '</div>';
-        echo '<button type="submit" class="btn btn-primary mb-3">Envoyer</button><br>';
-        echo '</div>';
-        echo '</form>';
+?>
+
+        <form method="post" class="form-group"><br>
+                <div class="mb-3 text-center" id="form-controler">
+                        <div class="mb-3">
+                                <label for="avis" style: color="white">Votre avis</label><br>
+                                <textarea id="story" name="story" rows="5" cols="33" placeholder="saisissz votre avs ici"></textarea>
+                        </div>
+                        <div class="mb-3">
+                                <label for="note">Votre note</label><br>
+                                <input type="number" name="note" id="note" required placeholder="Votre note" min="1" max="5">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-3">Envoyer</button><br>
+                </div>
+        </form>
+<?php
         // envoi de l'avis dans la base de données
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $avis = $_POST['story'];
