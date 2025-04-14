@@ -39,13 +39,16 @@ if ($profil) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $avis = $_POST['story'];
                 $note = $_POST['note'];
-                $sql = "INSERT INTO avis (commentaire, note)
-                 VALUES (:avis, :note)";
+
+                $sql = "INSERT INTO avis (commentaire, note, statut)
+                 VALUES (:avis, :note, :'En attente')";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindValue(':note', $note);
                 $stmt->bindValue(':avis', $avis);
+
                 if ($stmt->execute()) {
                         echo "Votre avis a été enregistré avec succès !";
+                        header("Location: profil.php");
                 } else {
                         echo "Erreur lors de l'enregistrement de votre avis.";
                 }
