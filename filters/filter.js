@@ -1,5 +1,5 @@
 /**
- * Récupère les trajets écolo (appelé depuis recherche.php sur l'événement onchange)
+ * Récupère les trajets écolo (appelé depuis recherche.php sur l'événement 'onchange')
  */
 function getEnvironmentallyFriendlyCarSharing() {
   // On récupère la checkbox => peut être remplacé par document.getElementById (mais autant profiter de jQuery :))
@@ -7,6 +7,7 @@ function getEnvironmentallyFriendlyCarSharing() {
   // On regarde si elle est cochée ou non
   // Si elle est cochée, on met 1 dans la variable ecological, 0 sinon
   let ecological = checkBox[0].checked ? 1 : 0;
+  // Appel Ajax de type GET
   $.ajax({
     // Fichier qui est appelé
     url: "filter.php",
@@ -17,6 +18,7 @@ function getEnvironmentallyFriendlyCarSharing() {
     success: function (data) {
       try {
         // Si pas d'erreur : log dans la console
+        // TODO : Afficher trajet ecolos
         console.log(data);
       } catch (e) {
         // Le drame ! Mais ça ne se produira pas :)
@@ -30,20 +32,27 @@ function getEnvironmentallyFriendlyCarSharing() {
   })
 };
 
-/** fonction pour recuperer les trajets par prix croissant ou décroissant 
- * appelé depuis recherche.php sur l'événement onchange
+/**
+ * Fonction pour récuperer les trajets par prix croissant ou décroissant 
+ * Appelée depuis recherche.php sur l'événement 'onchange'
  **/
 function getlowprice() {
-  const checkBox = $("#lowprice");
-  let lowprice = checkBox[0].checked ? 1 : 0;
-
+  // On récupère la checkbox en jQuery
+  const askOrDeskBox = $("#lowprice");
+  // On regarde si elle est cochée ou non
+  // Si elle est cochée, on met 1 dans la variable askOrDesk, 0 sinon
+  const askOrDesk = askOrDeskBox[0].checked ? 1 : 0;
+  // Appel Ajax
   $.ajax({
+    // Fichier qui est appelé
     url: "filter.php",
+    // Méthode GET car on récupère des données
     method: "GET",
-    data: { lowprice: lowprice },
+    // On passe la variable askOrDesk (0 ou 1)
+    data: { askOrDesk : askOrDesk },
     success: function (data) {
       try {
-        displaySortedCovoit(data, lowprice);
+        displaySortedCovoit(data, askOrDesk);
       } catch (e) {
         console.error("Erreur JSON :", e);
       }
@@ -57,10 +66,13 @@ function getlowprice() {
 }
 
 /**
- * Afficher les trajets triés
- * @param {*} data Les objets trajets
+ * Fonction qui trie les covoits en fonction de leurs prix
+ * @param {JSON} data : Données triées
+ * @param {integer} ascOrDesc 0 ou 1
+ * - 1 pour croissant, 
+ * - 0 pour décroissant
  */
-function displaySortedCovoit(data, ascOrDesc) { // ascOrDesc = 1 pour croissant, 0 pour décroissant , qui correspond aux valeurs de la checkbox c'est à dire lowprice
+function displaySortedCovoit(data, ascOrDesc) {
   // On récupère la div
   const trajetsDiv = $(".list-group.mt-4");
   // On vide d'abord les trajets existants
@@ -77,7 +89,7 @@ function displaySortedCovoit(data, ascOrDesc) { // ascOrDesc = 1 pour croissant,
       + "<a href=\"reservation_cov.php?id=" + covoit['Id_covoiturage'] + "\" class=\"btn btn-success\"><i class=\"fas fa-check\"></i> Réserver</a>"
       + "<a href=\"reservation_cov.php?id=" + covoit['Id_covoiturage'] + "\" class=\"btn btn-success stretched-link\"><i class=\"fas fa-check\"></i> VOIR</a>"
       + "</div>"
-      // On ajoute à la div principale
+    // On ajoute à la div principale
     trajetsDiv.append(divCovoit);
     // Changement du libellé
     let label = $("#labellowprice");

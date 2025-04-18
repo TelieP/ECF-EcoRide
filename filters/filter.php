@@ -28,16 +28,16 @@ if (isset($_GET['ecological'])) {
 
 
 // On récupère la variable lowprice (0 ou 1) passée dans la requête Ajax du fichier filter.js
-if (isset($_GET['lowprice'])) {
+if (isset($_GET['askOrDesk'])) {
   // Cocher ou pas
-  $lowprice = $_GET['lowprice'] == 1 ? "ASC" : "DESC";
+  $askOrDesk = $_GET['askOrDesk'] == 1 ? "ASC" : "DESC";
 
   $sql = "SELECT c.Id_covoiturage, c.heure_depart, c.date_depart, c.nb_place, u.photo,
             c.heure_arrivee, u.nom, u.prenom, v.modele, v.immatriculation, c.prix_personne, c.lieu_depart, c.lieu_arrivee
                 FROM covoiturage AS c
                 JOIN voiture AS v ON v.Id_voiture = c.Id_voiture
                 JOIN utilisateur AS u ON u.Id_utilisateur = v.Id_voiture
-                ORDER BY c.prix_personne  $lowprice";
+                ORDER BY c.prix_personne  $askOrDesk";
   $stmt = $conn->prepare($sql);
   $stmt->execute();
   $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
