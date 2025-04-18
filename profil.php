@@ -73,7 +73,6 @@ include 'includes/header.php';
                     echo "<td>" . htmlspecialchars($reservation['places_reserves']) . "</td>";
                     echo "<td><a href='avis.php?Id_utilisateur=" . htmlspecialchars($reservation['Id_utilisateur']) . "' class='btn btn-primary'>Donner un avis</a></td>";
 
-
                     echo "</tr>";
                 }
                 ?>
