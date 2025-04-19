@@ -42,6 +42,14 @@ function getlowprice() {
   // On regarde si elle est cochée ou non
   // Si elle est cochée, on met 1 dans la variable askOrDesk, 0 sinon
   const askOrDesk = askOrDeskBox[0].checked ? 1 : 0;
+  // On récupère les ids de la recherche :
+  const idsCovoitEl = $('.list-group-item');
+  // Ids à récuprérer
+  let idsCovoits = [];
+  // Pour chaque élément récupéré : attribuer l'id dans le tableau idsCovoitEl
+  idsCovoitEl.each(function() {
+    idsCovoits.push($(this).attr('id'));
+  });
   // Appel Ajax
   $.ajax({
     // Fichier qui est appelé
@@ -49,7 +57,7 @@ function getlowprice() {
     // Méthode GET car on récupère des données
     method: "GET",
     // On passe la variable askOrDesk (0 ou 1)
-    data: { askOrDesk : askOrDesk, idsCovoit: $('.list-group-item')  },
+    data: { askOrDesk : askOrDesk, idsCovoits: idsCovoits },
     success: function (data) {
       try {
         // Appel à la fonction d'affichage des trajets triés
