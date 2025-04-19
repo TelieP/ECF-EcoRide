@@ -10,7 +10,7 @@ function getEnvironmentallyFriendlyCarSharing() {
   // Appel Ajax de type GET
   $.ajax({
     // Fichier qui est appelé
-    url: "filter.php",
+    url: "filters/filter.php",
     // Méthode GET car on récupère des données
     method: "GET",
     // On passe la variable ecological (0 ou 1)
