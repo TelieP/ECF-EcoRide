@@ -81,7 +81,7 @@ require_once('includes/header.php');
         if (count($trajets) > 0): ?>
             <div class="list-group mt-4">
                 <?php foreach ($trajets as $trajet): ?>
-                    <div class="list-group-item list-group-item-action">
+                    <div class="list-group-item list-group-item-action" id="<?= $trajet['Id_covoiturage'] ?>">
                         <h5><i class="bi bi-geo-fill"></i> De <?= htmlspecialchars($trajet['lieu_depart']) ?></br><i class="bi bi-arrow-down"></i></br> <i class="bi bi-geo-fill"></i> à <?= htmlspecialchars($trajet['lieu_arrivee']) ?></h5>
                         <p><i class="bi bi-calendar3"></i> <?= date("d/m/Y", timestamp: strtotime($trajet['date_depart']))  ?> à <?= $trajet['heure_depart'] ?></p>
                         <p> <i class="bi bi-person-circle"></i></i> <?= htmlspecialchars($trajet['nom']) ?> <?= htmlspecialchars($trajet['prenom']) ?><img src="<?= htmlspecialchars($trajet['photo']) ?>" alt="Conducteur" class="img-fluid" style="width: 75px; height: 75px; border-radius: 50%;"></p>
