@@ -46,7 +46,7 @@ require_once 'includes/connect.php';
         </button>
 
         <!-- Formulaire dans le carousel -->
-        <form action="filters/recherche.php" method="GET" class="form-overlay">
+        <form action="recherche.php" method="GET" class="form-overlay">
             <h1 class="text-center" style="color:white;">Rechercher un trajet</h1>
             <div class="row g-3">
                 <div class="col">

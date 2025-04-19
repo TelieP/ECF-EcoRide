@@ -8,7 +8,29 @@ require_once('includes/header.php');
 ?>
 
 <body>
+    <!-- debut_filtres pour trajests  -->
+    <div class="container">
+        <div class="row">
+            <div class="col lg-4">
+                <fieldset class="m-5">
+                    <!-- Checkbox pour le trajet ecolo ou non -->
+                    <!-- L'événement onchange permet d'appeler la fonction getEnvironmentallyFriendlyCarSharing() du fichier filter.js -->
+                    <input type="checkbox" id="ecological" name="ecological" onchange="getEnvironmentallyFriendlyCarSharing()" />
+                    <label for="ecological">Trajet écologique</label>
+                </fieldset>
+            </div>
+            <div class="col">
+                <fieldset class="m-5">
+                    <!-- Checkbox pour le trajet du moins chers au plus chere -->
+                    <!-- L'événement onchange permet d'appeler la fonction getlowprice() du fichier filter.js -->
+                    <input type="checkbox" id="lowprice" name="lowprice" onchange="getlowprice()">
+                    <label id="labellowprice" for="lowprice">Tri du moins cher au plus cher</label>
+                </fieldset>
+            </div>
+        </div>
+    </div>
 
+    <!-- fin_filtres pour trajets -->
     <h1>Rechercher un Covoiturage</h1>
     <div class="row g-3">
         <form action="" method="GET" class="form-group  text-white p-2 w-50 mx-auto">
@@ -79,6 +101,9 @@ require_once('includes/header.php');
     <?php
     }
     ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="filters/filter.js"></script>
 </body>
 
 <?= require_once('includes/footer.php');
