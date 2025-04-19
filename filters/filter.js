@@ -49,7 +49,7 @@ function getlowprice() {
     // Méthode GET car on récupère des données
     method: "GET",
     // On passe la variable askOrDesk (0 ou 1)
-    data: { askOrDesk : askOrDesk },
+    data: { askOrDesk : askOrDesk, idsCovoit: $('.list-group-item')  },
     success: function (data) {
       try {
         // Appel à la fonction d'affichage des trajets triés
