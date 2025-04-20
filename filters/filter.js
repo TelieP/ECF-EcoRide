@@ -62,7 +62,7 @@ function getlowprice() {
     success: function (data) {
       try {
         // Appel à la fonction d'affichage des trajets triés
-        displaySortedCovoit(data, askOrDesk,idsCovoits);
+        displaySortedCovoit(data, askOrDesk);
       } catch (e) {
         console.error("Erreur JSON :", e);
       }
@@ -88,7 +88,7 @@ function displaySortedCovoit(data, ascOrDesc) {
   trajetsDiv.empty();
   data.forEach(covoit => {
     // Construction du covoit
-    const divCovoit = "<div class=\"list-group-item list-group-item-action\">"
+    const divCovoit = "<div class=\"list-group-item list-group-item-action\ id=\"covoit['Id_covoiturage']\ >"
       + "<h5><i class=\"bi bi-geo-fill\"></i> De " + covoit['lieu_depart'] + "</br><i class=\"bi bi-arrow-down\"></i></br> <i class=\"bi bi-geo-fill\"></i> à " + covoit['lieu_arrivee'] + "</h5>"
       + "<p><i class=\"bi bi-calendar3\"></i> Date : + " + covoit['date_depart'] + " à " + covoit['heure_depart'] + "</p>"
       + "<p> </i> Conducteur : " + covoit['nom'] + " " + covoit['prenom'] + "<img src=" + covoit['photo'] + " alt=\"Conducteur\" class=\"img-fluid\" style=\"width: 75px; height: 75px; border-radius: 50%;\"></p>"
