@@ -46,7 +46,7 @@ function getlowprice() {
   const covoitDivs = $('.list-group-item');
   // Tableau pour les ids à récuprérer
   let idsCovoits = [];
-  // Pour chaque élément récupéré : attribuer l'id dans le tableau idsCovoitEl
+  // Pour chaque élément récupéré : attribuer l'id dans le tableau covoitDivs
   covoitDivs.each(function() {
     idsCovoits.push($(this).attr('id'));
   });
