@@ -62,7 +62,7 @@ function getlowprice() {
     success: function (data) {
       try {
         // Appel à la fonction d'affichage des trajets triés
-        displaySortedCovoit(data, askOrDesk);
+        displaySortedCovoit(data, askOrDesk,idsCovoits);
       } catch (e) {
         console.error("Erreur JSON :", e);
       }
