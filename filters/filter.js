@@ -69,7 +69,6 @@ function getlowprice() {
     error: function (xhr, status, error) {
       // Erreur Ajax
       console.error("Erreur AJAX :", status, error, xhr.responseText);
-
     }
   })
 }
