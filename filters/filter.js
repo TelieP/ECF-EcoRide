@@ -43,11 +43,11 @@ function getlowprice() {
   // Si elle est cochée, on met 1 dans la variable askOrDesk, 0 sinon
   const askOrDesk = askOrDeskBox[0].checked ? 1 : 0;
   // On récupère les ids de la recherche :
-  const idsCovoitEl = $('.list-group-item');
-  // Ids à récuprérer
+  const covoitDivs = $('.list-group-item');
+  // Tableau pour les ids à récuprérer
   let idsCovoits = [];
   // Pour chaque élément récupéré : attribuer l'id dans le tableau idsCovoitEl
-  idsCovoitEl.each(function() {
+  covoitDivs.each(function() {
     idsCovoits.push($(this).attr('id'));
   });
   // Appel Ajax
