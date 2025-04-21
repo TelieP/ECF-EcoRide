@@ -27,6 +27,8 @@ if (!empty($_POST)) {
             echo '<script type="text/javascript">window.alert("Adresse email ou mot de passe  invalide ");</script>';
         } else {
             $_SESSION['user'] = $user;
+            print_r($_SESSION['user']);
+            die();
             header('Location: index.php');
         }
     }
