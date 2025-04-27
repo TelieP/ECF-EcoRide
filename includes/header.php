@@ -25,8 +25,15 @@
                     <li class="nav-item">
                         <a class="nav-link" href="recherche.php">Covoiturages</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="connexion.php">connexion</a>
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="deconnexion.php">Déconnexion</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="connexion.php">Connexion</a>
+                        </li>
+                    <?php endif; ?>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="inscription.php">Inscription</a>
@@ -36,6 +43,15 @@
                     </li>
 
                 </ul>
+
+
+
+                <!-- vérifier si l'utilisateur est connecté et afficher le lien vers le profil -->
+                <?php if (isset($_SESSION['user'])): ?>
+                    <!-- ajoute la photo de profil de l'utilisateur connecté  -->
+                    <img src="images/<?= $_SESSION['user']['photo'] ?>" alt="Photo de profil" class="rounded-circle" width="50" height="50">
+
+                <?php endif; ?>
                 <!-- <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Rechercher</button>

@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if ('Id_role' === 2) {
                         header('Location: profil.php');
                     } else {
-                        header('Location: profil_conducteur.php');
+                        header('Location: profil.php');
                     }
                     //header('Location: profil.php');
                     exit();
@@ -73,6 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container col-mb-3 " style="width: 100%;  margin-top: 260px; margin-bottom: 400px;">
     <form class="form-group" method="post">
         <h2>Inscription</h2>
+        <input id="user" name="user" type="hidden" value="2">
         Nom: <input type=" text" name="nom" required>
         Prénom: <input type="text" name="prenom" required>
         Email: <input type="email" name="email" required>
