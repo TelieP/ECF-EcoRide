@@ -48,9 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $stmt->bindParam(':id_utilisateur', $idUtilisateur, PDO::PARAM_INT);
                 if ($stmt->execute()) {
                     echo "Inscription réussie !";
-                    // if ('email' === "paflesix@gmail.com") {
-                    //     header('Location: dashboard.php');
-                    // }
                     if ('Id_role' === 2) {
                         header('Location: profil.php');
                     } else {
