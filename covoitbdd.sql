@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 28 avr. 2025 à 21:39
+-- Généré le : mer. 30 avr. 2025 à 19:48
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -26,6 +26,9 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `avis`
 --
+
+CREATE DATABASE IF NOT EXISTS `covoitbdd` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+
 
 CREATE TABLE `avis` (
   `Id_avis` int(11) NOT NULL,
@@ -226,7 +229,8 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (`Id_role`, `libelle`) VALUES
 (2, 'user'),
-(3, 'employé');
+(3, 'employé'),
+(4, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -415,7 +419,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT pour la table `role`
 --
 ALTER TABLE `role`
-  MODIFY `Id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
