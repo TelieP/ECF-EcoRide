@@ -35,9 +35,21 @@
                         </li>
                     <?php endif; ?>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="inscription.php">Inscription</a>
+                    <!-- test debut  -->
+                    <?php if (isset($_SESSION['user'])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profil.php">profil</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="inscription.php">inscription</a>
+                        </li>
+                    <?php endif; ?>
                     </li>
+                    <!-- fin test  -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link" href="inscription.php">Inscription</a>
+                    </li> -->
                     <li class="nav-item">
                         <a class="nav-link" href="contact.php">Contact</a>
                     </li>
