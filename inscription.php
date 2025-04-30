@@ -86,8 +86,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute();
         $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
+        if (!($_SESSION)){
         <input type="hidden" id="Id_role" name="Id_role" value="2">
-        <label for="Id_role">Role :</label>
+        }else{
+        <!-- <label for="Id_role">Role :</label> -->
         <select name="Id_role" id="Id_role">
             <?php
             foreach ($roles as $role) {
@@ -97,6 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
             ?>
         </select>
+        }
 
         <button type="submit">S'inscrire</button>
         <a href="connexion.php">Déjà inscrit ?</a>
