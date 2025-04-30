@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 30 avr. 2025 à 19:48
+-- Généré le : mer. 30 avr. 2025 à 22:53
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -26,10 +26,6 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `avis`
 --
-
-CREATE DATABASE IF NOT EXISTS `covoitbdd` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `covoitbdd`;
-
 
 CREATE TABLE `avis` (
   `Id_avis` int(11) NOT NULL,
@@ -182,7 +178,8 @@ CREATE TABLE `possede` (
 --
 
 INSERT INTO `possede` (`Id_role`, `Id_utilisateur`) VALUES
-(2, 8);
+(2, 8),
+(4, 7);
 
 -- --------------------------------------------------------
 
