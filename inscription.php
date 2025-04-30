@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt = $conn->prepare("SELECT Id_role, libelle FROM role");
         $stmt->execute();
         $roles = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if (!($_SESSION)) { ?>
+        if (!$_SESSION) { ?>
             <input type="hidden" id="Id_role" name="Id_role" value="2">
         <?php } else { ?>
             <label for="Id_role">Role :</label>
