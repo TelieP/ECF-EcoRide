@@ -41,6 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $cheminPhoto .= "/conducteurs/$photo";
             }
             // TODO : faire les else pour l'employé en changeant /conducteurs/ par /employés/ en fonction de la session
+            else {
+                $cheminPhoto .= "/employes/$photo";
+            }
             $stmt->bindParam(':photo', $cheminPhoto, PDO::PARAM_STR);
             $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
             if ($stmt->execute()) {
