@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bindParam(':naissance', $naissance, PDO::PARAM_STR);
             // Chemin photo en fonction de la session
             $cheminPhoto = 'images';
+            var_dump(value: $_FILES);
             if (!$_SESSION) {  // L'utilsateur n'est pas connecté et souhaite s'inscire : c'est un conducteur
                 if (isset($_FILES['photo'])) {
                     $photo = $_FILES['photo']['name'];
@@ -87,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <div class="container col-mb-3 " style="width: 100%;  margin-top: 260px; margin-bottom: 400px;">
-    <form class="form-group text-white" method="post">
+    <form class="form-group text-white" method="post" enctype="multipart/form-data">
         <h2>Inscription</h2>
         <input id="user" name="user" type="hidden" value="2">
         Nom: <input type=" text" name="nom" required>

@@ -47,9 +47,7 @@
                     <?php endif; ?>
                     </li>
                     <!-- fin test  -->
-                    <!-- <li class="nav-item">
-                        <a class="nav-link" href="inscription.php">Inscription</a>
-                    </li> -->
+
                     <li class="nav-item">
                         <a class="nav-link" href="contact.php">Contact</a>
                     </li>
