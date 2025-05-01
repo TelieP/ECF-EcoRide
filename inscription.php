@@ -37,12 +37,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bindParam(':naissance', $naissance, PDO::PARAM_STR);
             // Chemin photo en fonction de la session
             $cheminPhoto = 'images';
-            if (!$_SESSION) { // L'utilsateur n'est pas connecté et souhaite s'inscire : c'est un conducteur
-                $cheminPhoto .= "/conducteurs/$photo";
-            }
-            // TODO : faire les else pour l'employé en changeant /conducteurs/ par /employés/ en fonction de la session
-            else {
-                $cheminPhoto .= "/employes/$photo";
+            if (!$_SESSION) {  // L'utilsateur n'est pas connecté et souhaite s'inscire : c'est un conducteur
+                if (isset($_FILES['photo'])) {
+                    $photo = $_FILES['photo']['name'];
+                    $cheminPhoto .= "/conducteurs/$photo";
+                    move_uploaded_file($_FILES['photo']['tmp_name'], $cheminPhoto);
+                } else {
+                    $photo = 'une erreur est survenue';
+                }
+            } else {
+                if (isset($_FILES['photo'])) {
+                    $photo = $_FILES['photo']['name'];
+                    $cheminPhoto .= "/employes/$photo";
+                    move_uploaded_file($_FILES['photo']['tmp_name'], $cheminPhoto);
+                } else {
+                    $photo = 'une erreur est survenue';
+                }
             }
             $stmt->bindParam(':photo', $cheminPhoto, PDO::PARAM_STR);
             $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
