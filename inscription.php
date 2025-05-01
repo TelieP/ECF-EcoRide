@@ -37,23 +37,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bindParam(':naissance', $naissance, PDO::PARAM_STR);
             // Chemin photo en fonction de la session
             $cheminPhoto = 'images';
-            var_dump(value: $_FILES);
-            if (!$_SESSION) {  // L'utilsateur n'est pas connecté et souhaite s'inscire : c'est un conducteur
-                if (isset($_FILES['photo'])) {
-                    $photo = $_FILES['photo']['name'];
-                    $cheminPhoto .= "/conducteurs/$photo";
-                    move_uploaded_file($_FILES['photo']['tmp_name'], $cheminPhoto);
-                } else {
-                    $photo = 'une erreur est survenue';
-                }
+            $cheminDossier = '';
+            if (!$_SESSION) { // L'utilsateur n'est pas connecté et souhaite s'inscire : c'est un conducteur
+                $cheminDossier = '/conducteurs/';
             } else {
-                if (isset($_FILES['photo'])) {
-                    $photo = $_FILES['photo']['name'];
-                    $cheminPhoto .= "/employes/$photo";
-                    move_uploaded_file($_FILES['photo']['tmp_name'], $cheminPhoto);
-                } else {
-                    $photo = 'une erreur est survenue';
-                }
+                $cheminDossier = '/employes/';
+            }
+            if (isset($_FILES['photo'])) {
+                $photo = $_FILES['photo']['name'];
+                $cheminPhoto .= "/$cheminDossier/$photo";
+                move_uploaded_file($_FILES['photo']['tmp_name'], $cheminPhoto);
+            } else {
+                $photo = 'une erreur est survenue';
             }
             $stmt->bindParam(':photo', $cheminPhoto, PDO::PARAM_STR);
             $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
