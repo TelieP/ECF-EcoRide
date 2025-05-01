@@ -2,8 +2,8 @@
 session_start();
 include 'includes/header.php';
 include 'includes/connect.php';
-var_dump($_SESSION);
-die;
+// var_dump($_SESSION);
+// die;
 // On vérifie si l'utilisateur est connecté et a le rôle d'administrateur
 if (isset($_SESSION['user']) && $_SESSION['user']['Id_utilisateur'] == 7) {
     // On récupére les statistiques depuis la base de données
