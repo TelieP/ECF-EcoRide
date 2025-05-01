@@ -46,9 +46,19 @@ include 'includes/header.php';
                     <th>Lieu de départ</th>
                     <th>Lieu d'arrivée</th>
                     <th>Nombre de places réservées </th>
-
-                    <th> avis</th>
-
+                    <?php
+                    // Requête pour récupérer le libelle  de l'administrateur
+                    $sql = "SELECT Id_role FROM role WHERE libelle = 'admin'";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->execute();
+                    $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+                    var_dump($admin);
+                    // Vérification si l'utilisateur est un administrateur
+                    if ($admin) { ?>
+                        <th> avis</th>
+                    <?php } else { ?>
+                        <a href="dashboard.php" class="btn btn-primary">accéder au dashboard </a>
+                    <?php } ?>
                 </tr>
             </thead>
             <tbody>
