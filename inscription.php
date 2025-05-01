@@ -35,7 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt->bindParam(':telephone', $telephone, PDO::PARAM_STR);
             $stmt->bindParam(':adresse', $adresse, PDO::PARAM_STR);
             $stmt->bindParam(':naissance', $naissance, PDO::PARAM_STR);
-            $stmt->bindParam(':photo', $photo, PDO::PARAM_STR);
+            // Chemin photo en fonction de la session
+            $cheminPhoto = 'images';
+            if (!$_SESSION) { // L'utilsateur n'est pas connecté et souhaite s'inscire : c'est un conducteur
+                $cheminPhoto .= "/conducteurs/$photo";
+            }
+            // TODO : faire les else 
+            $stmt->bindParam(':photo', $cheminPhoto, PDO::PARAM_STR);
             $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
             if ($stmt->execute()) {
                 // On récupère l'id de l'utilisateur inséré et l'id du rôle posté
