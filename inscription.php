@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 <div class="container col-mb-3 " style="width: 100%;  margin-top: 260px; margin-bottom: 400px;">
-    <form class="form-group" method="post">
+    <form class="form-group text-white" method="post">
         <h2>Inscription</h2>
         <input id="user" name="user" type="hidden" value="2">
         Nom: <input type=" text" name="nom" required>
