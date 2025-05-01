@@ -1,26 +1,27 @@
 <?php
-include('includes/header.php');
-// Démarrer la session et vérifier si l'administrateur est connecté
 session_start();
-//if (!isset($_SESSION['admin_id'])) {
-//   header('Location: connexion.php'); // Rediriger si l'administrateur n'est pas connecté
-//  exit();
-//}
-
-// Inclure la configuration pour la connexion à la base de données
+include('includes/header.php');
 include('includes/connect.php');
+var_dump($_SESSION);
+die;
+// On vérifie si l'utilisateur est connecté et a le rôle d'administrateur
+if (isset($_SESSION['user']) && $_SESSION['user']['Id_utilisateur'] == 7) {
+    // On récupére les statistiques depuis la base de données
+    try {
+        // Nombre total de covoiturages
+        $stmt = $conn->query("SELECT COUNT(*) AS total_covoiturages FROM covoiturage");
+        $totalCovoiturages = $stmt->fetch(PDO::FETCH_ASSOC)['total_covoiturages'];
 
-// Récupérer les statistiques depuis la base de données
-try {
-    // Nombre total de covoiturages
-    $stmt = $conn->query("SELECT COUNT(*) AS total_covoiturages FROM covoiturage");
-    $totalCovoiturages = $stmt->fetch(PDO::FETCH_ASSOC)['total_covoiturages'];
-
-    // Nombre total d'utilisateurs
-    $stmt = $conn->query("SELECT COUNT(*) AS total_utilisateurs FROM utilisateur");
-    $totalUtilisateurs = $stmt->fetch(PDO::FETCH_ASSOC)['total_utilisateurs'];
-} catch (PDOException $e) {
-    echo "Erreur : " . $e->getMessage();
+        // Nombre total d'utilisateurs
+        $stmt = $conn->query("SELECT COUNT(*) AS total_utilisateurs FROM utilisateur");
+        $totalUtilisateurs = $stmt->fetch(PDO::FETCH_ASSOC)['total_utilisateurs'];
+    } catch (PDOException $e) {
+        echo "Erreur : " . $e->getMessage();
+        exit();
+    }
+} else {
+    // L'utilisateur n'est pas un administrateur, rediriger vers la page de connexion ou d'accueil
+    header('Location: index.php');
     exit();
 }
 ?>

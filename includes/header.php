@@ -59,7 +59,7 @@
                 <!-- vérifier si l'utilisateur est connecté et afficher le lien vers le profil -->
                 <?php if (isset($_SESSION['user'])): ?>
                     <!-- ajoute la photo de profil de l'utilisateur connecté  -->
-                    <img src="images/<?= $_SESSION['user']['photo'] ?>" alt="Photo de profil" class="rounded-circle" width="50" height="50">
+                    <img src="<?= $_SESSION['user']['photo'] ?>" alt="Photo de profil" class="rounded-circle" width="50" height="50">
                     <!-- affiche le pseudo de l'utilisateur connecté  -->
                     <span class="navbar-text text-white ms-2"><?= $_SESSION['user']['pseudo'] ?></span>
                 <?php endif; ?>
