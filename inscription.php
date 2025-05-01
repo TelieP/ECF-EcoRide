@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!$_SESSION) { // L'utilsateur n'est pas connecté et souhaite s'inscire : c'est un conducteur
                 $cheminPhoto .= "/conducteurs/$photo";
             }
-            // TODO : faire les else 
+            // TODO : faire les else pour l'employé en changeant /conducteurs/ par /employés/ en fonction de la session
             $stmt->bindParam(':photo', $cheminPhoto, PDO::PARAM_STR);
             $stmt->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
             if ($stmt->execute()) {
