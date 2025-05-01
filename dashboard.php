@@ -1,7 +1,7 @@
 <?php
 session_start();
-include('includes/header.php');
-include('includes/connect.php');
+include 'includes/header.php';
+include 'includes/connect.php';
 var_dump($_SESSION);
 die;
 // On vérifie si l'utilisateur est connecté et a le rôle d'administrateur
