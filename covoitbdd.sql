@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 01 mai 2025 à 21:05
+-- Généré le : jeu. 01 mai 2025 à 21:38
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -24,7 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 CREATE DATABASE IF NOT EXISTS `covoitbdd` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `covoitbdd`;
-
 --
 -- Structure de la table `avis`
 --
@@ -186,7 +185,7 @@ INSERT INTO `possede` (`Id_role`, `Id_utilisateur`) VALUES
 (2, 10),
 (2, 11),
 (2, 12),
-(4, 13);
+(4, 14);
 
 -- --------------------------------------------------------
 
@@ -271,7 +270,7 @@ INSERT INTO `utilisateur` (`Id_utilisateur`, `nom`, `prenom`, `email`, `password
 (10, 'coco', 'paul', 'coco1234@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$TjBhSWRCRnZ5ZHFJMUN3MA$FCmIsorpi/jdVH8xnc4Q0gLp3/NbJj6klWZ2Q1FUUGs', '0602030405', '53 rue alain georges', '2000-12-12', 'images', 'coco'),
 (11, 'test1', 'test', 'test0000@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$enhLakRlblJwT1IvUXludw$8BN2EfcQD1NQSrNoBFu5AlYUFrWRx5KsZze2cZdTqOM', '0103020506', '21 saint charles 11100 narbonne', '1980-07-02', 'images', 'test1'),
 (12, 'test2', 'test2', 'test2000000@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$T0Q4ajA4TUJFQmphV3NseA$miJnJjDYCkVb+aRUFOttsfwBBwbO01TX5IFbTjaSbFQ', '0604050201', '2 avenue jerome ', '1988-09-06', 'images/conducteurs/pexels-cottonbro-8358795.jpg', 'test2'),
-(13, 'admin', 'admin', 'admin@admin.fr', 'admin2025', '0308097841', NULL, NULL, NULL, NULL);
+(14, 'admin', 'admin', 'admin@admin.fr', '$argon2id$v=19$m=65536,t=4,p=1$ajlSZ2U4WkVqSGNEZE5MUQ$twbkhl1MLIS582bEucZXwEmvResmUYbBBGgNDF1WaIA', '0101010101', '2 espace administrateur 92000 admin', '1960-01-01', 'images//conducteurs//', 'admin');
 
 -- --------------------------------------------------------
 
@@ -435,7 +434,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `Id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `voiture`
