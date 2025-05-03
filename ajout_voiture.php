@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $energie = $_POST['energie'];
     $preferences = $_POST['preferences'];
 
-    $sql = "INSERT INTO voiture (Id_utilisateur, Id_marque, modele, date_mise_en_circulation, immatriculation, energie, preferences, libelle) 
-            VALUES (:Id_utilisateur, :Id_marque, :modele, :date_mise_en_circulation, :immatriculation, :energie, :preferences, :libelle)
-             ;
+    $sql = "INSERT INTO voiture (Id_utilisateur, marque, modele, date_mise_en_circulation, immatriculation, energie, preferences, libelle) 
+            VALUES (:Id_utilisateur, :marque, :modele, :date_mise_en_circulation, :immatriculation, :energie, :preferences, :libelle)
+             JOIN marque ON voiture.Id_marque = marque.Id_marque";
     $stmt = $conn->prepare($sql);
 
 
@@ -47,15 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form action="" method="post">
         <div class="col-auto">
             <label for="marque">Marque</label>
-            <select name="marque" id="marque" required>
-                <?php
-                // Requête pour récupérer les marques de voiture
-                $stmt = $conn->query("SELECT * FROM marque");
-                foreach ($stmt as $row) {
-                    echo "<option value='" . $row['Id_marque'] . "'>" . $row['libelle'] . "</option>";
-                }
-                ?>
-            </select>
+            <input type="text" name="marque" id="marque" placeholder="Marque de votre voiture" required>
         </div>
         <div class="col-auto">
             <label for="modele">Modèle</label>
