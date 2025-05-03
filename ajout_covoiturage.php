@@ -10,9 +10,9 @@ if (isset($_SESSION['user'])) {
     // Vérifier si le formulaire a été soumis
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Vérifier si l'utilisateur a le rôle de conducteur
-        if ($_SESSION['role'] != 'conducteur') {
-            die("Vous devez être conducteur pour ajouter un covoiturage.");
-        }
+        // if ($_SESSION['role'] != 'conducteur') {
+        //     die("Vous devez être conducteur pour ajouter un covoiturage.");
+        // }
 
         // Vérifier si le formulaire a été soumis
 

@@ -9,7 +9,7 @@ if (!isset($_SESSION['user'])) {
     die("Veuillez vous connecter pour ajouter une voiture." . " <a href='connexion.php'>Se connecter</a>");
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Récupérer les données du formulaire
+
     $marque = $_POST['marque'];
     $modele = $_POST['modele'];
     $date_mise_en_circulation = $_POST['date_mise_en_circulation'];
@@ -17,14 +17,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $energie = $_POST['energie'];
     $preferences = $_POST['preferences'];
 
-    // Préparer la requête d'insertion
-    $stmt = $conn->prepare("INSERT INTO voiture (Id_utilisateur, marque, modele, date_mise_en_circulation, immatriculation, nb_place) VALUES (:Id_utilisateur, :marque, :modele, :date_mise_en_circulation, :immatriculation, :nb_place)");
-    $stmt->bindParam(':Id_utilisateur', $_SESSION['user']['Id_utilisateur']);
-    $stmt->bindParam(':marque', $marque);
-    $stmt->bindParam(':modele', $modele);
-    $stmt->bindParam(':date_mise_en_circulation', $date_mise_en_circulation);
-    $stmt->bindParam(':immatriculation', $immatriculation);
-    $stmt->bindParam(':nb_place', $nb_place);
+    $stmt = $conn->prepare("INSERT INTO voiture (Id_utilisateur, marque, modele, date_mise_en_circulation, immatriculation, energie, preferences) VALUES (:Id_utilisateur, :marque, :modele, :date_mise_en_circulation, :immatriculation, :energie, :preferences) JOIN marque ON voiture.Id_marque = marque.Id_marque WHERE marque.libelle = :libelle");
+
+    $stmt->bindParam(':Id_utilisateur', $_SESSION['user']['Id_utilisateur'], PDO::PARAM_INT);
+    $stmt->bindParam(':marque', $marque, PDO::PARAM_STR);
+    $stmt->bindParam(':modele', $modele, PDO::PARAM_STR);
+    $stmt->bindParam(':date_mise_en_circulation', $date_mise_en_circulation, PDO::PARAM_STR);
+    $stmt->bindParam(':immatriculation', $immatriculation, PDO::PARAM_STR);
+    $stmt->bindParam(':energie', $energie, PDO::PARAM_STR);
+    $stmt->bindParam(':preferences', $preferences, PDO::PARAM_STR);
+    $stmt->bindParam(':libelle', $marque, PDO::PARAM_STR);
+
 
     if ($stmt->execute()) {
         echo "<div class='alert alert-success'>Voiture ajoutée avec succès !</div>";
@@ -32,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "<div class='alert alert-danger'>Erreur lors de l'ajout de la voiture.</div>";
     }
 }
-// Formulaire d'ajout de voiture
+
 ?>
 <div class="container mt-4">
     <h1>Ajouter une voiture</h1>

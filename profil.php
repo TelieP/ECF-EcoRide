@@ -48,7 +48,8 @@ include 'includes/header.php';
                         <th> avis</th>
                     <?php } else { ?>
                         <a href="dashboard.php" class="btn btn-primary">accéder au dashboard </a>
-                    <?php } ?>
+                    <?php }
+                    ?>
                 </tr>
             </thead>
             <tbody>
