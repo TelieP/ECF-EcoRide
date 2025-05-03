@@ -18,8 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $preferences = $_POST['preferences'];
 
     $sql = "INSERT INTO voiture (Id_utilisateur, marque, modele, date_mise_en_circulation, immatriculation, energie, preferences, libelle) 
-            VALUES (:Id_utilisateur, :marque, :modele, :date_mise_en_circulation, :immatriculation, :energie, :preferences, :libelle)
-             JOIN marque ON voiture.Id_marque = marque.Id_marque";
+            VALUES (:Id_utilisateur, :marque, :modele, :date_mise_en_circulation, :immatriculation, :energie, :preferences, :libelle)";
     $stmt = $conn->prepare($sql);
 
 
