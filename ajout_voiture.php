@@ -17,7 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $energie = $_POST['energie'];
     $preferences = $_POST['preferences'];
 
-    $stmt = $conn->prepare("INSERT INTO voiture (Id_utilisateur, marque, modele, date_mise_en_circulation, immatriculation, energie, preferences) VALUES (:Id_utilisateur, :marque, :modele, :date_mise_en_circulation, :immatriculation, :energie, :preferences) JOIN marque ON voiture.Id_marque = marque.Id_marque WHERE marque.libelle = :libelle");
+    $sql = "INSERT INTO voiture (Id_utilisateur, marque, modele, date_mise_en_circulation, immatriculation, energie, preferences, libelle) 
+            VALUES (:Id_utilisateur, :marque, :modele, :date_mise_en_circulation, :immatriculation, :energie, :preferences, :libelle)
+             JOIN marque ON voiture.Id_marque = marque.Id_marque";
+    $stmt = $conn->prepare($sql);
+
+
 
     $stmt->bindParam(':Id_utilisateur', $_SESSION['user']['Id_utilisateur'], PDO::PARAM_INT);
     $stmt->bindParam(':marque', $marque, PDO::PARAM_STR);
