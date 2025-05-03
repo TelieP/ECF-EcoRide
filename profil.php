@@ -66,12 +66,12 @@ include 'includes/header.php';
 
                 foreach ($reservations as $reservation) { ?>
                     <tr>
-                        <td><?= htmlspecialchars($reservation['date_depart']) ?> </td>
-                        <td><?= htmlspecialchars($reservation['heure_depart']) ?> </td>
-                        <td><?= htmlspecialchars($reservation['lieu_depart']) ?></td>
-                        <td><?= htmlspecialchars($reservation['lieu_arrivee']) ?> </td>
-                        <td><?= htmlspecialchars($reservation['places_reserves']) ?></td>
-                        <td><a href="avis.php?Id_utilisateur=<?= htmlspecialchars($reservation['Id_utilisateur']) ?>" class="btn btn-primary">Donner un avis</a></td>
+                        <td><?= ($reservation['date_depart']) ?> </td>
+                        <td><?= ($reservation['heure_depart']) ?> </td>
+                        <td><?= ($reservation['lieu_depart']) ?></td>
+                        <td><?= ($reservation['lieu_arrivee']) ?> </td>
+                        <td><?= ($reservation['places_reserves']) ?></td>
+                        <td><a href="avis.php?Id_utilisateur=<?= ($reservation['Id_utilisateur']) ?>" class="btn btn-primary">Donner un avis</a></td>
                     </tr>
                 <?php }
                 ?>
@@ -105,15 +105,15 @@ include 'includes/header.php';
                 $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-                foreach ($trajets as $trajet) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($trajet['date_depart']) . "</td>";
-                    echo "<td>" . htmlspecialchars($trajet['heure_depart']) . "</td>";
-                    echo "<td>" . htmlspecialchars($trajet['lieu_depart']) . "</td>";
-                    echo "<td>" . htmlspecialchars($trajet['lieu_arrivee']) . "</td>";
-                    echo "<td>" . htmlspecialchars($trajet['nb_place']) . "</td>";
-                    echo "</tr>";
-                }
+                foreach ($trajets as $trajet) { ?>
+                    <tr>
+                        <td> <?= ($trajet['date_depart']) ?> </td>
+                        <td> <?= ($trajet['heure_depart']) ?> </td>
+                        <td> <?= ($trajet['lieu_depart']) ?> </td>
+                        <td> <?= ($trajet['lieu_arrivee']) ?> </td>
+                        <td> <?= ($trajet['nb_place']) ?> </td>
+                    </tr>
+                <?php }
                 ?>
             </tbody>
         </table>
@@ -155,4 +155,4 @@ include 'includes/header.php';
 
 </html>
 <?php
-require_once('includes/footer.php');
+require_once 'includes/footer.php';
