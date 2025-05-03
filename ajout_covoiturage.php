@@ -53,7 +53,7 @@ if (isset($_SESSION['user'])) {
     Nombre de places: <input type="number" name="nb_place" required>
     <label for="voiture">Voiture</label>
     <!-- faire une liste deroulante pour afficher les marques de voiture -->
-    <select name="voiture" id="voiture">
+    <select class="mb-2" name="voiture" id="voiture">
         <?php
         // Requête pour récupérer les marques de voiture
         $stmt = $conn->query("SELECT * FROM marque");
