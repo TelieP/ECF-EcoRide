@@ -33,7 +33,6 @@ if (isset($_SESSION['user'])) {
             $stmt->bindParam(':Id_utilisateur', $idUtilisateur, PDO::PARAM_INT);
             $stmt->execute();
             $voitureId = $stmt->fetch(PDO::FETCH_ASSOC);
-            var_dump($voitureId);die;
 
             $stmt = $conn->prepare("INSERT INTO `covoiturage` (`date_depart`, `heure_depart`, `lieu_depart`, `lieu_arrivee`, `statut`, 
                 `nb_place`, `prix_personne`, `Id_voiture`, `Id_utilisateur`) VALUES (:date_depart, :heure_depart, :lieu_depart, :lieu_arrivee, :statut, 
