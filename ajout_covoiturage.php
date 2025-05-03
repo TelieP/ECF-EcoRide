@@ -30,13 +30,12 @@ if (isset($_SESSION['user'])) {
                 JOIN utilisateur AS u ON u.Id_utilisateur = v.Id_utilisateur
                 WHERE u.Id_utilisateur = $idUtilisateur";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':Id_utilisateur', $idUtilisateur, PDO::PARAM_INT);
             $stmt->execute();
             $voitureId = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $stmt = $conn->prepare("INSERT INTO `covoiturage` (`date_depart`, `heure_depart`, `lieu_depart`, `lieu_arrivee`, `statut`, 
-                `nb_place`, `prix_personne`, `Id_voiture`, `Id_utilisateur`) VALUES (:date_depart, :heure_depart, :lieu_depart, :lieu_arrivee, :statut, 
-                :nb_place, :prix_personne, :Id_voiture, :Id_utilisateur)");
+                `nb_place`, `prix_personne`, `Id_voiture`) VALUES (:date_depart, :heure_depart, :lieu_depart, :lieu_arrivee, :statut, 
+                :nb_place, :prix_personne, :Id_voiture)");
             $stmt->bindParam(':date_depart', $date, PDO::PARAM_STR);
             $stmt->bindParam(':heure_depart', $heure, PDO::PARAM_STR);
             $stmt->bindParam(':lieu_depart', $depart, PDO::PARAM_STR);
@@ -45,7 +44,6 @@ if (isset($_SESSION['user'])) {
             $stmt->bindParam(':nb_place', $nb_place, PDO::PARAM_INT);
             $stmt->bindParam(':prix_personne', $prix, PDO::PARAM_INT);
             $stmt->bindParam(':Id_voiture', $voitureId, PDO::PARAM_INT);
-            $stmt->bindParam(':Id_utilisateur', $idUtilisateur, PDO::PARAM_INT);
             if ($stmt->execute()) {
                 echo "Covoiturage ajouté avec succès";
             } else {
