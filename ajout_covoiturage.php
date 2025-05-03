@@ -61,7 +61,7 @@ if (isset($_SESSION['user'])) {
             echo "<option value='" . $row['Id_marque'] . "'>" . $row['libelle'] . "</option>";
         }
         ?>
-    </select><br>
+    </select>
 
     statut: <input type="text" name="statut" required>
     Prix: <input type="number" name="prix" required><br>
