@@ -18,6 +18,7 @@ if ($profil) {
         $stmt->bindValue(':Id_utilisateur', $profil);
         $stmt->execute();
         $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($avis);
 
 ?>
 
@@ -54,9 +55,11 @@ if ($profil) {
                 }
         }
 } else {
-        // Connexion !
+        echo "Vous devez être connecté pour laisser un avis.";
+        header("Location: index.php");
+        exit();
 }
-// Afficher les avis
+
 
 
 

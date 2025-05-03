@@ -64,24 +64,23 @@ include 'includes/header.php';
                 $stmt->execute();
                 $reservations = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                foreach ($reservations as $reservation) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($reservation['date_depart']) . "</td>";
-                    echo "<td>" . htmlspecialchars($reservation['heure_depart']) . "</td>";
-                    echo "<td>" . htmlspecialchars($reservation['lieu_depart']) . "</td>";
-                    echo "<td>" . htmlspecialchars($reservation['lieu_arrivee']) . "</td>";
-                    echo "<td>" . htmlspecialchars($reservation['places_reserves']) . "</td>";
-                    echo "<td><a href='avis.php?Id_utilisateur=" . htmlspecialchars($reservation['Id_utilisateur']) . "' class='btn btn-primary'>Donner un avis</a></td>";
-
-                    echo "</tr>";
-                }
+                foreach ($reservations as $reservation) { ?>
+                    <tr>
+                        <td><?= htmlspecialchars($reservation['date_depart']) ?> </td>
+                        <td><?= htmlspecialchars($reservation['heure_depart']) ?> </td>
+                        <td><?= htmlspecialchars($reservation['lieu_depart']) ?></td>
+                        <td><?= htmlspecialchars($reservation['lieu_arrivee']) ?> </td>
+                        <td><?= htmlspecialchars($reservation['places_reserves']) ?></td>
+                        <td><a href="avis.php?Id_utilisateur=<?= htmlspecialchars($reservation['Id_utilisateur']) ?>" class="btn btn-primary">Donner un avis</a></td>
+                    </tr>
+                <?php }
                 ?>
 
             </tbody>
         </table>
     </div>
 
-    <div class="container mt-4">
+    <div class=" container mt-4">
         <h2>Mes Trajets Proposés</h2>
         <table class="table table-striped">
             <thead>
