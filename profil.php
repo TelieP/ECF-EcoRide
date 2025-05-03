@@ -16,13 +16,13 @@ include 'includes/header.php';
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img src="<?= htmlspecialchars($_SESSION['user']['photo']) ?>" alt="Photo de profil" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px;">
+                <img src="<?= $_SESSION['user']['photo'] ?>" alt="Photo de profil" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px;">
             </div>
             <div class="col-md-8">
-                <h2><?= htmlspecialchars($_SESSION['user']['nom']) ?> <?= htmlspecialchars($_SESSION['user']['prenom']) ?></h2>
-                <p>Email : <?= htmlspecialchars($_SESSION['user']['email']) ?></p>
-                <p>Téléphone : <?= htmlspecialchars($_SESSION['user']['telephone']) ?></p>
-                <p>Adresse : <?= htmlspecialchars($_SESSION['user']['adresse']) ?></p>
+                <h2><?= $_SESSION['user']['nom'] ?> <?= $_SESSION['user']['prenom'] ?></h2>
+                <p>Email : <?= $_SESSION['user']['email'] ?></p>
+                <p>Téléphone : <?= $_SESSION['user']['telephone'] ?></p>
+                <p>Adresse : <?= $_SESSION['user']['adresse'] ?></p>
             </div>
         </div>
     </div>
@@ -66,12 +66,12 @@ include 'includes/header.php';
 
                 foreach ($reservations as $reservation) { ?>
                     <tr>
-                        <td><?= ($reservation['date_depart']) ?> </td>
-                        <td><?= ($reservation['heure_depart']) ?> </td>
-                        <td><?= ($reservation['lieu_depart']) ?></td>
-                        <td><?= ($reservation['lieu_arrivee']) ?> </td>
-                        <td><?= ($reservation['places_reserves']) ?></td>
-                        <td><a href="avis.php?Id_utilisateur=<?= ($reservation['Id_utilisateur']) ?>" class="btn btn-primary">Donner un avis</a></td>
+                        <td><?= $reservation['date_depart'] ?> </td>
+                        <td><?= $reservation['heure_depart'] ?> </td>
+                        <td><?= $reservation['lieu_depart'] ?></td>
+                        <td><?= $reservation['lieu_arrivee'] ?> </td>
+                        <td><?= $reservation['places_reserves'] ?></td>
+                        <td><a href="avis.php?Id_utilisateur=<?= $reservation['Id_utilisateur'] ?>" class="btn btn-primary">Donner un avis</a></td>
                     </tr>
                 <?php }
                 ?>
@@ -107,11 +107,11 @@ include 'includes/header.php';
 
                 foreach ($trajets as $trajet) { ?>
                     <tr>
-                        <td> <?= ($trajet['date_depart']) ?> </td>
-                        <td> <?= ($trajet['heure_depart']) ?> </td>
-                        <td> <?= ($trajet['lieu_depart']) ?> </td>
-                        <td> <?= ($trajet['lieu_arrivee']) ?> </td>
-                        <td> <?= ($trajet['nb_place']) ?> </td>
+                        <td> <?= $trajet['date_depart'] ?> </td>
+                        <td> <?= $trajet['heure_depart'] ?> </td>
+                        <td> <?= $trajet['lieu_depart'] ?> </td>
+                        <td> <?= $trajet['lieu_arrivee'] ?> </td>
+                        <td> <?= $trajet['nb_place'] ?> </td>
                     </tr>
                 <?php }
                 ?>
