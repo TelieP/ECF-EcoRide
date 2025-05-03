@@ -42,7 +42,7 @@ include 'includes/header.php';
                     $stmt = $conn->prepare($sql);
                     $stmt->execute();
                     $admin = $stmt->fetch(PDO::FETCH_ASSOC);
-                    var_dump($admin);
+
                     // Vérification si l'utilisateur est un administrateur
                     if ($admin) { ?>
                         <th> avis</th>
