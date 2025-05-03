@@ -47,7 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form action="" method="post">
         <div class="col-auto">
             <label for="marque">Marque</label>
-            <input type="text" name="marque" id="marque" placeholder="Marque de votre voiture" required>
+            <select name="marque" id="marque" required>
+                <?php
+                // Requête pour récupérer les marques de voiture
+                $stmt = $conn->query("SELECT * FROM marque");
+                foreach ($stmt as $row) {
+                    echo "<option value='" . $row['Id_marque'] . "'>" . $row['libelle'] . "</option>";
+                }
+                ?>
+            </select>
         </div>
         <div class="col-auto">
             <label for="modele">Modèle</label>
