@@ -17,11 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $energie = $_POST['energie'];
     $preferences = $_POST['preferences'];
 
-    $sql = "INSERT INTO voiture (Id_utilisateur, Id_marque, modele, date_mise_en_circulation, immatriculation, energie, preferences, libelle) 
-            VALUES (:Id_utilisateur, :marque, :modele, :date_mise_en_circulation, :immatriculation, :energie, :preferences, :libelle)";
+    $sql = "INSERT INTO voiture (Id_utilisateur, Id_marque, modele, date_premiere_immatriculation, immatriculation, energie) 
+            VALUES (:Id_utilisateur, :marque, :modele, :date_mise_en_circulation, :immatriculation, :energie)";
     $stmt = $conn->prepare($sql);
-
-
 
     $stmt->bindParam(':Id_utilisateur', $_SESSION['user']['Id_utilisateur'], PDO::PARAM_INT);
     $stmt->bindParam(':marque', $marque, PDO::PARAM_STR);
@@ -29,9 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bindParam(':date_mise_en_circulation', $date_mise_en_circulation, PDO::PARAM_STR);
     $stmt->bindParam(':immatriculation', $immatriculation, PDO::PARAM_STR);
     $stmt->bindParam(':energie', $energie, PDO::PARAM_STR);
-    $stmt->bindParam(':preferences', $preferences, PDO::PARAM_STR);
-    $stmt->bindParam(':libelle', $marque, PDO::PARAM_STR);
-
 
     if ($stmt->execute()) {
         echo "<div class='alert alert-success'>Voiture ajoutée avec succès !</div>";
