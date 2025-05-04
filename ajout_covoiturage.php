@@ -83,7 +83,7 @@ if (isset($_SESSION['user'])) {
         <!-- faire une liste deroulante pour afficher les marques de voiture -->
         <select class="mb-2" name="voiture" id="voiture">
             <?php
-            // Requête pour récupérer les marques de voiture
+            $UserId = $_SESSION['user']['Id_utilisateur'];
             $stmt = $conn->query("SELECT * FROM marque");
             foreach ($stmt as $row) {
                 echo "<option value='" . $row['Id_marque'] . "'>" . $row['libelle'] . "</option>";
