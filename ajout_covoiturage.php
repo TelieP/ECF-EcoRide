@@ -16,13 +16,13 @@ if (isset($_SESSION['user'])) {
 
         // Vérifier si le formulaire a été soumis
 
-        $depart = $_POST['lieu_depart'];
-        $arrivee = $_POST['lieu_arrivee'];
-        $date = $_POST['date_depart'];
-        $heure = $_POST['heure_depart'];
-        $nb_place = $_POST['nb_place'];
-        $statut = $_POST['statut'];
-        $prix = $_POST['prix'];
+        $depart = htmlspecialchars($_POST['lieu_depart']);
+        $arrivee = htmlspecialchars($_POST['lieu_arrivee']);
+        $date = htmlspecialchars($_POST['date_depart']);
+        $heure = htmlspecialchars($_POST['heure_depart']);
+        $nb_place = htmlspecialchars($_POST['nb_place']);
+        $statut = htmlspecialchars($_POST['statut']);
+        $prix = htmlspecialchars($_POST['prix']);
         //on recupere les infos du formulaire et on les stock en base de données
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
