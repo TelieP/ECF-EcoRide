@@ -49,6 +49,10 @@ include 'includes/header.php';
                     <?php } else { ?>
                         <a href="dashboard.php" class="btn btn-primary">accéder au dashboard </a>
                     <?php }
+                    //requete sql pour insérer les avis sur l'utilisateur
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bindValue(':Id_utilisateur', $_SESSION['user']['Id_utilisateur']);
+
                     ?>
                 </tr>
             </thead>
