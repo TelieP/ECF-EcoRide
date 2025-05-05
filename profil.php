@@ -118,9 +118,20 @@ include 'includes/header.php';
                         <td> <?= $trajet['lieu_arrivee'] ?> </td>
                         <td> <?= $trajet['nb_place'] ?> </td>
                         <td><a href="" id="toggleButton" class="btn btn-success">Démarrer trajet</a></td>
-                        <!-- executer la fonction javascript pour demarrer(changer en arreter trajet) le trajet et envoyer un mail aux participant du covoiturage-->
+                        <!-- TODO Crée et executer la fonction javascript pour demarrer(changer en arreter trajet) le trajet et envoyer un mail aux participant du covoiturage-->
                         <script>
-                            toggleButton();
+                            document.getElementById("toggleButton").addEventListener("click", function() {
+                                var button = this;
+                                if (button.innerHTML === "Démarrer trajet") {
+                                    button.innerHTML = "Arrêter trajet";
+                                    button.classList.remove("btn-success");
+                                    button.classList.add("btn-danger");
+                                } else {
+                                    button.innerHTML = "Démarrer trajet";
+                                    button.classList.remove("btn-danger");
+                                    button.classList.add("btn-success");
+                                }
+                            });
                         </script>
                     </tr>
                 <?php }
