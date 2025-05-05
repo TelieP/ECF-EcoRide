@@ -102,9 +102,10 @@ include 'includes/header.php';
                 // Requête pour récupérer les trajets proposés par l'utilisateur
                 $Id_utilisateur = $_SESSION['user']['Id_utilisateur'];
                 $sql = "SELECT c.date_depart,c.heure_depart,c.lieu_depart,c.lieu_arrivee,c.nb_place FROM covoiturage AS c
-                        JOIN voiture v ON v.Id_marque = c.Id_voiture
-                        JOIN utilisateur u ON u.Id_utilisateur = v.Id_utilisateur
-                        WHERE u.Id_utilisateur = $Id_utilisateur";
+                    JOIN voiture v ON v.Id_marque = c.Id_voiture
+                    JOIN utilisateur u ON u.Id_utilisateur = v.Id_utilisateur
+                    WHERE u.Id_utilisateur = :Id_utilisateur";
+                $stmt->bindValue(':Id_utilisateur', $Id_utilisateur);
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
                 $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
