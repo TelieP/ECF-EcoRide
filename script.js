@@ -16,6 +16,8 @@
             button.style.backgroundColor = "green";
         }
     }
+    toggleButton();
+    
     function sendEmail() {
         // création  de l'UrL mailto pour envoyer un mail au covoitureur
         const mailtoLink = "mailto:destinataire@exmple.com?subject=Objet du mail&body=Corps du mail";
@@ -24,3 +26,6 @@
         // on affiche un message de confirmation
         alert("Un mail a été envoyé au covoitureur !");
     }
+// executer la fonction toggleButton() 
+  
+
