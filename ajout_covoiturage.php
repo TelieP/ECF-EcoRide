@@ -23,17 +23,9 @@ if (isset($_SESSION['user'])) {
         $nb_place = htmlspecialchars($_POST['nb_place']);
         $statut = htmlspecialchars($_POST['statut']);
         $prix = htmlspecialchars($_POST['prix']);
+        $voiture = htmlspecialchars($_POST['voiture']);
         //on recupere les infos du formulaire et on les stock en base de données
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-            $sql = "SELECT Id_voiture
-            FROM voiture AS v
-            JOIN utilisateur AS u ON u.Id_utilisateur = v.Id_utilisateur
-            WHERE u.Id_utilisateur = $_SESSION(['user']['Id_utilisateur'])";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':Id_utilisateur', $_SESSION(['user']['Id_utilisateur']), PDO::PARAM_INT);
-            $stmt->execute();
-            $voiture = $stmt->fetch(PDO::FETCH_ASSOC);
 
             $stmt = $conn->prepare("INSERT INTO `covoiturage` (`date_depart`, `heure_depart`, `lieu_depart`, `lieu_arrivee`, `statut`, `nb_place`, `prix_personne`,Id_voiture) VALUES (:date_depart, :heure_depart, :lieu_depart, :lieu_arrivee, :statut, :nb_place, :prix, :Id_voiture)");
             $stmt->bindParam(':lieu_depart', $depart, PDO::PARAM_STR);
@@ -43,7 +35,7 @@ if (isset($_SESSION['user'])) {
             $stmt->bindParam(':nb_place', $nb_place, PDO::PARAM_INT);
             $stmt->bindParam(':statut', $statut, PDO::PARAM_STR);
             $stmt->bindParam(':prix', $prix, PDO::PARAM_INT);
-            $stmt->bindParam(':Id_voiture', $_POST['voiture'], PDO::PARAM_INT);
+            $stmt->bindParam(':Id_voiture', $voiture, PDO::PARAM_INT);
             $stmt->bindParam(':Id_utilisateur', $_SESSION['user']['Id_utilisateur'], PDO::PARAM_INT);
             if ($stmt->execute()) {
                 echo "Covoiturage ajouté avec succès";

@@ -108,9 +108,7 @@ include 'includes/header.php';
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
                 $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-
-
+                // Boucle sur les trajets
                 foreach ($trajets as $trajet) { ?>
                     <tr>
                         <td> <?= $trajet['date_depart'] ?> </td>
