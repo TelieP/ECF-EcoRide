@@ -100,14 +100,15 @@ include 'includes/header.php';
             <tbody>
                 <?php
                 // Requête pour récupérer les trajets proposés par l'utilisateur
-                $sql = "SELECT c.date_depart, c.heure_depart, c.lieu_depart, c.lieu_arrivee, c.nb_place
-                        FROM covoiturage AS c
-                        JOIN voiture AS v ON c.Id_voiture = v.Id_voiture
-                        WHERE v.Id_utilisateur = :Id_utilisateur";
+                $Id_utilisateur = $_SESSION['user']['Id_utilisateur'];
+                $sql = "SELECT c.date_depart,c.heure_depart,c.lieu_depart,c.lieu_arrivee,c.nb_place FROM covoiturage AS c
+                        JOIN voiture v ON v.Id_marque = c.Id_voiture
+                        JOIN utilisateur u ON u.Id_utilisateur = v.Id_utilisateur
+                        WHERE u.Id_utilisateur = $Id_utilisateur";
                 $stmt = $conn->prepare($sql);
-                $stmt->bindValue(':Id_utilisateur', $Id_utilisateur);
                 $stmt->execute();
                 $trajets = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
 
                 foreach ($trajets as $trajet) { ?>
