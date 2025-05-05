@@ -36,7 +36,7 @@ if (isset($_SESSION['user'])) {
             $stmt->bindParam(':statut', $statut, PDO::PARAM_STR);
             $stmt->bindParam(':prix', $prix, PDO::PARAM_INT);
             $stmt->bindParam(':Id_voiture', $voiture, PDO::PARAM_INT);
-            $stmt->bindParam(':Id_utilisateur', $_SESSION['user']['Id_utilisateur'], PDO::PARAM_INT);
+            // $stmt->bindParam(':Id_utilisateur', $_SESSION['user']['Id_utilisateur'], PDO::PARAM_INT);
             if ($stmt->execute()) {
                 echo "Covoiturage ajouté avec succès";
             } else {
@@ -76,7 +76,10 @@ if (isset($_SESSION['user'])) {
         <select class="mb-2" name="voiture" id="voiture">
             <?php
             $UserId = $_SESSION['user']['Id_utilisateur'];
-            $stmt = $conn->query("SELECT * FROM marque");
+            $stmt = $conn->query("SELECT * FROM marque AS m
+                    JOIN voiture AS v  ON v.Id_marque = m.Id_marque
+                    JOIN utilisateur AS u ON u.Id_utilisateur = v.Id_utilisateur
+                    WHERE u.Id_utilisateur = $UserId");
             foreach ($stmt as $row) {
                 echo "<option value='" . $row['Id_marque'] . "'>" . $row['libelle'] . "</option>";
             }
