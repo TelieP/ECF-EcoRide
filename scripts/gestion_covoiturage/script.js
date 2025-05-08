@@ -6,7 +6,7 @@
     function toggleButton() {
         // on recupère l'id du bouton
         const button = document.getElementById('toggleButton');
-        button.addEventListener('click', function() {
+        button.addEventListener('click', () => {
           alert("Le trajet a démarré passez un bon voyage!");
         });
     }
