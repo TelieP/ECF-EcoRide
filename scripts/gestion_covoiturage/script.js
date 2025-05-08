@@ -18,6 +18,9 @@
             // on remet la couleur du bouton en vert
             button.style.backgroundColor = "green";
         }
+        button.addEventListener('click', () => {
+          alert("Le trajet a démarré passez un bon voyage!");
+        });
     }
     toggleButton();
     
