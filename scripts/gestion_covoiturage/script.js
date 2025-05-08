@@ -24,7 +24,7 @@ function updateStatus(startOrStop) {
     $.ajax({
     // Fichier qui est appelé
     url: "/scripts/gestion_covoiturage/gestion_covoiturage.php",
-    // Méthode GET car on récupère des données
+    // Méthode POST pour mettre à jour la DB
     method: "POST",
     // On passe la variable status (D ou T)
     data: { startOrStop: startOrStop },
