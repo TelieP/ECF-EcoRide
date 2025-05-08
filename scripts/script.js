@@ -1,3 +1,6 @@
+//lier le fichier scripts.js au fichier profil.php
+
+
 // fonction qui permet créer un bouton démarer pour chaque trajet et envoyer un mail au covoitureur
 
     function toggleButton() {

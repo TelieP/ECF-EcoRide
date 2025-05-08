@@ -54,7 +54,7 @@ function getlowprice() {
   // Appel Ajax
   $.ajax({
     // Fichier qui est appelé
-    url: "filters/filter.php",
+    url: "/filters/filter.php",
     // Méthode GET car on récupère des données
     method: "GET",
     // On passe la variable askOrDesk (0 ou 1)
