@@ -24,7 +24,7 @@ function updateStatus(status) {
     method: "POST",
     // On passe la variable status (D ou T)
     data: { status: status },
-    success: function (data) {
+    success: () => {
         try {
             // Aficher un message 
             console.log("OK")
