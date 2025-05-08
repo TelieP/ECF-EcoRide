@@ -4,10 +4,9 @@
 // fonction qui permet créer un bouton démarer pour chaque trajet et envoyer un mail au covoitureur
 
 
-    function toggleButton() {
-        // on recupère l'id du bouton
-        const button = document.getElementById('toggleButton');
-        button.addEventListener('click', function() {
+    function start_covoit() {
+        const startBtn = document.getElementsByClassName('start_cov');
+        startBtn.addEventListener('click', ()=> {
           alert("Le trajet a démarré passez un bon voyage!");
         });
     }
@@ -31,7 +30,7 @@
     //       alert("Le trajet a démarré passez un bon voyage!");
     //     });
     // }
-    toggleButton();
+    start_covoit();
     
     function sendEmail() {
         // création  de l'UrL mailto pour envoyer un mail au covoitureur
