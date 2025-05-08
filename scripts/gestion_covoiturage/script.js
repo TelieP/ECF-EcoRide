@@ -1,36 +1,39 @@
 /**
  * Change le statut d'un coivturage
+ * @param {string} startOrStop : D pour Démarrer, S pour Stopper
  */
-function startCovoit() {
-    const startButtons = document.querySelectorAll('.start_cov'); // renvoie un NodeList
+function startOrStopCovoit(startOrStop) {
+    // Récupération de tous les boutons ayant la classe start_covoit
+    const startButtons = document.querySelectorAll('.start_cov');
+    // Pour chaque boutons, ajout d'un listener
     startButtons.forEach((startButton) => {
         startButton.addEventListener('click', () => {
             // alert("Le trajet a démarré, passez un bon voyage!");
-            // TODO :  Appel à la fonction updateStatus(status)
+            // TODO :  Appel à la fonction updateStatus(startOrStop)
         });
     });
 }
+// Ajout des listeners
 startCovoit();
 
 /**
- * Change le statut du covoiturage en BDD
- * @param {string} status Le status : D pour Démarré, T pour Terminé
+ * Change le statut du covoiturage en BDD + envoi mail
+ * @param {string} startOrStop Le statut : D pour Démarré, T pour Terminé
  */
-function updateStatus(status) {
+function updateStatus(startOrStop) {
     $.ajax({
     // Fichier qui est appelé
     url: "/scripts/gestion_covoiturage/gestion_covoiturage.php",
     // Méthode GET car on récupère des données
     method: "POST",
     // On passe la variable status (D ou T)
-    data: { status: status },
+    data: { startOrStop: startOrStop },
     success: () => {
         try {
-            // Aficher un message 
+            // Aficher un message (debug)
             console.log("OK")
-            // TODO : envoyer mail
+            // TODO : MAJ DB + envoyer mail
         } catch (e) {
-            // Le drame ! Mais ça ne se produira pas :)
             console.error("Erreur JSON :", e);
         }
     },
