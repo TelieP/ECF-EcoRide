@@ -3,7 +3,7 @@
 // S'assurer d'envoyer du JSON
 header('Content-Type: application/json');
 
-require_once('../includes/connect.php');
+require_once('../../includes/connect.php');
 
 // On récupère la variable ecological (0 ou 1) passée dans la requête Ajax du fichier filter.js
 if (isset($_GET['ecological'])) {
