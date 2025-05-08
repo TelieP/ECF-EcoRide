@@ -5,10 +5,12 @@
 
 
     function start_covoit() {
-        const startBtn = document.getElementsByClassName('start_cov');
-        startBtn.addEventListener('click', ()=> {
-          alert("Le trajet a démarré passez un bon voyage!");
+        const startButtons= document.getElementsByClassName('start_cov');
+        foreach(startButtons as boutton){
+            boutton.addEventListener('click', ()=> {
+                alert("Le trajet a démarré passez un bon voyage!");
         });
+        }
     }
     // toggleButton();
     // function toggleButton() {
