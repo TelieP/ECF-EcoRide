@@ -160,7 +160,7 @@ include 'includes/header.php';
     </div>
 
 
-
+    <script src="scripts/gestion_covoiturage/script.js"></script>
 </body>
 
 </html>
