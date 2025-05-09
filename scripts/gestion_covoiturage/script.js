@@ -11,7 +11,7 @@ function startOrStopCovoit() {
             // On vérifie si on démarre ou on stoppe le trajet
             let startOrStop = "D"
             if (clickedButton.innerText == "Stopper") {
-                startOrStop = "S"
+                startOrStop = "T"
                 // TODO Supprimer le trajet de la DB
             } else {
                 clickedButton.innerText = "En cours"

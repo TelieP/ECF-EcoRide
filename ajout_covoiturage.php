@@ -88,8 +88,11 @@ if (isset($_SESSION['user'])) {
     </div>
     <div>
         <label for="statut">statut</label>
-        <input type="text" name="statut" required>
+        <select name="statut" id="statut">
+            <option value="disponible">disponible</option>
+        </select>
     </div>
+
     <div>
         <label for="prix">Prix</label>
         <input type="number" name="prix" required><br>
