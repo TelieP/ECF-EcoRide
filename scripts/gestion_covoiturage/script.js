@@ -1,20 +1,19 @@
 /**
  * Change le statut d'un coivturage
- * @param {string} startOrStop : D pour Démarrer, S pour Stopper
  */
-function startOrStopCovoit(startOrStop) {
+function startOrStopCovoit() {
     // Récupération de tous les boutons ayant la classe start_covoit
     const startButtons = document.querySelectorAll('.start_cov');
     // Pour chaque boutons, ajout d'un listener
     startButtons.forEach((startButton) => {
         startButton.addEventListener('click', () => {
-            // alert("Le trajet a démarré, passez un bon voyage!");
+            alert("Le trajet a démarré, passez un bon voyage!");
             // TODO :  Appel à la fonction updateStatus(startOrStop)
         });
     });
 }
 // Ajout des listeners
-startCovoit();
+startOrStopCovoit();
 
 /**
  * Change le statut du covoiturage en BDD + envoi mail
