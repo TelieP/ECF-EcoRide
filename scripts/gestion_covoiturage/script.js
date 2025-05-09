@@ -15,6 +15,7 @@ function startOrStopCovoit() {
                 // TODO Supprimer le trajet de la DB
             } else {
                 clickedButton.innerText = "En cours"
+                // TODO Mettre "En cours" dans le DB
             }
             updateStatus(startOrStop)
         });
