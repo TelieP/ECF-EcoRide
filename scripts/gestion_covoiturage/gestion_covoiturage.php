@@ -1,3 +1,15 @@
 <?php
 
-// TODO on récupère ce qui est posté et on met à jour le statut
+// S'assurer d'envoyer du JSON
+header('Content-Type: application/json');
+
+require_once '../../includes/connect.php';
+
+if (isset($_POST['startOrStop'])) {
+  // On récupère "D" ou "T"
+  $startOrStop = $_POST['startOrStop'];
+  // On met à la jour la colonne statut de la table covoiturage de la DB
+  // TODO Le faire
+  // Test du retour : à commenter quand le TODO sera terminé
+  echo json_encode($startOrStop);
+}

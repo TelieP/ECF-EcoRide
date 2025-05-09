@@ -6,9 +6,14 @@ function startOrStopCovoit() {
     const startButtons = document.querySelectorAll('.start_cov');
     // Pour chaque boutons, ajout d'un listener
     startButtons.forEach((startButton) => {
-        startButton.addEventListener('click', () => {
-            alert("Le trajet a démarré, passez un bon voyage!");
-            // TODO :  Appel à la fonction updateStatus(startOrStop)
+        startButton.addEventListener('click', (event) => {
+            const clickedButton = event.currentTarget
+            // On vérifie si on démarre ou on stoppe le trajet
+            let startOrStop = "D"
+            if (clickedButton.innerText == "Stopper") {
+                startOrStop = "S"
+            }
+            updateStatus(startOrStop)
         });
     });
 }
@@ -22,15 +27,15 @@ startOrStopCovoit();
 function updateStatus(startOrStop) {
     $.ajax({
     // Fichier qui est appelé
-    url: "/scripts/gestion_covoiturage/gestion_covoiturage.php",
+    url: "scripts/gestion_covoiturage/gestion_covoiturage.php",
     // Méthode POST pour mettre à jour la DB
     method: "POST",
     // On passe la variable status (D ou T)
     data: { startOrStop: startOrStop },
-    success: () => {
+    success: function (data) {
         try {
-            // Aficher un message (debug)
-            console.log("OK")
+            // Aficher un message (debug) => enlever quand le TODO sera terminé
+            alert(data)
             // TODO : MAJ DB + envoyer mail
         } catch (e) {
             console.error("Erreur JSON :", e);

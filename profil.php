@@ -12,6 +12,11 @@ include 'includes/header.php';
 ?>
 
 <body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            startOrStopCovoit()
+        });
+    </script>
     <h1>Mon Profil</h1>
     <div class="container">
         <div class="row">
@@ -159,7 +164,7 @@ include 'includes/header.php';
         </form>
     </div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="scripts/gestion_covoiturage/script.js"></script>
 </body>
 
