@@ -39,16 +39,12 @@ function updateStatus(startOrStop) {
     success: function (data) {
         try {
             // Aficher un message (debug) => enlever quand le TODO sera terminé
-<<<<<<< HEAD
             if (data == "D") {
                 alert("votre trajet à demarré , passez un bon voyage!")
             }else{
                 alert("votre trajet terminer , merci pour votre confiance!")
             }
             // TODO : MAJ DB + envoyer mail
-=======
-            alert(data)
->>>>>>> e6ae7289d9a59f012b7d162d040d2c2e04bf2ea2
         } catch (e) {
             console.error("Erreur JSON :", e);
         }
