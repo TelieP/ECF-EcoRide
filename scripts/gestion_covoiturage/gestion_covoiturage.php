@@ -9,7 +9,6 @@ if (isset($_POST['startOrStop'])) {
   // On récupère "D" ou "T"
   $startOrStop = $_POST['startOrStop'];
   // On met à la jour la colonne statut de la table covoiturage de la DB
-  // On met à jour le statut de la table covoiturage de la DB
   $query = "UPDATE covoiturage SET statut = :statut WHERE id = :id";
   $stmt = $conn->prepare($query);
   if ($startOrStop == 'D') {
