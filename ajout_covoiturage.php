@@ -86,12 +86,7 @@ if (isset($_SESSION['user'])) {
             ?>
         </select>
     </div>
-    <div>
-        <label for="statut">statut</label>
-        <select name="statut" id="statut">
-            <option value="disponible">disponible</option>
-        </select>
-    </div>
+    <input type="hidden" id="statut" name="statut" value="disponible">
 
     <div>
         <label for="prix">Prix</label>
