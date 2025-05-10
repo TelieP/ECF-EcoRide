@@ -10,7 +10,6 @@ if (isset($_POST['startOrStop'])) {
   $startOrStop = $_POST['startOrStop'];
   // On met à la jour la colonne statut de la table covoiturage de la DB ('dispobible' ou 'en cours')
   $query = "UPDATE covoiturage SET statut = :statut WHERE id = :id";
-  $stmt = $conn->prepare($query);
   if ($startOrStop == 'D') {
     // Le vocovoit a démarré
     $sql = "UPDATE covoiturage
@@ -20,6 +19,8 @@ if (isset($_POST['startOrStop'])) {
     $sql = "UPDATE covoiturage  
       SET statut = REPLACE(statut, 'en cours', 'terminé')";
   }
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
   // On revoie au JS "D" ou "T"
   echo json_encode($startOrStop);
 }
