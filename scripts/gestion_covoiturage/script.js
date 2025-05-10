@@ -40,7 +40,6 @@ function updateStatus(startOrStop) {
         try {
             // Aficher un message (debug) => enlever quand le TODO sera terminé
             alert(data)
-            // TODO : MAJ DB + envoyer mail
         } catch (e) {
             console.error("Erreur JSON :", e);
         }
