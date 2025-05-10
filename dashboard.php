@@ -31,15 +31,20 @@ include 'includes/fonctions.php';
 echo 'UTILISATEURS INSCRITS SUR LE site:';
 $utilisateurs = afficherUtilisateurs($conn);
 foreach ($utilisateurs as $utilisateur) { ?>
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title"> <?= htmlspecialchars($utilisateur['nom']) ?> <?= htmlspecialchars($utilisateur['prenom']) ?> </h5>
-            <p class="card-text">Email: <?= htmlspecialchars($utilisateur['email']) ?> </p>
-            <p class="card-text">Téléphone:<?= htmlspecialchars($utilisateur['telephone']) ?></p>
-            <p class="card-text">Adresse: <?= htmlspecialchars($utilisateur['adresse']) ?></p>
-            <button class="btn btn-danger" id="suppr_user" data-bs-toggle="collapse" data-bs-target="#avis<?php echo $utilisateur['Id_utilisateur']; ?>">Supprimer</button>
-            <!-- lier le bouton supprimer à la fonction supprimerUtilisateur -->
-            <bouton class="btn btn-primary" id="View_avis_user" data-bs-toggle="collapse" data-bs-target="#avis' . $utilisateur['Id_utilisateur'] . '">Afficher les avis</button>
+    <div class="container d-flex-row   mt-6  flex-direction:wrap " style="width: 100%;">
+        <div class="card mb-3 " style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title"> <?= htmlspecialchars($utilisateur['nom']) ?> <?= htmlspecialchars($utilisateur['prenom']) ?> </h5>
+                <p class="card-text">Email: <?= htmlspecialchars($utilisateur['email']) ?> </p>
+                <p class="card-text">Téléphone:<?= htmlspecialchars($utilisateur['telephone']) ?></p>
+                <p class="card-text">Adresse: <?= htmlspecialchars($utilisateur['adresse']) ?></p>
+                <!-- ajouter un bouton pour permet de supprimer un utilisateur -->
+
+
+                <button class="btn btn-danger" id="suppr_user" data-bs-toggle="collapse" data-bs-target="#avis<?php echo $utilisateur['Id_utilisateur']; ?>">Supprimer</button>
+                <!-- lier le bouton supprimer à la fonction supprimerUtilisateur -->
+                <bouton class="btn btn-primary" id="View_avis_user" data-bs-toggle="collapse" data-bs-target="#avis' . $utilisateur['Id_utilisateur'] . '">Afficher les avis</button>
+            </div>
         </div>
     </div>
 
