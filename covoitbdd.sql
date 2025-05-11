@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 01 mai 2025 à 21:38
+-- Généré le : dim. 11 mai 2025 à 11:29
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -22,8 +22,7 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-CREATE DATABASE IF NOT EXISTS `covoitbdd` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `covoitbdd`;
+
 --
 -- Structure de la table `avis`
 --
@@ -80,15 +79,19 @@ CREATE TABLE `covoiturage` (
 --
 
 INSERT INTO `covoiturage` (`Id_covoiturage`, `date_depart`, `heure_depart`, `lieu_depart`, `date_arrivee`, `heure_arrivee`, `lieu_arrivee`, `statut`, `nb_place`, `prix_personne`, `Id_voiture`) VALUES
-(2, '2025-03-12', '10:20', 'tolouse', '2025-03-25', '18:55', 'paris', 'disponible', 4, 55, 1),
+(2, '2025-03-12', '10:20', 'tolouse', '2025-03-25', '18:55', 'paris', 'en cours', 4, 55, 1),
 (3, '2025-02-27', '09:10', 'Lyon', '2025-02-27', '14:25', 'Narbonne', 'Disponible', 2, 20, 2),
-(4, '2025-03-23', '10:20', 'narbonne', '2025-03-23', '18:55', 'paris', 'disponible', 4, 55, 2),
-(5, '2025-03-23', '08:12', 'narbonne', '2025-03-23', '14:25', 'paris', 'disponible', 0, 30, 1),
-(6, '2025-04-24', '10:20', 'lyon', '2025-04-24', '14:25', 'bordeaux', 'disponible', 3, 22, 2),
+(4, '2025-03-23', '10:20', 'narbonne', '2025-03-23', '18:55', 'paris', 'en cours', 4, 55, 2),
+(5, '2025-03-23', '08:12', 'narbonne', '2025-03-23', '14:25', 'paris', 'en cours', 0, 30, 1),
+(6, '2025-04-24', '10:20', 'lyon', '2025-04-24', '14:25', 'bordeaux', 'en cours', 3, 22, 2),
 (7, '2025-04-15', '07:05', 'Perpignan', '2025-04-15', '14:25', 'Pau', 'Disponible', 2, 26, 2),
-(8, '2025-04-15', '10:20', 'brest', '2025-04-15', '14:25', 'paris', 'disponible', 4, 30, 3),
+(8, '2025-04-15', '10:20', 'brest', '2025-04-15', '14:25', 'paris', 'en cours', 4, 30, 3),
 (9, '2025-04-15', '09:10', 'brest', '2025-04-15', '14:25', 'paris', 'Disponible', 2, 20, 1),
-(10, '2025-04-15', '06:00', 'brest', '2025-04-15', '9:25', 'paris', 'disponible', 2, 24, 2);
+(10, '2025-04-15', '06:00', 'brest', '2025-04-15', '9:25', 'paris', 'en cours', 2, 24, 2),
+(21, '2025-08-23', '10:20', 'tolouse', '2025-08-23', '14:25', 'paris', 'en cours', 2, 30, 2),
+(22, '2025-08-02', '10:00', 'toulouse', NULL, NULL, 'paris', 'en cours', 2, 30, 1),
+(23, '2025-05-28', '10:00', 'toulouse', NULL, NULL, 'paris', 'en cours', 1, 20, 1),
+(24, '2025-05-30', '10:30', 'Lézignan-corbières', NULL, NULL, 'Carcassonne', 'en cours', 2, 5, 6);
 
 -- --------------------------------------------------------
 
@@ -214,7 +217,8 @@ INSERT INTO `reservation` (`Id_reservation`, `Id_utilisateur`, `Id_covoiturage`,
 (7, 7, 5, 1),
 (8, 7, 4, 3),
 (9, 7, 4, 1),
-(10, 7, 5, 1);
+(10, 7, 5, 1),
+(11, 7, 23, 1);
 
 -- --------------------------------------------------------
 
@@ -296,7 +300,11 @@ CREATE TABLE `voiture` (
 INSERT INTO `voiture` (`Id_voiture`, `modele`, `immatriculation`, `energie`, `couleur`, `date_premiere_immatriculation`, `Id_utilisateur`, `Id_marque`) VALUES
 (1, 'toyota', 'BH-485-GR', 'essence', 'rouge', '12/06/2024', 1, 1),
 (2, 'nissan', 'JK-364-PO', 'Diesel', 'noire', '30/01/2007', 2, 2),
-(3, 'modelo', 'BJ-160-MX', 'Electrique', 'Blue', '12/02/2025', 4, 8);
+(3, 'modelo', 'BJ-160-MX', 'Electrique', 'Blue', '12/02/2025', 4, 8),
+(4, 'A145', 'NJ-195JK', 'hybride', NULL, '2017-03-12', 7, 1),
+(5, 'A145', 'AZ-800-YU', 'hybride', NULL, '2020-08-20', 7, 6),
+(6, 'E250', 'ZK-189-BH', 'diesel', NULL, '2023-12-12', 7, 7),
+(7, '3008', 'BJ-145-AZ', 'hybride', NULL, '2024-12-03', 7, 4);
 
 --
 -- Index pour les tables déchargées
@@ -404,7 +412,7 @@ ALTER TABLE `configuration`
 -- AUTO_INCREMENT pour la table `covoiturage`
 --
 ALTER TABLE `covoiturage`
-  MODIFY `Id_covoiturage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id_covoiturage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `marque`
@@ -422,7 +430,7 @@ ALTER TABLE `parametre`
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `Id_reservation` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `Id_reservation` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `role`
@@ -440,7 +448,7 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `voiture`
 --
 ALTER TABLE `voiture`
-  MODIFY `Id_voiture` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `Id_voiture` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées
