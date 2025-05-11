@@ -106,7 +106,7 @@ include 'includes/header.php';
                 <?php
                 // Requête pour récupérer les trajets proposés par l'utilisateur
                 $Id_utilisateur = $_SESSION['user']['Id_utilisateur'];
-                $sql = "SELECT c.date_depart,c.heure_depart,c.lieu_depart,c.lieu_arrivee,c.nb_place FROM covoiturage AS c
+                $sql = "SELECT c.date_depart,c.heure_depart,c.lieu_depart,c.lieu_arrivee,c.nb_place,c.Id_covoiturage FROM covoiturage AS c
                     JOIN voiture v ON v.Id_marque = c.Id_voiture
                     JOIN utilisateur u ON u.Id_utilisateur = v.Id_utilisateur
                     WHERE u.Id_utilisateur = $Id_utilisateur";
@@ -122,7 +122,7 @@ include 'includes/header.php';
                         <td> <?= $trajet['lieu_depart'] ?> </td>
                         <td> <?= $trajet['lieu_arrivee'] ?> </td>
                         <td> <?= $trajet['nb_place'] ?> </td>
-                        <td><a href="" class="start_cov">Démarrer</a></td>
+                        <td><a id="<?= $trajet['Id_covoiturage'] ?>" class="start_cov">Démarrer</a></td>
                         <!-- TODO Crée et executer la fonction javascript pour demarrer(changer en arreter trajet) le trajet et envoyer un mail aux participant du covoiturage-->
                         <script>
 
