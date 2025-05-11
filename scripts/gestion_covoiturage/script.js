@@ -12,12 +12,10 @@ function startOrStopCovoit() {
             let startOrStop = "D"
             if (clickedButton.innerText == "Stopper") {
                 startOrStop = "T"
-                // TODO Supprimer le trajet de la DB
             } else {
                 clickedButton.innerText = "En cours"
-                // TODO Mettre "En cours" dans le DB
             }
-            updateStatus(startOrStop)
+            updateStatus(clickedButton, startOrStop)
         });
     });
 }
@@ -26,9 +24,10 @@ startOrStopCovoit();
 
 /**
  * Change le statut du covoiturage en BDD + envoi mail
- * @param {string} startOrStop Le statut : D pour Démarré, T pour Terminé
+ * @param {HTMLElement} clickedButton 
+ * @param {string} startOrStop 
  */
-function updateStatus(startOrStop) {
+function updateStatus(clickedButton, startOrStop) {
     $.ajax({
     // Fichier qui est appelé
     url: "scripts/gestion_covoiturage/gestion_covoiturage.php",
@@ -38,14 +37,15 @@ function updateStatus(startOrStop) {
     data: { startOrStop: startOrStop },
     success: function (data) {
         try {
-            // Aficher un message (debug) => enlever quand le TODO sera terminé
+            // Alert + MAJ du texte du lien
             if (data == "D") {
-                alert("votre trajet à demarré , passez un bon voyage!")
-                
-            }else{
-                alert("votre trajet terminer , merci pour votre confiance!")
+                alert("votre trajet à demarré , passez un bon voyage !")
+                clickedButton.innerText == "En cours"
+            } else {
+                alert("votre trajet terminé , merci pour votre confiance !")
+                clickedButton.innerText == "Terminé"
             }
-            // TODO : MAJ DB + envoyer mail
+            // TODO envoyer mail
         } catch (e) {
             console.error("Erreur JSON :", e);
         }
