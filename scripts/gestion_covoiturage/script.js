@@ -47,7 +47,7 @@ function updateStatus(clickedButton, startOrStop) {
                 alert("votre trajet terminé , merci pour votre confiance !")
                 clickedButton.innerText = "Terminé"
             }
-            // TODO envoyer mail
+            // TODO envoyer email au conducteur et passager
         } catch (e) {
             console.error("Erreur JSON :", e);
         }
