@@ -41,6 +41,7 @@ function updateStatus(startOrStop) {
             // Aficher un message (debug) => enlever quand le TODO sera terminé
             if (data == "D") {
                 alert("votre trajet à demarré , passez un bon voyage!")
+                
             }else{
                 alert("votre trajet terminer , merci pour votre confiance!")
             }
