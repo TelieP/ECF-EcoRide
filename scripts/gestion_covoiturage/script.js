@@ -10,7 +10,7 @@ function startOrStopCovoit() {
             const clickedButton = event.currentTarget
             // On vérifie si on démarre ou on stoppe le trajet
             let startOrStop = "D"
-            if (clickedButton.innerText == "Stopper") {
+            if (clickedButton.innerText == "En cours") {
                 startOrStop = "T"
             }
             // Appel à la fonction qui met à jour le statut

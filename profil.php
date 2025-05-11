@@ -122,7 +122,7 @@ include 'includes/header.php';
                         <td> <?= $trajet['lieu_depart'] ?> </td>
                         <td> <?= $trajet['lieu_arrivee'] ?> </td>
                         <td> <?= $trajet['nb_place'] ?> </td>
-                        <td><a id="<?= $trajet['Id_covoiturage'] ?>" class="start_cov">Démarrer</a></td>
+                        <td><button><a id="<?= $trajet['Id_covoiturage'] ?>" class="start_cov">Démarrer</a></button></td>
                         <!-- TODO Crée et executer la fonction javascript pour demarrer(changer en arreter trajet) le trajet et envoyer un mail aux participant du covoiturage-->
                         <script>
 

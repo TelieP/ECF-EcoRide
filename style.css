@@ -115,3 +115,9 @@ body {
 #navbar {
   background-color: #115441;
 }
+
+.start_cov {
+  background-color: #054d47;
+  color: white;
+  border-radius: 4px;
+}
