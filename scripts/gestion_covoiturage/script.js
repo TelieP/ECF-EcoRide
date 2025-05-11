@@ -12,9 +12,8 @@ function startOrStopCovoit() {
             let startOrStop = "D"
             if (clickedButton.innerText == "Stopper") {
                 startOrStop = "T"
-            } else {
-                clickedButton.innerText = "En cours"
             }
+            // Appel à la fonction qui met à jour le statut
             updateStatus(clickedButton, startOrStop)
         });
     });
@@ -39,9 +38,11 @@ function updateStatus(clickedButton, startOrStop) {
         try {
             // Alert + MAJ du texte du lien
             if (data == "D") {
+                // On a reçu "D" : le trajet est en cours
                 alert("votre trajet à demarré , passez un bon voyage !")
                 clickedButton.innerText == "En cours"
             } else {
+                // On a reçu "T" : le trajet est terminé
                 alert("votre trajet terminé , merci pour votre confiance !")
                 clickedButton.innerText == "Terminé"
             }
