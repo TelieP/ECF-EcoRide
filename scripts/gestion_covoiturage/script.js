@@ -41,11 +41,11 @@ function updateStatus(clickedButton, startOrStop) {
             if (data == "D") {
                 // On a reçu "D" : le trajet est en cours
                 alert("votre trajet à demarré , passez un bon voyage !")
-                clickedButton.innerText == "En cours"
+                clickedButton.innerText = "En cours"
             } else {
                 // On a reçu "T" : le trajet est terminé
                 alert("votre trajet terminé , merci pour votre confiance !")
-                clickedButton.innerText == "Terminé"
+                clickedButton.innerText = "Terminé"
             }
             // TODO envoyer mail
         } catch (e) {
