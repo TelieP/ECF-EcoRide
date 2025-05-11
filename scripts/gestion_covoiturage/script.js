@@ -27,13 +27,14 @@ startOrStopCovoit();
  * @param {string} startOrStop 
  */
 function updateStatus(clickedButton, startOrStop) {
+    idTrajet = clickedButton.getAttribute('id');
     $.ajax({
     // Fichier qui est appelé
     url: "scripts/gestion_covoiturage/gestion_covoiturage.php",
     // Méthode POST pour mettre à jour la DB
     method: "POST",
     // On passe la variable status (D ou T)
-    data: { startOrStop: startOrStop },
+    data: { startOrStop: startOrStop, idTrajet: idTrajet },
     success: function (data) {
         try {
             // Alert + MAJ du texte du lien
