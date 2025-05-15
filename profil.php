@@ -132,6 +132,11 @@ include 'includes/header.php';
                         // $emails = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         // var_dump($emails);
 
+                        $to = "test@mailhog.local";
+                        $subject = "Hey, I’m Pi Hog Pi!";
+                        $body = "Hello, MailHog!";
+                        $headers = "From: pihogpi@kinsta.com" . "\r\n";
+                        mail($to, $subject, $body, $headers);
                         // foreach ($emails as $email) {
                         //     // Envoi d'un email à chaque participant du covoiturage
                         //     $to = $email;
