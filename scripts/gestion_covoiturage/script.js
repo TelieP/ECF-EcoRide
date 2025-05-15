@@ -48,6 +48,7 @@ function updateStatus(clickedButton, startOrStop) {
                 clickedButton.innerText = "Terminé"
             }
             // TODO envoyer email au conducteur et passager
+            
         } catch (e) {
             console.error("Erreur JSON :", e);
         }

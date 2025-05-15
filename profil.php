@@ -124,6 +124,24 @@ include 'includes/header.php';
                         <td> <?= $trajet['nb_place'] ?> </td>
                         <td><button><a id="<?= $trajet['Id_covoiturage'] ?>" class="start_cov">Démarrer</a></button></td>
                         <!-- TODO Crée et executer la fonction javascript pour demarrer(changer en arreter trajet) le trajet et envoyer un mail aux participant du covoiturage-->
+                        <?php
+                        $emails = "SELECT email FROM reservation AS r
+                                   JOIN utilisateur AS u ON u.Id_utilisateur=r.Id_reservation";
+                        $stmt = $conn->prepare($emails);
+                        $stmt->execute();
+                        $emails = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                        var_dump($emails);
+
+                        foreach ($emails as $email) {
+                            // Envoi d'un email à chaque participant du covoiturage
+                            $to = $email;
+                            $subject = "Trajet démarré";
+                            $message = "Le trajet que vous avez réservé a été démarré.";
+
+                            mail($to, $subject, $message);
+                        }
+
+                        ?>
                         <script>
 
                         </script>
