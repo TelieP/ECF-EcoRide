@@ -1,6 +1,6 @@
 
 
-CREATE DATABASE IF NOT EXISTS `covoitbdd` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE DATABASE IF NOT EXISTS `covoitbdd`  DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `covoitbdd`;
 
 
@@ -61,31 +61,23 @@ INSERT INTO `covoiturage` (`Id_covoiturage`, `date_depart`, `heure_depart`, `lie
 (23, '2025-05-28', '10:00', 'toulouse', NULL, NULL, 'paris', 'en cours', 1, 20, 1),
 (24, '2025-05-30', '10:30', 'Lézignan-corbières', NULL, NULL, 'Carcassonne', 'en cours', 2, 5, 6);
 
--- --------------------------------------------------------
 
---
--- Structure de la table `depose`
---
 
 CREATE TABLE `depose` (
   `Id_utilisateur` int(11) NOT NULL,
   `Id_avis` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `marque`
---
+
+
 
 CREATE TABLE `marque` (
   `Id_marque` int(11) NOT NULL,
   `libelle` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `marque`
---
+
 
 INSERT INTO `marque` (`Id_marque`, `libelle`) VALUES
 (1, 'Toyota'),
@@ -110,11 +102,7 @@ INSERT INTO `marque` (`Id_marque`, `libelle`) VALUES
 (20, 'Ford'),
 (21, 'Honda');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `parametre`
---
 
 CREATE TABLE `parametre` (
   `Id_parametre` int(11) NOT NULL,
@@ -123,31 +111,20 @@ CREATE TABLE `parametre` (
   `Id_configuration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `participe`
---
 
 CREATE TABLE `participe` (
   `Id_utilisateur` int(11) NOT NULL,
   `Id_covoiturage` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Structure de la table `possede`
---
 
 CREATE TABLE `possede` (
   `Id_role` int(11) NOT NULL,
   `Id_utilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `possede`
---
+
 
 INSERT INTO `possede` (`Id_role`, `Id_utilisateur`) VALUES
 (2, 7),
@@ -171,9 +148,7 @@ CREATE TABLE `reservation` (
   `places_reserves` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `reservation`
---
+
 
 INSERT INTO `reservation` (`Id_reservation`, `Id_utilisateur`, `Id_covoiturage`, `places_reserves`) VALUES
 (1, 4, 5, 2),
@@ -188,11 +163,7 @@ INSERT INTO `reservation` (`Id_reservation`, `Id_utilisateur`, `Id_covoiturage`,
 (10, 7, 5, 1),
 (11, 7, 23, 1);
 
--- --------------------------------------------------------
 
---
--- Structure de la table `role`
---
 
 CREATE TABLE `role` (
   `Id_role` int(11) NOT NULL,
@@ -208,11 +179,7 @@ INSERT INTO `role` (`Id_role`, `libelle`) VALUES
 (3, 'employé'),
 (4, 'Admin');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `utilisateur`
---
 
 CREATE TABLE `utilisateur` (
   `Id_utilisateur` int(11) NOT NULL,
@@ -227,9 +194,7 @@ CREATE TABLE `utilisateur` (
   `pseudo` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `utilisateur`
---
+
 
 INSERT INTO `utilisateur` (`Id_utilisateur`, `nom`, `prenom`, `email`, `password`, `telephone`, `adresse`, `date_naissance`, `photo`, `pseudo`) VALUES
 (1, 'FONGANG Telie', 'Parfait', 'paflesix@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$MkJEUHFCNmJhOUV5dTMycA$YiaCSsIgaFrnis7KOvKGEfmB+QGAiJeQhhIaNpmJ9Gc', '0615487341', '53 avenue georges clemenceau', '2000-12-12', 'images/conducteurs/imguser01.jpg', 'baba'),
@@ -244,11 +209,7 @@ INSERT INTO `utilisateur` (`Id_utilisateur`, `nom`, `prenom`, `email`, `password
 (12, 'test2', 'test2', 'test2000000@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$T0Q4ajA4TUJFQmphV3NseA$miJnJjDYCkVb+aRUFOttsfwBBwbO01TX5IFbTjaSbFQ', '0604050201', '2 avenue jerome ', '1988-09-06', 'images/conducteurs/pexels-cottonbro-8358795.jpg', 'test2'),
 (14, 'admin', 'admin', 'admin@admin.fr', '$argon2id$v=19$m=65536,t=4,p=1$ajlSZ2U4WkVqSGNEZE5MUQ$twbkhl1MLIS582bEucZXwEmvResmUYbBBGgNDF1WaIA', '0101010101', '2 espace administrateur 92000 admin', '1960-01-01', 'images//conducteurs//', 'admin');
 
--- --------------------------------------------------------
 
---
--- Structure de la table `voiture`
---
 
 CREATE TABLE `voiture` (
   `Id_voiture` int(11) NOT NULL,
@@ -261,9 +222,7 @@ CREATE TABLE `voiture` (
   `Id_marque` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `voiture`
---
+
 
 INSERT INTO `voiture` (`Id_voiture`, `modele`, `immatriculation`, `energie`, `couleur`, `date_premiere_immatriculation`, `Id_utilisateur`, `Id_marque`) VALUES
 (1, 'toyota', 'BH-485-GR', 'essence', 'rouge', '12/06/2024', 1, 1),
@@ -274,67 +233,45 @@ INSERT INTO `voiture` (`Id_voiture`, `modele`, `immatriculation`, `energie`, `co
 (6, 'E250', 'ZK-189-BH', 'diesel', NULL, '2023-12-12', 7, 7),
 (7, '3008', 'BJ-145-AZ', 'hybride', NULL, '2024-12-03', 7, 4);
 
---
--- Index pour les tables déchargées
---
 
---
--- Index pour la table `avis`
---
 ALTER TABLE `avis`
   ADD PRIMARY KEY (`Id_avis`);
 
---
--- Index pour la table `configuration`
---
+
 ALTER TABLE `configuration`
   ADD PRIMARY KEY (`Id_configuration`),
   ADD KEY `Id_utilisateur` (`Id_utilisateur`);
 
---
--- Index pour la table `covoiturage`
---
+
 ALTER TABLE `covoiturage`
   ADD PRIMARY KEY (`Id_covoiturage`),
   ADD KEY `Id_voiture` (`Id_voiture`);
 
---
--- Index pour la table `depose`
---
+
 ALTER TABLE `depose`
   ADD PRIMARY KEY (`Id_utilisateur`,`Id_avis`),
   ADD KEY `Id_avis` (`Id_avis`);
 
---
--- Index pour la table `marque`
---
+
 ALTER TABLE `marque`
   ADD PRIMARY KEY (`Id_marque`);
 
---
--- Index pour la table `parametre`
---
+
 ALTER TABLE `parametre`
   ADD PRIMARY KEY (`Id_parametre`),
   ADD KEY `Id_configuration` (`Id_configuration`);
 
---
--- Index pour la table `participe`
---
+
 ALTER TABLE `participe`
   ADD PRIMARY KEY (`Id_utilisateur`,`Id_covoiturage`),
   ADD KEY `Id_covoiturage` (`Id_covoiturage`);
 
---
--- Index pour la table `possede`
---
+
 ALTER TABLE `possede`
   ADD PRIMARY KEY (`Id_role`,`Id_utilisateur`),
   ADD KEY `Id_utilisateur` (`Id_utilisateur`);
 
---
--- Index pour la table `reservation`
---
+
 ALTER TABLE `reservation`
   ADD PRIMARY KEY (`Id_reservation`),
   ADD KEY `Id_utilisateur` (`Id_utilisateur`),
