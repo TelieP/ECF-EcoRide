@@ -18,7 +18,7 @@ INSERT INTO `avis` (`Id_avis`, `commentaire`, `note`, `statut`) VALUES
 (2, 'bien ', '5', 'En attente'),
 (4, 'conductrice très aimable , et gentille , je recomm', '5', NULL);
 
--- --------------------------------------------------------
+
 
 
 CREATE TABLE `configuration` (
@@ -26,7 +26,7 @@ CREATE TABLE `configuration` (
   `Id_utilisateur` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
+
 
 
 
@@ -135,11 +135,7 @@ INSERT INTO `possede` (`Id_role`, `Id_utilisateur`) VALUES
 (2, 12),
 (4, 14);
 
--- --------------------------------------------------------
 
---
--- Structure de la table `reservation`
---
 
 CREATE TABLE `reservation` (
   `Id_reservation` int(255) NOT NULL,
@@ -170,9 +166,6 @@ CREATE TABLE `role` (
   `libelle` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Déchargement des données de la table `role`
---
 
 INSERT INTO `role` (`Id_role`, `libelle`) VALUES
 (2, 'user'),
@@ -277,142 +270,91 @@ ALTER TABLE `reservation`
   ADD KEY `Id_utilisateur` (`Id_utilisateur`),
   ADD KEY `Id_covoiturage` (`Id_covoiturage`);
 
---
--- Index pour la table `role`
---
+
 ALTER TABLE `role`
   ADD PRIMARY KEY (`Id_role`);
 
---
--- Index pour la table `utilisateur`
---
+
 ALTER TABLE `utilisateur`
   ADD PRIMARY KEY (`Id_utilisateur`);
 
---
--- Index pour la table `voiture`
---
+
 ALTER TABLE `voiture`
   ADD PRIMARY KEY (`Id_voiture`),
   ADD KEY `Id_utilisateur` (`Id_utilisateur`),
   ADD KEY `Id_marque` (`Id_marque`);
 
---
--- AUTO_INCREMENT pour les tables déchargées
---
 
---
--- AUTO_INCREMENT pour la table `avis`
---
 ALTER TABLE `avis`
   MODIFY `Id_avis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT pour la table `configuration`
---
+
 ALTER TABLE `configuration`
   MODIFY `Id_configuration` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT pour la table `covoiturage`
---
+
 ALTER TABLE `covoiturage`
   MODIFY `Id_covoiturage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
---
--- AUTO_INCREMENT pour la table `marque`
---
+
 ALTER TABLE `marque`
   MODIFY `Id_marque` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
---
--- AUTO_INCREMENT pour la table `parametre`
---
+
 ALTER TABLE `parametre`
   MODIFY `Id_parametre` int(11) NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT pour la table `reservation`
---
+
 ALTER TABLE `reservation`
   MODIFY `Id_reservation` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
---
--- AUTO_INCREMENT pour la table `role`
---
+
 ALTER TABLE `role`
   MODIFY `Id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
---
--- AUTO_INCREMENT pour la table `utilisateur`
---
+
 ALTER TABLE `utilisateur`
   MODIFY `Id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
---
--- AUTO_INCREMENT pour la table `voiture`
---
+
 ALTER TABLE `voiture`
   MODIFY `Id_voiture` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
---
--- Contraintes pour les tables déchargées
---
 
---
--- Contraintes pour la table `configuration`
---
 ALTER TABLE `configuration`
   ADD CONSTRAINT `configuration_ibfk_1` FOREIGN KEY (`Id_utilisateur`) REFERENCES `utilisateur` (`Id_utilisateur`);
 
---
--- Contraintes pour la table `covoiturage`
---
+
 ALTER TABLE `covoiturage`
   ADD CONSTRAINT `covoiturage_ibfk_1` FOREIGN KEY (`Id_voiture`) REFERENCES `voiture` (`Id_voiture`);
 
---
--- Contraintes pour la table `depose`
---
+
 ALTER TABLE `depose`
   ADD CONSTRAINT `depose_ibfk_1` FOREIGN KEY (`Id_utilisateur`) REFERENCES `utilisateur` (`Id_utilisateur`),
   ADD CONSTRAINT `depose_ibfk_2` FOREIGN KEY (`Id_avis`) REFERENCES `avis` (`Id_avis`);
 
---
--- Contraintes pour la table `parametre`
---
+
 ALTER TABLE `parametre`
   ADD CONSTRAINT `parametre_ibfk_1` FOREIGN KEY (`Id_configuration`) REFERENCES `configuration` (`Id_configuration`);
 
---
--- Contraintes pour la table `participe`
---
+
 ALTER TABLE `participe`
   ADD CONSTRAINT `participe_ibfk_1` FOREIGN KEY (`Id_utilisateur`) REFERENCES `utilisateur` (`Id_utilisateur`),
   ADD CONSTRAINT `participe_ibfk_2` FOREIGN KEY (`Id_covoiturage`) REFERENCES `covoiturage` (`Id_covoiturage`);
 
---
--- Contraintes pour la table `possede`
---
+
 ALTER TABLE `possede`
   ADD CONSTRAINT `possede_ibfk_1` FOREIGN KEY (`Id_role`) REFERENCES `role` (`Id_role`),
   ADD CONSTRAINT `possede_ibfk_2` FOREIGN KEY (`Id_utilisateur`) REFERENCES `utilisateur` (`Id_utilisateur`);
 
---
--- Contraintes pour la table `reservation`
---
+
 ALTER TABLE `reservation`
   ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`Id_utilisateur`) REFERENCES `utilisateur` (`Id_utilisateur`),
   ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`Id_covoiturage`) REFERENCES `covoiturage` (`Id_covoiturage`);
 
---
--- Contraintes pour la table `voiture`
---
+
 ALTER TABLE `voiture`
   ADD CONSTRAINT `voiture_ibfk_1` FOREIGN KEY (`Id_utilisateur`) REFERENCES `utilisateur` (`Id_utilisateur`),
   ADD CONSTRAINT `voiture_ibfk_2` FOREIGN KEY (`Id_marque`) REFERENCES `marque` (`Id_marque`);
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
