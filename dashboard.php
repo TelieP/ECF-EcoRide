@@ -25,37 +25,41 @@ if (isset($_SESSION['user']) && $_SESSION['user']['Id_utilisateur'] == 7) {
     exit();
 }
 ?>
-<?php
-include 'includes/fonctions.php';
-//permet de modérer les avis des utilisateurs
-echo 'UTILISATEURS INSCRITS SUR LE site:';
-$utilisateurs = afficherUtilisateurs($conn);
-foreach ($utilisateurs as $utilisateur) { ?>
-    <div class="container d-flex-row   mt-6  flex-direction:wrap " style="width: 100%;">
-        <div class="card mb-3 " style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title"> <?= htmlspecialchars($utilisateur['nom']) ?> <?= htmlspecialchars($utilisateur['prenom']) ?> </h5>
-                <p class="card-text">Email: <?= htmlspecialchars($utilisateur['email']) ?> </p>
-                <p class="card-text">Téléphone:<?= htmlspecialchars($utilisateur['telephone']) ?></p>
-                <p class="card-text">Adresse: <?= htmlspecialchars($utilisateur['adresse']) ?></p>
-                <!-- ajouter un bouton pour permet de supprimer un utilisateur -->
+<h1>LISTE DES UTILISATEURS </h1>
+<div class="list_users">
+
+    <?php
+    include 'includes/fonctions.php';
+    include 'avis.php';
 
 
-                <button class="btn btn-danger" id="suppr_user" data-bs-toggle="collapse" data-bs-target="#avis<?php echo $utilisateur['Id_utilisateur']; ?>">Supprimer</button>
-                <!-- lier le bouton supprimer à la fonction supprimerUtilisateur -->
-                <bouton class="btn btn-primary" id="View_avis_user" data-bs-toggle="collapse" data-bs-target="#avis' . $utilisateur['Id_utilisateur'] . '">Afficher les avis</button>
+    $utilisateurs = afficherUtilisateurs($conn);
+    foreach ($utilisateurs as $utilisateur) { ?>
+        <div class="container d-flex-row   mt-6  flex-direction:wrap " style="width: 100%;">
+            <div class="card mb-3 " style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title"> <?= htmlspecialchars($utilisateur['nom']) ?> <?= htmlspecialchars($utilisateur['prenom']) ?> </h5>
+                    <p class="card-text">Email: <?= htmlspecialchars($utilisateur['email']) ?> </p>
+                    <p class="card-text">Téléphone:<?= htmlspecialchars($utilisateur['telephone']) ?></p>
+                    <p class="card-text">Adresse: <?= htmlspecialchars($utilisateur['adresse']) ?></p>
+                    <!-- bouton pour supprimer l'utilisateur de la base de données -->
+                    <div class="card card-body">
+                        <form method="POST" action="delete_user.php">
+                            <input type="hidden" name="Id_utilisateur" value="<?= htmlspecialchars($utilisateur['Id_utilisateur']) ?>">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </div>
+                    <div>
+                        <bouton class="btn btn-primary" id="View_avis_user" data-bs-toggle="collapse" data-bs-target="#avis' . $utilisateur['Id_utilisateur'] . '">Afficher les avis</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    <?php
+    }
+    ?>
 
-<?php
-}
-
-
-
-
-?>
-
+</div>
 
 <h1>Tableau de Bord Administrateur</h1>
 

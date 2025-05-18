@@ -122,12 +122,17 @@ body {
   border-radius: 4px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 750px) {
   .form-overlay {
     display: flex;
-    flex-direction: row;
-    width: 30%;
-    height: 30%;
-
+    flex-direction: column;
   }
+}
+
+
+.list_users{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
 }

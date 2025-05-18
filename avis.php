@@ -8,7 +8,6 @@ if ($_SESSION && $_SESSION["user"]['Id_utilisateur']) {
         $profil = $_SESSION["user"]['Id_utilisateur'];
 }
 if ($profil) {
-        // Récupérer les avis de l'utilisateur
 
         $sql = "SELECT c.date_depart, c.heure_depart, c.lieu_depart, c.lieu_arrivee, r.places_reserves
                         FROM reservation AS r
@@ -18,10 +17,7 @@ if ($profil) {
         $stmt->bindValue(':Id_utilisateur', $profil);
         $stmt->execute();
         $avis = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        var_dump($avis);
-
 ?>
-
         <form method="post" class="form-group"><br>
                 <div class="mb-3 text-center" id="form-controler">
                         <div class="mb-3">
@@ -36,17 +32,14 @@ if ($profil) {
                 </div>
         </form>
 <?php
-        // envoi de l'avis dans la base de données
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $avis = $_POST['story'];
                 $note = $_POST['note'];
-
                 $sql = "INSERT INTO avis (commentaire, note, statut)
                  VALUES (:avis, :note, :'En attente')";
                 $stmt = $conn->prepare($sql);
                 $stmt->bindValue(':note', $note);
                 $stmt->bindValue(':avis', $avis);
-
                 if ($stmt->execute()) {
                         echo "Votre avis a été enregistré avec succès !";
                         header("Location: profil.php");
