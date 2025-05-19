@@ -30,7 +30,7 @@ if (isset($_SESSION['user']) && $_SESSION['user']['Id_utilisateur'] == 7) {
 
     <?php
     include 'includes/fonctions.php';
-    include 'avis.php';
+
 
 
     $utilisateurs = afficherUtilisateurs($conn);
