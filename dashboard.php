@@ -126,8 +126,6 @@ if (isset($_SESSION['user']) && $_SESSION['user']['Id_utilisateur'] == 7) {
             }
         }
     };
-
-
     new Chart(document.getElementById('covoituragesChart'), covoituragesConfig);
     new Chart(document.getElementById('utilisateursChart'), utilisateursConfig);
 </script>
