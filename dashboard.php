@@ -2,17 +2,15 @@
 session_start();
 include 'includes/header.php';
 include 'includes/connect.php';
-// var_dump($_SESSION);
-// die;
-// On vérifie si l'utilisateur est connecté et a le rôle d'administrateur
+
 if (isset($_SESSION['user']) && $_SESSION['user']['Id_utilisateur'] == 7) {
-    // On récupére les statistiques depuis la base de données
+
     try {
-        // Nombre total de covoiturages
+
         $stmt = $conn->query("SELECT COUNT(*) AS total_covoiturages FROM covoiturage");
         $totalCovoiturages = $stmt->fetch(PDO::FETCH_ASSOC)['total_covoiturages'];
 
-        // Nombre total d'utilisateurs
+
         $stmt = $conn->query("SELECT COUNT(*) AS total_utilisateurs FROM utilisateur");
         $totalUtilisateurs = $stmt->fetch(PDO::FETCH_ASSOC)['total_utilisateurs'];
     } catch (PDOException $e) {
@@ -20,7 +18,7 @@ if (isset($_SESSION['user']) && $_SESSION['user']['Id_utilisateur'] == 7) {
         exit();
     }
 } else {
-    // L'utilisateur n'est pas un administrateur, rediriger vers la page de connexion ou d'accueil
+
     header('Location: index.php');
     exit();
 }
@@ -42,7 +40,7 @@ if (isset($_SESSION['user']) && $_SESSION['user']['Id_utilisateur'] == 7) {
                     <p class="card-text">Email: <?= htmlspecialchars($utilisateur['email']) ?> </p>
                     <p class="card-text">Téléphone:<?= htmlspecialchars($utilisateur['telephone']) ?></p>
                     <p class="card-text">Adresse: <?= htmlspecialchars($utilisateur['adresse']) ?></p>
-                    <!-- bouton pour supprimer l'utilisateur de la base de données -->
+
                     <div class="card card-body">
                         <form method="POST" action="delete_user.php">
                             <input type="hidden" name="Id_utilisateur" value="<?= htmlspecialchars($utilisateur['Id_utilisateur']) ?>">
@@ -78,7 +76,6 @@ if (isset($_SESSION['user']) && $_SESSION['user']['Id_utilisateur'] == 7) {
 </div>
 
 <script>
-    // Données pour le graphique des covoiturages
     const covoituragesData = {
         labels: ['Covoiturages'],
         datasets: [{
@@ -90,7 +87,7 @@ if (isset($_SESSION['user']) && $_SESSION['user']['Id_utilisateur'] == 7) {
         }]
     };
 
-    // Données pour le graphique des utilisateurs
+
     const utilisateursData = {
         labels: ['Utilisateurs'],
         datasets: [{
@@ -102,7 +99,7 @@ if (isset($_SESSION['user']) && $_SESSION['user']['Id_utilisateur'] == 7) {
         }]
     };
 
-    // Configuration du graphique des covoiturages
+
     const covoituragesConfig = {
         type: 'bar',
         data: covoituragesData,
@@ -116,7 +113,7 @@ if (isset($_SESSION['user']) && $_SESSION['user']['Id_utilisateur'] == 7) {
         }
     };
 
-    // Configuration du graphique des utilisateurs
+
     const utilisateursConfig = {
         type: 'bar',
         data: utilisateursData,
@@ -130,7 +127,7 @@ if (isset($_SESSION['user']) && $_SESSION['user']['Id_utilisateur'] == 7) {
         }
     };
 
-    // Création des graphiques
+
     new Chart(document.getElementById('covoituragesChart'), covoituragesConfig);
     new Chart(document.getElementById('utilisateursChart'), utilisateursConfig);
 </script>

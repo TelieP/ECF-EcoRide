@@ -1,20 +1,12 @@
 <?php
-session_start(); // Démarrer la session
+session_start();
 require_once 'includes/connect.php';
 require_once 'includes/header.php';
-// var_dump($_SESSION);
-// Vérifier si l'utilisateur est connecté   
-if (isset($_SESSION['user'])) {
-    // die("Veuillez vous connecter pour ajouter un covoiturage." . " <a href='connexion.php'>Se connecter</a>");
-    // var_dump($_SESSION['user']);
-    // Vérifier si le formulaire a été soumis
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        // Vérifier si l'utilisateur a le rôle de conducteur
-        // if ($_SESSION['role'] != 'conducteur') {
-        //     die("Vous devez être conducteur pour ajouter un covoiturage.");
-        // }
 
-        // Vérifier si le formulaire a été soumis
+if (isset($_SESSION['user'])) {
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
 
         $depart = htmlspecialchars($_POST['lieu_depart']);
         $arrivee = htmlspecialchars($_POST['lieu_arrivee']);
@@ -24,7 +16,7 @@ if (isset($_SESSION['user'])) {
         $statut = htmlspecialchars($_POST['statut']);
         $prix = htmlspecialchars($_POST['prix']);
         $voiture = htmlspecialchars($_POST['voiture']);
-        //on recupere les infos du formulaire et on les stock en base de données
+
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $stmt = $conn->prepare("INSERT INTO `covoiturage` (`date_depart`, `heure_depart`, `lieu_depart`, `lieu_arrivee`, `statut`, `nb_place`, `prix_personne`,Id_voiture) VALUES (:date_depart, :heure_depart, :lieu_depart, :lieu_arrivee, :statut, :nb_place, :prix, :Id_voiture)");
@@ -36,7 +28,7 @@ if (isset($_SESSION['user'])) {
             $stmt->bindParam(':statut', $statut, PDO::PARAM_STR);
             $stmt->bindParam(':prix', $prix, PDO::PARAM_INT);
             $stmt->bindParam(':Id_voiture', $voiture, PDO::PARAM_INT);
-            // $stmt->bindParam(':Id_utilisateur', $_SESSION['user']['Id_utilisateur'], PDO::PARAM_INT);
+
             if ($stmt->execute()) {
                 echo "Covoiturage ajouté avec succès";
             } else {
@@ -72,7 +64,7 @@ if (isset($_SESSION['user'])) {
     </div>
     <div>
         <label for="voiture">Voiture</label>
-        <!-- faire une liste deroulante pour afficher les marques de voiture -->
+
         <select class="mb-2" name="voiture" id="voiture">
             <?php
             $UserId = $_SESSION['user']['Id_utilisateur'];
@@ -96,5 +88,5 @@ if (isset($_SESSION['user'])) {
 </form>
 
 <?php
-require_once 'includes/footer.php'; // Inclusion du footer
+require_once 'includes/footer.php';
 ?>
